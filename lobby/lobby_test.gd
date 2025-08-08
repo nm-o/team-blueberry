@@ -23,6 +23,7 @@ func _ready():
 		multiplayer.peer_connected.connect(_on_peer_connected)
 	
 	if not _try_host():
+		await get_tree().create_timer(1).timeout
 		_try_join()
 	
 	# disable in order to be able to reach main menu again
