@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://wfthjii15mmu"]
+
+[ext_resource type="Script" uid="uid://dwn8hxm7rfxvg" path="res://scripts/beings/weapon_master.gd" id="1_10w4d"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_xxmjj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxmjj"]
+radius = 65.0308
+
+[node name="WeaponMaster" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
+script = ExtResource("1_10w4d")
+label_name = NodePath("label_name")
+label_role = NodePath("label_role")
+metadata/_custom_type_script = "uid://dwn8hxm7rfxvg"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.843146, 0.626983, 0, 1)
+position = Vector2(645, 591)
+texture = ExtResource("2_xxmjj")
+
+[node name="label_name" type="Label" parent="."]
+offset_left = 628.0
+offset_top = 500.0
+offset_right = 668.0
+offset_bottom = 523.0
+
+[node name="label_role" type="Label" parent="."]
+offset_left = 628.0
+offset_top = 655.0
+offset_right = 668.0
+offset_bottom = 678.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(645, 591)
+shape = SubResource("CircleShape2D_xxmjj")
