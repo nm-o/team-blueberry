@@ -15,3 +15,6 @@ weapon_master_scene = ExtResource("4_rarhs")
 offset_right = 40.0
 offset_bottom = 23.0
 text = "MAIN SCENE"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(335, 388)

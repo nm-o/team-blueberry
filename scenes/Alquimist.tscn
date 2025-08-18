@@ -7,28 +7,29 @@
 radius = 65.0308
 
 [node name="Alquimist" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
+motion_mode = 1
 script = ExtResource("1_qimlb")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")
+max_speed = null
+acceleration = null
 metadata/_custom_type_script = "uid://bs2wpehptobcd"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.982772, 0.163779, 0.816556, 1)
-position = Vector2(437, 282)
 texture = ExtResource("2_ob7it")
 
 [node name="label_name" type="Label" parent="."]
-offset_left = 420.0
-offset_top = 191.0
-offset_right = 460.0
-offset_bottom = 214.0
+offset_left = -20.0
+offset_top = -87.0
+offset_right = 20.0
+offset_bottom = -64.0
 
 [node name="label_role" type="Label" parent="."]
-offset_left = 420.0
-offset_top = 346.0
-offset_right = 460.0
-offset_bottom = 369.0
+offset_left = -20.0
+offset_top = 63.0
+offset_right = 20.0
+offset_bottom = 86.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(437, 282)
 shape = SubResource("CircleShape2D_ob7it")

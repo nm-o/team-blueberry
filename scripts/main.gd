@@ -5,19 +5,27 @@ extends Node2D
 @export var armor_master_scene: PackedScene
 @export var weapon_master_scene: PackedScene
 
+# Marker to set up the initial positions
+@onready var marker_2d: Marker2D = $Marker2D
+
+
 func _ready() -> void:
-	# Instantiating the players according to their chosen rol
-	for player_data in Game.players:
+	# Going through the players to instatiate them
+	for i in len(Game.players):
+		var player_data = Game.players[i]
+		var player_inst
+		
+		# Associating the correct scene depending on the selected rol
 		if player_data.role == Statics.Role.ROLE_A:
-			var alquimist_inst = alquimist_scene.instantiate()
-			add_child(alquimist_inst)
-			alquimist_inst.setup(player_data)
+			player_inst = alquimist_scene.instantiate()
 		elif player_data.role == Statics.Role.ROLE_B:
-			var armor_master_inst = armor_master_scene.instantiate()
-			add_child(armor_master_inst)
-			armor_master_inst.setup(player_data)
+			player_inst = armor_master_scene.instantiate()
 		elif player_data.role == Statics.Role.ROLE_C:
-			var weapon_master_inst = weapon_master_scene.instantiate()
-			add_child(weapon_master_inst)
-			weapon_master_inst.setup(player_data)
+			player_inst = weapon_master_scene.instantiate()
+		
+		# Setting the players in the main scene
+		add_child(player_inst)
+		player_inst.global_position.x = marker_2d.global_position.x*i + 50
+		player_inst.global_position.y = marker_2d.global_position.y
+		player_inst.setup(player_data)
 			

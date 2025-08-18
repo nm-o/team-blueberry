@@ -7,6 +7,7 @@
 radius = 65.0308
 
 [node name="WeaponMaster" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
+motion_mode = 1
 script = ExtResource("1_10w4d")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")
@@ -14,21 +15,19 @@ metadata/_custom_type_script = "uid://dwn8hxm7rfxvg"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.843146, 0.626983, 0, 1)
-position = Vector2(645, 591)
 texture = ExtResource("2_xxmjj")
 
 [node name="label_name" type="Label" parent="."]
-offset_left = 628.0
-offset_top = 500.0
-offset_right = 668.0
-offset_bottom = 523.0
+offset_left = -20.0
+offset_top = -89.0
+offset_right = 20.0
+offset_bottom = -66.0
 
 [node name="label_role" type="Label" parent="."]
-offset_left = 628.0
-offset_top = 655.0
-offset_right = 668.0
-offset_bottom = 678.0
+offset_left = -20.0
+offset_top = 66.0
+offset_right = 20.0
+offset_bottom = 89.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(645, 591)
 shape = SubResource("CircleShape2D_xxmjj")
