@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://wfthjii15mmu"]
+[gd_scene load_steps=5 format=3 uid="uid://wfthjii15mmu"]
 
 [ext_resource type="Script" uid="uid://dwn8hxm7rfxvg" path="res://scripts/beings/weapon_master.gd" id="1_10w4d"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_xxmjj"]
+[ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="3_xuoiv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxmjj"]
 radius = 65.0308
@@ -32,3 +33,5 @@ offset_bottom = 678.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(645, 591)
 shape = SubResource("CircleShape2D_xxmjj")
+
+[node name="Inventory" parent="." instance=ExtResource("3_xuoiv")]
