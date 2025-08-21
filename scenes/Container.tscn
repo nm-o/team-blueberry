@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgfgnqu8fva07"]
+
+[ext_resource type="Script" uid="uid://b03dtr35t0wn4" path="res://scripts/Inventory/container.gd" id="1_fhxe0"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_cb67s"]
+
+[node name="ItemContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 120.0
+script = ExtResource("1_fhxe0")
+
+[node name="Texture" type="TextureRect" parent="Container"]
+layout_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 102.0
+
+[node name="Selector" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 39.0
+offset_top = -59.0
+offset_right = 167.0
+offset_bottom = 69.0
+scale = Vector2(0.400001, 0.4)
+texture = ExtResource("2_cb67s")

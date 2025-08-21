@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://clak1ljsk80a5"]
+
+[ext_resource type="Script" uid="uid://qp33f5h0e8as" path="res://scripts/Inventory/inventory.gd" id="1_hj2ta"]
+[ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="1_qw0r6"]
+[ext_resource type="Script" uid="uid://cs4wneh7lwkyj" path="res://scripts/Inventory/Containers/default_container.gd" id="3_ty45s"]
+[ext_resource type="Script" uid="uid://vb5ocjkr8v0o" path="res://scripts/Inventory/Containers/helmet_container.gd" id="4_yyk2a"]
+[ext_resource type="Script" uid="uid://x230qed11fr2" path="res://scripts/Inventory/Containers/hotbar_container.gd" id="5_yyk2a"]
+
+[node name="Inventory" type="CanvasLayer"]
+script = ExtResource("1_hj2ta")
+
+[node name="InventoryContainers" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackpackContainers" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemContainer" parent="BackpackContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = -481.0
+offset_top = -51.0
+offset_right = -481.0
+offset_bottom = -51.0
+script = ExtResource("3_ty45s")
+
+[node name="ItemContainer2" parent="BackpackContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = -282.0
+offset_top = -48.0
+offset_right = -282.0
+offset_bottom = -48.0
+script = ExtResource("3_ty45s")
+
+[node name="ItemContainer3" parent="BackpackContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = -61.0
+offset_top = -47.0
+offset_right = -61.0
+offset_bottom = -47.0
+script = ExtResource("3_ty45s")
+
+[node name="ItemContainer4" parent="BackpackContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = 113.0
+offset_top = -43.0
+offset_right = 113.0
+offset_bottom = -43.0
+script = ExtResource("4_yyk2a")
+
+[node name="HotbarContainers" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemContainer" parent="HotbarContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 588.0
+offset_right = 300.0
+offset_bottom = 588.0
+script = ExtResource("5_yyk2a")
+
+[node name="ItemContainer2" parent="HotbarContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = 456.0
+offset_top = 588.0
+offset_right = 456.0
+offset_bottom = 588.0
+script = ExtResource("5_yyk2a")
+
+[node name="ItemContainer3" parent="HotbarContainers" instance=ExtResource("1_qw0r6")]
+layout_mode = 1
+offset_left = 624.0
+offset_top = 586.0
+offset_right = 624.0
+offset_bottom = 586.0
+script = ExtResource("5_yyk2a")
