@@ -60,3 +60,4 @@ func apply_effect(effect_type: Global.States):
 		return false
 	
 	return change_state(effect_type)
+ 
