@@ -34,7 +34,12 @@ func heal(amount: int):
 		hp += amount
 
 # METHOD TO CHANGE STATE (WITH DEAD PROTECTION)
-func change_state(new_state: Global.States):
+func change_state(new_state: Global.States, force: bool = false):
+	# Force new state, without DEAD protection
+	if force:
+		state = new_state
+		return true
+		
 	# If dead, only allow resurrection
 	if state == Global.States.DEAD and new_state != Global.States.RESURRECTED:
 		print("Cannot change state of a dead being without resurrection")
@@ -60,4 +65,3 @@ func apply_effect(effect_type: Global.States):
 		return false
 	
 	return change_state(effect_type)
- 
