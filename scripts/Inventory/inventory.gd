@@ -28,7 +28,7 @@ func search_selected_container():
 	for container in containers:
 		if container.selected:
 			selected_container_number = i
-			player.selected_item = container.item
+			player.change_selected_item(container.item)
 			return
 		i+=1
 
@@ -38,7 +38,7 @@ func select_container(num: int):
 	_deselect_containers()
 	container.selected = true
 	container.selector.visible = true
-	player.selected_item = container.item
+	player.change_selected_item(container.item)
 
 # Deselecta all the containers in the hotbar
 func _deselect_containers():

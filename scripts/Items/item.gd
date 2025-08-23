@@ -3,3 +3,4 @@ extends Resource
 
 var texture: Texture2D
 var description: String
+var animationName: String = "attackRed"

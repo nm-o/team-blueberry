@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://pbuhr6qfd4mu"]
+
+[ext_resource type="Script" uid="uid://dqvdy15m8x8ub" path="res://scripts/selected_object.gd" id="1_1u5dg"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_yc0cc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc0cc"]
+size = Vector2(119.543, 118.174)
+
+[sub_resource type="Animation" id="Animation_4xaip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackArea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.156863, 0.592157, 0, 0.811765)]
+}
+
+[sub_resource type="Animation" id="Animation_ldmkt"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackArea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackArea:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackArea:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.156863, 0.592157, 0, 0.811765)]
+}
+
+[sub_resource type="Animation" id="Animation_yc0cc"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackArea:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackArea:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackArea:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.192157, 0, 0.811765)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldmkt"]
+_data = {
+&"RESET": SubResource("Animation_4xaip"),
+&"attackGreen": SubResource("Animation_ldmkt"),
+&"attackRed": SubResource("Animation_yc0cc")
+}
+
+[node name="SelectedObject" type="Node2D"]
+script = ExtResource("1_1u5dg")
+
+[node name="RotatingMarker" type="Marker2D" parent="."]
+position = Vector2(400, 0)
+
+[node name="AttackArea" type="Sprite2D" parent="RotatingMarker"]
+modulate = Color(0.156863, 0.592157, 0, 0.811765)
+position = Vector2(-38.5, 3.8147e-06)
+scale = Vector2(1.71094, 1.125)
+texture = ExtResource("2_yc0cc")
+
+[node name="Area2D" type="Area2D" parent="RotatingMarker/AttackArea"]
+scale = Vector2(1.07563, 1.07563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RotatingMarker/AttackArea/Area2D"]
+position = Vector2(-0.81506, 0.413193)
+shape = SubResource("RectangleShape2D_yc0cc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RotatingMarker"]
+libraries = {
+&"": SubResource("AnimationLibrary_ldmkt")
+}
+
+[node name="Object" type="Sprite2D" parent="RotatingMarker"]
+texture = ExtResource("2_yc0cc")
