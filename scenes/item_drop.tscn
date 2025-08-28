@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c35v1or8j2glt"]
+
+[ext_resource type="Script" uid="uid://bwt4dyhv4ahtl" path="res://scripts/Items/item_drop.gd" id="1_gvv6n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gvv6n"]
+radius = 35.0571
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8wxw"]
+radius = 17.1172
+
+[node name="ItemDrop" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 128
+gravity_scale = 0.0
+script = ExtResource("1_gvv6n")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gvv6n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e8wxw")
+
+[node name="ItemName" type="Label" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+text = "
+"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

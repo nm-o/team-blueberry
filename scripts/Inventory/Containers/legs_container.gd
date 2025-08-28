@@ -4,6 +4,7 @@ extends DefaultContainer
 func add_item(item_to_add: Item) -> bool:
 	if item_to_add is Legs and not item:
 		item = item_to_add
+		container.number_of_items+=1
 		update_container()
 		return true
 	return false 

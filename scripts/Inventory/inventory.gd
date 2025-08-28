@@ -10,7 +10,7 @@ extends CanvasLayer
 var selected_container_number: int = 0
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:  # Solo cuando se presiona
+	if event is InputEventMouseButton and event.pressed:  # Just when it gets pressed
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			selected_container_number -= 1
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
@@ -38,6 +38,7 @@ func select_container(num: int):
 	_deselect_containers()
 	container.selected = true
 	container.selector.visible = true
+	selected_container_number = num
 	player.change_selected_item(container.item)
 
 # Deselecta all the containers in the hotbar

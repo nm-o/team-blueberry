@@ -25,6 +25,7 @@ func _ready() -> void:
 		
 		# Setting the players in the main scene
 		add_child(player_inst)
+		player_inst.player_id = i
 		player_inst.global_position.x = marker_2d.global_position.x*i + 50
 		player_inst.global_position.y = marker_2d.global_position.y
 		player_inst.setup(player_data)
