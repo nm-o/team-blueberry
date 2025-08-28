@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://wfthjii15mmu"]
+[gd_scene load_steps=8 format=3 uid="uid://wfthjii15mmu"]
 
 [ext_resource type="Script" uid="uid://dwn8hxm7rfxvg" path="res://scripts/beings/weapon_master.gd" id="1_10w4d"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_serju"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_xxmjj"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="3_xuoiv"]
+[ext_resource type="PackedScene" uid="uid://pbuhr6qfd4mu" path="res://scenes/SelectedObject.tscn" id="4_ldq0g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxmjj"]
 radius = 65.0308
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_serju"]
+radius = 87.6926
+
 [node name="WeaponMaster" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
 motion_mode = 1
 script = ExtResource("1_10w4d")
+item_drop_scene = ExtResource("2_serju")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")
 metadata/_custom_type_script = "uid://dwn8hxm7rfxvg"
@@ -34,3 +40,15 @@ offset_bottom = 89.0
 shape = SubResource("CircleShape2D_xxmjj")
 
 [node name="Inventory" parent="." instance=ExtResource("3_xuoiv")]
+
+[node name="SelectedObject" parent="." instance=ExtResource("4_ldq0g")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath(".")
+
+[node name="InteractionArea" type="Area2D" parent="." groups=["DropSpawners"]]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_serju")

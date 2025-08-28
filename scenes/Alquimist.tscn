@@ -1,16 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvkyltitf768g"]
+[gd_scene load_steps=8 format=3 uid="uid://cvkyltitf768g"]
 
 [ext_resource type="Script" uid="uid://bs2wpehptobcd" path="res://scripts/beings/alquimist.gd" id="1_qimlb"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_ob7it"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_wm8ad"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="3_yid3s"]
 [ext_resource type="PackedScene" uid="uid://pbuhr6qfd4mu" path="res://scenes/SelectedObject.tscn" id="4_1kk4g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ob7it"]
 radius = 65.0308
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kk4g"]
+radius = 92.0217
+
 [node name="Alquimist" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
 motion_mode = 1
 script = ExtResource("1_qimlb")
+item_drop_scene = ExtResource("2_wm8ad")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")
 metadata/_custom_type_script = "uid://bs2wpehptobcd"
@@ -35,6 +40,15 @@ offset_bottom = 86.0
 shape = SubResource("CircleShape2D_ob7it")
 
 [node name="Inventory" parent="." instance=ExtResource("3_yid3s")]
-max_hotbar_containers = null
 
 [node name="SelectedObject" parent="." instance=ExtResource("4_1kk4g")]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_1kk4g")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." groups=["DropSpawners"]]
+spawn_path = NodePath(".")
