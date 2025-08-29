@@ -49,3 +49,5 @@ shape = SubResource("CircleShape2D_1kk4g")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." groups=["DropSpawners"]]
 spawn_path = NodePath(".")
+
+[node name="MouseSprite" type="Sprite2D" parent="."]

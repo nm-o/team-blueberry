@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var inventory_containers: Control = $InventoryContainers
 @onready var backpack_containers: Control = $BackpackContainers
 @onready var hotbar_containers: Control = $HotbarContainers
+@onready var crafting_table_interface: Control = $CraftingTableInterface
 @onready var player: Player = $".."
 
 @export var max_hotbar_containers: int = 3
@@ -50,17 +51,25 @@ func _deselect_containers():
 func change_visibility():
 	inventory_containers.visible = not inventory_containers.visible
 	backpack_containers.visible = not backpack_containers.visible
+	crafting_table_interface.visible = false
+	Mouse.player.is_inventory_open = inventory_containers.visible
+
+func open_crafting_table():
+	inventory_containers.visible = true
+	backpack_containers.visible = true
+	crafting_table_interface.visible = true
+	Mouse.player.is_inventory_open = true
 
 # Function to add an item into the inventory
-func add_item(item: Item) -> bool:
+func add_item(item: Item):
 	var containers = hotbar_containers.get_children()
 	for container in containers:
 		var is_true = container.add_item(item)
 		if is_true:
-			return true
+			return
 	var containers_2 = backpack_containers.get_children()
 	for container in containers_2:
 		var is_true = container.add_item(item)
 		if is_true:
-			return true
-	return false
+			return
+	Mouse.player.manage_drop(item.get_script().resource_path, Mouse.get_drop_id())

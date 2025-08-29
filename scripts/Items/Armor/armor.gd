@@ -1,2 +1,2 @@
 class_name Armor
-extends Item
+extends Craftable
