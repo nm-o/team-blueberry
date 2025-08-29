@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://pbuhr6qfd4mu"]
+[gd_scene load_steps=7 format=3 uid="uid://c1xvtu75qiohi"]
 
-[ext_resource type="Script" uid="uid://dqvdy15m8x8ub" path="res://scripts/selected_object.gd" id="1_1u5dg"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_yc0cc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yc0cc"]
@@ -107,7 +106,6 @@ _data = {
 }
 
 [node name="SelectedObject" type="Node2D"]
-script = ExtResource("1_1u5dg")
 
 [node name="RotatingMarker" type="Marker2D" parent="."]
 position = Vector2(400, 0)

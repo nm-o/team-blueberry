@@ -13,9 +13,6 @@ var selected_areas: Array = [] # array of selected objects in the area of intera
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 
-# Variables to manage selected object
-@onready var selected_item_object = $SelectedObject
-
 # Variables to set the labels that depict the players name and chosen rol
 @export var label_name: Label
 @export var label_role: Label
@@ -37,13 +34,9 @@ func _physics_process(delta: float) -> void:
 		# Inventory closing and opening
 		if Input.is_action_just_pressed("inventory") and inventory:
 			is_inventory_open = not is_inventory_open
-			selected_item_object.active = not selected_item_object.active
 			inventory.change_visibility()
 			
 		if not is_inventory_open:
-			# Selected Object 
-			if Input.is_action_just_pressed("left_click") and not Mouse.on_ui and selected_item:
-				selected_item_object.attack_animation(selected_item.animationName)
 			# Movement
 			var move_input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 			if move_input_vector.length() > 1.0: # diagonal move normalized
@@ -54,11 +47,6 @@ func _physics_process(delta: float) -> void:
 			
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
-
-func change_selected_item(new_item: Item):
-	selected_item = new_item
-	if new_item:
-		selected_item_object.change_object(new_item)
 
 func setup(player_data: Statics.PlayerData):
 	# Setting up the labels and authority of this player
