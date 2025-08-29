@@ -10,6 +10,7 @@ var selected_areas: Array = [] # array of selected objects in the area of intera
 @onready var inventory: CanvasLayer =  $Inventory
 @onready var interaction_area: Area2D = $InteractionArea
 @export var item_drop_scene: PackedScene
+@onready var mouse_sprite: Sprite2D = $MouseSprite
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 
@@ -23,17 +24,18 @@ var selected_areas: Array = [] # array of selected objects in the area of intera
 var target_position: Vector2
 
 func _ready() -> void:
+	mouse_sprite.top_level = true
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
+		mouse_sprite.global_position = get_global_mouse_position()
 		# Manages interaction with an area
 		if Input.is_action_just_pressed("interact") and not selected_areas.is_empty():
 			selected_areas.back().interact()
 		# Inventory closing and opening
 		if Input.is_action_just_pressed("inventory") and inventory:
-			is_inventory_open = not is_inventory_open
 			inventory.change_visibility()
 			
 		if not is_inventory_open:
@@ -103,13 +105,13 @@ func drop_item(pos, item_to_drop, drop_id):
 
 func _interaction_area_entered(area: Area2D):
 	if not selected_areas.is_empty():
-		selected_areas.back().item_name_label.visible = false
+		selected_areas.back().interaction_name_label.visible = false
 	selected_areas.append(area.owner)
-	selected_areas.back().item_name_label.visible = true
+	selected_areas.back().interaction_name_label.visible = true
 	
 func _interaction_area_exited(area: Area2D):
 	if area.owner:
-		area.owner.item_name_label.visible = false
+		area.owner.interaction_name_label.visible = false
 	selected_areas.erase(area.owner)
 	if not selected_areas.is_empty():
-		selected_areas.back().item_name_label.visible = true
+		selected_areas.back().interaction_name_label.visible = true
