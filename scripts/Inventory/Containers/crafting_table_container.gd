@@ -1,23 +1,8 @@
-class_name DefaultContainer
-extends Control
+extends DefaultContainer
 
-@onready var container: PanelContainer = $Container
-@onready var texture: TextureRect = $Container/Texture
-@onready var description: RichTextLabel = $Description
-@onready var number: Label = $Number
+var slot_number: int
 
-var item: Item
-
-# Function to change the description and texture of the container
-func update_container():
-	texture.texture = item.texture
-	description.text = item.description
-	if container.number_of_items > 1:
-		number.text = str(container.number_of_items)
-	else:
-		number.text = ""
-
-# Function to add an item to a default container
+# Function to add an item to a crafting table container
 func add_item(item_to_add: Item) -> bool:
 	if item:
 		if item.get_script().resource_path.get_file().get_basename() == item_to_add.get_script().resource_path.get_file().get_basename():
@@ -29,6 +14,8 @@ func add_item(item_to_add: Item) -> bool:
 				return false
 		else:
 			return false
+	get_parent().current_items[slot_number] = item_to_add.name
+	Debug.log(get_parent().current_items)
 	item = item_to_add
 	container.number_of_items += 1
 	update_container()
@@ -40,8 +27,11 @@ func remove_item():
 		container.number_of_items -=1
 		update_container()
 		return
+	get_parent().current_items[slot_number] = ""
+	Debug.log(get_parent().current_items)
 	container.number_of_items -= 1
 	update_container()
 	item = null
 	description.text = ""
 	texture.texture = null
+	

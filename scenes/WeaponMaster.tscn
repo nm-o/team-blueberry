@@ -40,12 +40,14 @@ shape = SubResource("CircleShape2D_xxmjj")
 
 [node name="Inventory" parent="." instance=ExtResource("3_xuoiv")]
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." groups=["DropSpawners"]]
 spawn_path = NodePath(".")
 
-[node name="InteractionArea" type="Area2D" parent="." groups=["DropSpawners"]]
+[node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_serju")
+
+[node name="MouseSprite" type="Sprite2D" parent="."]
