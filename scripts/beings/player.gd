@@ -3,6 +3,9 @@ class_name Player
 
 var player_id: int
 
+# Camera
+@export var personal_camera_2d: Camera2D
+
 # Variables to manage the inventory
 var is_inventory_open: bool = false
 var selected_item: Item
@@ -64,6 +67,11 @@ func setup(player_data: Statics.PlayerData):
 		inventory.inventory_containers.visible = false
 		inventory.backpack_containers.visible = false
 		inventory.hotbar_containers.visible = true
+		
+		# Setting up the personal camera for this player
+		self.personal_camera_2d = Camera2D.new()
+		self.add_child(personal_camera_2d)
+		self.personal_camera_2d.make_current()
 	
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_pos(pos):
