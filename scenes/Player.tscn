@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8vqcmcxpvjvb"]
+
+[ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scripts/beings/player.gd" id="1_3li8b"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="3_70d11"]
+[ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="4_cw2d6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ob7it"]
+radius = 65.0308
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kk4g"]
+radius = 92.0217
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdl7e"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
+motion_mode = 1
+script = ExtResource("1_3li8b")
+label_name = NodePath("NameLabel")
+label_role = NodePath("RoleLabel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.982772, 0.163779, 0.816556, 1)
+texture = ExtResource("3_70d11")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -87.0
+offset_right = 20.0
+offset_bottom = -64.0
+
+[node name="RoleLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 63.0
+offset_right = 20.0
+offset_bottom = 86.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ob7it")
+
+[node name="Inventory" parent="." instance=ExtResource("4_cw2d6")]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_1kk4g")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." groups=["DropSpawners"]]
+spawn_path = NodePath(".")
+
+[node name="MouseSprite" type="Sprite2D" parent="."]
+
+[node name="WeaponHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHitbox"]
+shape = SubResource("RectangleShape2D_mdl7e")
