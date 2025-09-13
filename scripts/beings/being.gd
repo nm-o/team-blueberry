@@ -14,6 +14,8 @@ var isAlive: bool:
 	get:
 		return hp > 0
 
+
+
 # CONSTRUCTOR
 func _init(life: int = 100, speed: float = 100.0, att: int = 10, def: int = 5):
 	hp = life
@@ -47,6 +49,12 @@ func change_state(new_state: Global.States, force: bool = false):
 	
 	state = new_state
 	return true
+
+enum Faction { PLAYER, ENEMY, NEUTRAL }
+@export var faction: Faction = Faction.PLAYER
+
+func can_attack_target(target: Being):
+	return target.faction != faction
 
 # SPECIAL METHOD FOR RESURRECTION
 func resurrect(initial_hp: int = 1):

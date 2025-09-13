@@ -33,7 +33,19 @@ func spawn_players_for_everyone():
 		
 		print("Player ", player_data.name, " spawned with authority: ", player_inst.get_multiplayer_authority())
 		print("Am I authority for this player? ", player_inst.is_multiplayer_authority())
+		
+		
+@export var enemy_scene: PackedScene
 
+func spawn_enemies():
+	if multiplayer.is_server():
+		for i in range(3):  # 3 enemigos
+			var enemy = enemy_scene.instantiate()
+			enemy.name = "Enemy_" + str(i)
+			enemy.global_position = Vector2(randf_range(100, 900), randf_range(100, 500))
+			enemy.faction = Being.Faction.ENEMY
+			add_child(enemy)	
+	
 func setup_player_data(player_inst, player_data):
 
 	match player_data.role:
@@ -53,6 +65,8 @@ func setup_player_data(player_inst, player_data):
 			player_inst.attack = 10
 			player_inst.defense = 12
 	
+
+	
 	# Labels
 	if player_inst.label_name:
 		player_inst.label_name.text = player_data.name
@@ -62,7 +76,11 @@ func setup_player_data(player_inst, player_data):
 	# Solo configurar autoridad específica si es MI jugador
 	if player_data.id == multiplayer.get_unique_id():
 		setup_my_player(player_inst)
-		
+
+	await get_tree().create_timer(0.2).timeout
+	player_inst.multiplayer_ready = true
+	print("Player ", player_inst.name, " is now multiplayer ready")	
+
 func setup_my_player(player_inst):
 	print("Setting up MY player: ", player_inst.name)
 	

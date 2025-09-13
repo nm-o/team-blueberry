@@ -10,7 +10,8 @@ radius = 65.0308
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kk4g"]
 radius = 92.0217
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdl7e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3li8b"]
+size = Vector2(40, 20)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
 motion_mode = 1
@@ -52,6 +53,11 @@ spawn_path = NodePath(".")
 [node name="MouseSprite" type="Sprite2D" parent="."]
 
 [node name="WeaponHitbox" type="Area2D" parent="."]
+position = Vector2(0, -2)
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHitbox"]
-shape = SubResource("RectangleShape2D_mdl7e")
+position = Vector2(30, 0)
+shape = SubResource("RectangleShape2D_3li8b")
+
+[connection signal="body_entered" from="WeaponHitbox" to="." method="_on_weapon_hit"]

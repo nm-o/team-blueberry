@@ -9,6 +9,7 @@ var player_id: int
 # Variables to manage the inventory
 var is_inventory_open: bool = false
 var selected_item: Item
+var multiplayer_ready: bool = false
 var selected_areas: Array = [] # array of selected objects in the area of interaction
 @onready var inventory: CanvasLayer =  $Inventory
 @onready var interaction_area: Area2D = $InteractionArea
@@ -27,69 +28,91 @@ var selected_areas: Array = [] # array of selected objects in the area of intera
 var target_position: Vector2
 
 # Variables de combate
-@export var attack_range: float = 50.0
+@export var attack_range: float = 150.0
 @export var attack_cooldown: float = 1.0
 var can_attack: bool = true
 @onready var weapon_hitbox: Area2D = $WeaponHitbox
 
 func _on_weapon_hit(body: Node2D):
-	if not is_multiplayer_authority():
+	if not is_multiplayer_authority() or not multiplayer_ready:
 		return
-		
-	if body is Being and body != self and body.isAlive:
+
+	if body == self:
+		return
+
+	if body is Being and body.isAlive:
 		var distance = global_position.distance_to(body.global_position)
 		if distance <= attack_range:
-			apply_damage_to_target.rpc_id(body.get_multiplayer_authority(), attack)
-
+			# Verificar que el target existe antes de enviar RPC
+			if is_instance_valid(body) and body.multiplayer_ready:
+				apply_damage_to_target.rpc_id(body.get_multiplayer_authority(), attack)
 func _ready() -> void:
 	mouse_sprite.top_level = true
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
 	if weapon_hitbox:
-		weapon_hitbox.body_entered.connect(_on_weapon_hit)
+		print("=== SIGNAL DEBUG FOR ", name, " ===")
+		print("WeaponHitbox exists: ", weapon_hitbox != null)
+		print("WeaponHitbox name: ", weapon_hitbox.name)
+		print("Current connections: ", weapon_hitbox.body_entered.get_connections().size())
+
+		# Conectar si no está conectado
+		if not weapon_hitbox.body_entered.is_connected(_on_weapon_hit):
+			print("Connecting signal...")
+			weapon_hitbox.body_entered.connect(_on_weapon_hit)
+			print("Signal connected!")
+		else:
+			print("Signal already connected!")
+
 		weapon_hitbox.monitoring = false
 
+
 func _physics_process(delta: float) -> void:
-	# DEBUG: Solo cada 2 segundos
-	if Engine.get_process_frames() % 120 == 0:
-		print("Player ", name, " - My peer ID: ", multiplayer.get_unique_id(), " - Authority: ", get_multiplayer_authority(), " - Am I authority? ", is_multiplayer_authority())
-	
+	# DEBUG
+	# if Engine.get_process_frames() % 120 == 0:
+	#     print("Player ", name, " - My peer ID: ", multiplayer.get_unique_id(), " - Authority: ", get_multiplayer_authority(), " - Am I authority? ", is_multiplayer_authority())
+
 	if is_multiplayer_authority():
 		mouse_sprite.global_position = get_global_mouse_position()
-		
-		# DEBUG: Verificar input
+
+		# Verificar input
 		var move_input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-		if move_input_vector.length() > 0:
-			print("Player ", name, " moving: ", move_input_vector)
-		
+		# if move_input_vector.length() > 0:
+		#     print("Player ", name, " moving: ", move_input_vector)
+
 		# Ataque melee
 		if Input.is_action_just_pressed("attack") and can_attack and not is_inventory_open:
-			perform_attack.rpc()
-		
-		# Manages interaction with an area
+			perform_attack()
+
+		# Interacción con un área seleccionada
 		if Input.is_action_just_pressed("interact") and not selected_areas.is_empty():
 			selected_areas.back().interact()
-		# Inventory closing and opening
+
+		# Inventario
 		if Input.is_action_just_pressed("inventory") and inventory:
 			inventory.change_visibility()
-			
+
 		if not is_inventory_open:
-			# Movement
-			if move_input_vector.length() > 1.0: # diagonal move normalized
+			# Movimiento y física
+			move_input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+			if move_input_vector.length() > 1.0:
 				move_input_vector = move_input_vector.normalized()
-			velocity = velocity.move_toward(move_input_vector*max_speed, acceleration*delta)
+			velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
 			move_and_slide()
-			
-			send_pos.rpc(position)
-			
+
+			# Solo enviar si estoy listo Y me moví
+			if multiplayer_ready and velocity.length() > 0.1:
+				send_pos.rpc(position)
+
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
 
+
 func setup(player_data: Statics.PlayerData):
-	print("=== PLAYER SETUP DEBUG ===")
-	print("Setting up player: ", player_data.name, " ID: ", player_data.id)
-	print("My multiplayer ID: ", multiplayer.get_unique_id())
-	print("Is this my player? ", player_data.id == multiplayer.get_unique_id())
+	#print("=== PLAYER SETUP DEBUG ===")
+	#print("Setting up player: ", player_data.name, " ID: ", player_data.id)
+	#print("My multiplayer ID: ", multiplayer.get_unique_id())
+	#print("Is this my player? ", player_data.id == multiplayer.get_unique_id())
 	
 	# Setting up the labels and authority of this player
 	if label_name:
@@ -98,8 +121,8 @@ func setup(player_data: Statics.PlayerData):
 		label_role.text = "role: " + str(player_data.role)
 	
 	set_multiplayer_authority(player_data.id, false)
-	print("Authority set to: ", get_multiplayer_authority())
-	print("Am I authority? ", is_multiplayer_authority())
+	#print("Authority set to: ", get_multiplayer_authority())
+	#print("Am I authority? ", is_multiplayer_authority())
 	multiplayer_spawner.set_multiplayer_authority(player_data.id, false)
 	match player_data.role:
 		Statics.Role.ROLE_A:
@@ -118,6 +141,15 @@ func setup(player_data: Statics.PlayerData):
 			attack = 10
 			defense = 12
 	if is_multiplayer_authority() and inventory:
+		if is_multiplayer_authority():
+	
+			if Input.is_action_just_pressed("attack"):
+				print("ATTACK INPUT DETECTED by ", name)
+				if can_attack and not is_inventory_open:
+					print("PERFORMING ATTACK")
+					perform_attack.rpc()
+				else:
+					print("Can't attack - can_attack: ", can_attack, " inventory_open: ", is_inventory_open)
 		Mouse.player = self
 		if interaction_area:
 			interaction_area.area_entered.connect(_interaction_area_entered)
@@ -130,7 +162,6 @@ func setup(player_data: Statics.PlayerData):
 		self.personal_camera_2d = Camera2D.new()
 		self.add_child(personal_camera_2d)
 		self.personal_camera_2d.make_current()
-
 @rpc("any_peer", "call_remote", "unreliable_ordered") 
 func send_pos(pos):
 	# Solo actualizar si el nodo existe y no soy yo
@@ -138,29 +169,66 @@ func send_pos(pos):
 		target_position = pos
 
 # FUNCIONES DE COMBATE
-@rpc("any_peer", "call_local", "reliable")
 func perform_attack():
 	if not can_attack or state == Global.States.DEAD:
 		return
-	
+
 	can_attack = false
-	weapon_hitbox.monitoring = true
-	
-	# Desactivar hitbox después de 0.2 segundos
-	await get_tree().create_timer(0.2).timeout
-	weapon_hitbox.monitoring = false
-	
-	# Cooldown
+
+	# Buscar targets sin debug prints
+	for child in get_parent().get_children():
+		if child.name.begins_with("Player_") and child != self:
+			var distance = global_position.distance_to(child.global_position)
+
+			if distance <= attack_range:
+				if child is Being and child.isAlive:
+					apply_damage_to_target.rpc_id(child.get_multiplayer_authority(), attack)
+
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 
-@rpc("any_peer", "call_local", "reliable") 
+	await get_tree().create_timer(attack_cooldown).timeout
+	can_attack = true
+
+func _process_hit(body: Node2D):
+	print("=== HIT DEBUG ===")
+	print("Processing hit on: ", body.name)
+	print("My name: ", name)
+	print("Body reference: ", body)
+	print("Self reference: ", self)
+	print("body == self: ", body == self)
+	print("body.name == name: ", body.name == name)
+	print("Body authority: ", body.get_multiplayer_authority())
+	print("My authority: ", get_multiplayer_authority())
+
+	if not is_multiplayer_authority() or not multiplayer_ready:
+		print("Not my authority or not ready")
+		return
+
+	if body == self:
+		print("Ignoring self-hit")
+		return
+
+	# Si llegamos aquí, debería procesar el hit
+	print("PROCESSING VALID HIT!")
+
+	if body is Being and body.isAlive:
+		var distance = global_position.distance_to(body.global_position)
+		print("Hit distance: ", distance, " max range: ", attack_range)
+		if distance <= attack_range:
+			print("APPLYING DAMAGE: ", attack, " to ", body.name)
+			apply_damage_to_target.rpc_id(body.get_multiplayer_authority(), attack)
+
+@rpc("any_peer", "call_local", "reliable")
 func apply_damage_to_target(damage: int):
 	take_damage(damage)
 	# Efecto visual de daño
 	modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color.WHITE
+
+	# Debug final (opcional)
+	print(name, " took ", damage, " damage. HP: ", hp)
 	
 # Destroys dropped items on all the players
 func manage_destroy_item_drop(drop_id):
@@ -184,6 +252,7 @@ func manage_drop(item_to_drop, drop_id):
 @rpc("authority", "call_local", "reliable")
 func drop_item_server(pos, item_to_drop, drop_id):
 	drop_item.rpc(pos, item_to_drop, drop_id)
+
 @rpc("any_peer", "call_local", "reliable")
 func drop_item(pos, item_to_drop, drop_id):
 	if not item_drop_scene:
