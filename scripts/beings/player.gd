@@ -175,7 +175,6 @@ func perform_attack():
 
 	can_attack = false
 
-	# Buscar targets sin debug prints
 	for child in get_parent().get_children():
 		if child.name.begins_with("Player_") and child != self:
 			var distance = global_position.distance_to(child.global_position)
@@ -208,8 +207,6 @@ func _process_hit(body: Node2D):
 	if body == self:
 		print("Ignoring self-hit")
 		return
-
-	# Si llegamos aquí, debería procesar el hit
 	print("PROCESSING VALID HIT!")
 
 	if body is Being and body.isAlive:
@@ -227,8 +224,6 @@ func apply_damage_to_target(damage: int):
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color.WHITE
 
-	# Debug final (opcional)
-	print(name, " took ", damage, " damage. HP: ", hp)
 	
 # Destroys dropped items on all the players
 func manage_destroy_item_drop(drop_id):
