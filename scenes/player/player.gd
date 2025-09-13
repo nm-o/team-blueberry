@@ -4,6 +4,11 @@ class_name Player
 # Camera
 @export var personal_camera_2d: Camera2D
 
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var hurtbox: Hurtbox = $Hurtbox
+@onready var hitbox: Hitbox = $Hitbox
+
+
 # Inventario e interacción
 var is_inventory_open: bool = false
 var selected_item: Item
@@ -31,6 +36,26 @@ func _ready() -> void:
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
 	_apply_visuals_from_config()
+	
+	if hurtbox:
+		hurtbox.health = health_component
+	if health_component:
+		health_component.damaged.connect(_on_damaged)
+		health_component.died.connect(_on_died)
+
+func attack_primary() -> void:
+	if hitbox:
+		hitbox.activate()
+
+func _on_damaged(amount: int) -> void:
+	# feedback: parpadeo, sonido, knockback
+	$Sprite2D.modulate = Color(1, 0.6, 0.6)
+	await get_tree().create_timer(0.08).timeout
+	$Sprite2D.modulate = Color(1, 1, 1)
+
+func _on_died() -> void:
+	# deshabilitar control y notificar si usas multiplayer
+	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -48,7 +73,8 @@ func _physics_process(delta: float) -> void:
 			send_pos.rpc(position)
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
-
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack"):
+		attack_primary()
 func setup(player_data: Statics.PlayerData):
 	# Labels y autoridad
 	label_name.text = player_data.name

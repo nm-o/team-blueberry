@@ -81,6 +81,23 @@ interact={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="world"
+2d_render/layer_2="player_body"
+2d_render/layer_3="enemy_body"
+2d_render/layer_4="player_hurtbox"
+2d_render/layer_5="enemy_hurtbox"
+2d_render/layer_6="player_hitbox"
+2d_render/layer_7="enemy_hitbox"
+2d_physics/layer_1="world"
+2d_physics/layer_2="player_body"
+2d_physics/layer_3="enemy_body"
+2d_physics/layer_4="player_hurtbox"
+2d_physics/layer_5="enemy_hurtbox"
+2d_physics/layer_6="player_hitbox"
+2d_physics/layer_7="enemy_hitbox"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.278431, 0.54902, 0.74902, 1)
