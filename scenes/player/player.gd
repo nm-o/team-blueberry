@@ -1,64 +1,72 @@
 extends Being
 class_name Player
 
-var player_id: int
-
 # Camera
 @export var personal_camera_2d: Camera2D
 
-# Variables to manage the inventory
+# Inventario e interacción
 var is_inventory_open: bool = false
 var selected_item: Item
-var selected_areas: Array = [] # array of selected objects in the area of interaction
-@onready var inventory: CanvasLayer =  $Inventory
+var selected_areas: Array = [] # objetos en el área de interacción
+@onready var inventory: CanvasLayer = $Inventory
 @onready var interaction_area: Area2D = $InteractionArea
 @export var item_drop_scene: PackedScene
 @onready var mouse_sprite: Sprite2D = $MouseSprite
-
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 
-# Variables to set the labels that depict the players name and chosen rol
+# Labels
 @export var label_name: Label
 @export var label_role: Label
-
-# Variables for setting up the movement of a player
+@export var player_id: int = -1
+# Movimiento
 @export var max_speed: int = 300
 @export var acceleration: int = 1000
 var target_position: Vector2
+
+# Configuración de clase
+@export var class_config: PlayerClassConfig
 
 func _ready() -> void:
 	mouse_sprite.top_level = true
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
+	_apply_visuals_from_config()
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
 		mouse_sprite.global_position = get_global_mouse_position()
-		# Manages interaction with an area
 		if Input.is_action_just_pressed("interact") and not selected_areas.is_empty():
 			selected_areas.back().interact()
-		# Inventory closing and opening
 		if Input.is_action_just_pressed("inventory") and inventory:
 			inventory.change_visibility()
-			
 		if not is_inventory_open:
-			# Movement
-			var move_input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-			if move_input_vector.length() > 1.0: # diagonal move normalized
+			var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()
+			if move_input_vector.length() > 1.0:
 				move_input_vector = move_input_vector.normalized()
-			velocity = velocity.move_toward(move_input_vector*max_speed, acceleration*delta)
+			velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
 			move_and_slide()
 			send_pos.rpc(position)
-			
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
 
 func setup(player_data: Statics.PlayerData):
-	# Setting up the labels and authority of this player
+	# Labels y autoridad
 	label_name.text = player_data.name
-	label_role.text = "role: " + str(player_data.role)
+	label_role.text = class_config.label_role_text if class_config else "role: Unknown"
 	set_multiplayer_authority(player_data.id, false)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id, false)
+
+	# Aplicar stats desde la config y cargar inventario inicial
+	if class_config:
+		hp = class_config.hp
+		movement_speed = class_config.movement_speed
+		attack = class_config.attack
+		defense = class_config.defense
+		max_speed = int(class_config.movement_speed)
+		_apply_visuals_from_config()
+		_load_starting_items()
+
+	# Conexiones y cámara para autoridad
 	if is_multiplayer_authority() and inventory:
 		Mouse.player = self
 		if interaction_area:
@@ -67,23 +75,39 @@ func setup(player_data: Statics.PlayerData):
 		inventory.inventory_containers.visible = false
 		inventory.backpack_containers.visible = false
 		inventory.hotbar_containers.visible = true
-		
-		# Setting up the personal camera for this player
 		self.personal_camera_2d = Camera2D.new()
 		self.add_child(personal_camera_2d)
 		self.personal_camera_2d.make_current()
-	
+
+func _apply_visuals_from_config() -> void:
+	if class_config:
+		if class_config.sprite_texture and $Sprite2D:
+			$Sprite2D.texture = class_config.sprite_texture
+		if class_config.mouse_sprite_texture and mouse_sprite:
+			mouse_sprite.texture = class_config.mouse_sprite_texture
+
+func _load_starting_items() -> void:
+	if not (inventory and class_config):
+		return
+	for path in class_config.starting_items:
+		var script := load(path)
+		if script:
+			var item = script.new()
+			inventory.add_item(item)
+
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_pos(pos):
 	target_position = pos
-	
+
 # Destroys dropped items on all the players
 func manage_destroy_item_drop(drop_id):
 	if is_multiplayer_authority():
 		destroy_drop_item_server.rpc_id(1, drop_id)
+
 @rpc("authority", "call_local", "reliable")
 func destroy_drop_item_server(drop_id):
 	destroy_drop_item.rpc(drop_id)
+
 @rpc("any_peer", "call_local", "reliable")
 func destroy_drop_item(drop_id):
 	var spawners = get_tree().get_nodes_in_group("DropSpawners")
@@ -91,14 +115,16 @@ func destroy_drop_item(drop_id):
 		for child in spawner.get_children():
 			if child.item.drop_id == drop_id:
 				child.queue_free()
-	
+
 # Drops items to all the players
 func manage_drop(item_to_drop, drop_id):
 	if is_multiplayer_authority():
 		drop_item_server.rpc_id(1, global_position, item_to_drop, drop_id)
+
 @rpc("authority", "call_local", "reliable")
 func drop_item_server(pos, item_to_drop, drop_id):
 	drop_item.rpc(pos, item_to_drop, drop_id)
+
 @rpc("any_peer", "call_local", "reliable")
 func drop_item(pos, item_to_drop, drop_id):
 	if not item_drop_scene:
@@ -116,7 +142,7 @@ func _interaction_area_entered(area: Area2D):
 		selected_areas.back().interaction_name_label.visible = false
 	selected_areas.append(area.owner)
 	selected_areas.back().interaction_name_label.visible = true
-	
+
 func _interaction_area_exited(area: Area2D):
 	if area.owner:
 		area.owner.interaction_name_label.visible = false

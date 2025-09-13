@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://clk1rpavw7sdw"]
+
+[ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_wr5hl"]
+[ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
+[ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="2_gfjak"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_tpg5x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
+radius = 65.0308
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_524rm"]
+radius = 92.0217
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
+script = ExtResource("1_4kuee")
+item_drop_scene = ExtResource("2_tpg5x")
+label_name = NodePath("label_name")
+label_role = NodePath("label_role")
+class_config = ExtResource("2_524rm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.982772, 0.163779, 0.816556, 1)
+texture = ExtResource("1_wr5hl")
+
+[node name="label_name" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="label_role" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4kuee")
+
+[node name="Inventory" parent="." instance=ExtResource("2_gfjak")]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_524rm")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." groups=["DropSpawners"]]
+spawn_path = NodePath(".")
+
+[node name="MouseSprite" type="Sprite2D" parent="."]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerClassConfig" load_steps=2 format=3 uid="uid://0o8u14ypf3ms"]
+
+[ext_resource type="Script" uid="uid://jjifgdyvywmv" path="res://scenes/player/resources/PlayerClassConfig.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+role_name = &"WeaponMaster"
+hp = 100
+movement_speed = 300.0
+attack = 12
+defense = 6
+label_role_text = "role: Weapon Master"
+starting_items = Array[String](["res://scripts/Items/Armor/legs_item.gd", ""])
+metadata/_custom_type_script = "uid://jjifgdyvywmv"

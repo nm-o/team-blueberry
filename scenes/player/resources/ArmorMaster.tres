@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerClassConfig" load_steps=2 format=3 uid="uid://8iaio3bu5ygo"]
+
+[ext_resource type="Script" uid="uid://jjifgdyvywmv" path="res://scenes/player/resources/PlayerClassConfig.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+role_name = "ArmorMaster"
+hp = 120
+movement_speed = 260.0
+attack = 9
+defense = 12
+label_role_text = "role: Armor Master"
+starting_items = Array[String](["res://scripts/Items/Armor/helmet_item.gd", "res://scripts/Items/Armor/legs_item.gd", "res://scripts/Items/Armor/chestplate_item.gd", "res://scripts/Items/Armor/legs_item.gd"])
+metadata/_custom_type_script = "uid://jjifgdyvywmv"

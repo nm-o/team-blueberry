@@ -1,9 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhwlxhquiitng"]
+[gd_scene load_steps=7 format=3 uid="uid://b3kx530d5e88u"]
 
-[ext_resource type="Script" uid="uid://du5ibd5pn2klk" path="res://scripts/beings/armor_master.gd" id="1_7rtj4"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_6fa6n"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_gb38j"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="3_6fa6n"]
+
+[sub_resource type="GDScript" id="GDScript_6fa6n"]
+script/source = "extends Player
+class_name ArmorMaster
+
+# Represents the rol of the Armor Master
+
+func _ready() -> void:
+	inventory.add_item(Legs.new())
+	inventory.add_item(Legs.new())
+	inventory.add_item(Legs.new())
+	inventory.add_item(Legs.new())
+	inventory.add_item(Helmet.new())
+	inventory.add_item(Helmet.new())
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7rtj4"]
 radius = 65.0308
@@ -13,7 +27,7 @@ radius = 87.023
 
 [node name="ArmorMaster" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
 motion_mode = 1
-script = ExtResource("1_7rtj4")
+script = SubResource("GDScript_6fa6n")
 item_drop_scene = ExtResource("2_gb38j")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")

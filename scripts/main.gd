@@ -1,32 +1,48 @@
+# res://scenes/main.gd
 extends Node2D
 
-# Scenes of the possible roles that can be chosen by the players
-@export var alquimist_scene: PackedScene
-@export var armor_master_scene: PackedScene
-@export var weapon_master_scene: PackedScene
+# Escena única del jugador (asignar en el Inspector)
+@export var player_scene: PackedScene
 
-# Marker to set up the initial positions
+# Mapeo de rol → ruta del Resource de configuración
+const ROLE_CONFIGS := {
+	Statics.Role.ROLE_A: "res://scenes/player/resources/Alchemist.tres",
+	Statics.Role.ROLE_B: "res://scenes/player/resources/ArmorMaster.tres",
+	Statics.Role.ROLE_C: "res://scenes/player/resources/WeaponMaster.tres",
+}
+
 @onready var marker_2d: Marker2D = $Marker2D
 
+func _ensure_players_root() -> Node:
+	var root := get_node_or_null("Players")
+	if root == null:
+		root = Node2D.new()
+		root.name = "Players"
+		add_child(root)
+	return root
 
 func _ready() -> void:
-	# Going through the players to instatiate them
+	
+	if player_scene == null:
+		player_scene = load("res://scenes/player/Player.tscn") as PackedScene
+	assert(player_scene != null, "Player scene no asignada") 
+	var players_root := _ensure_players_root() 
+
 	for i in len(Game.players):
-		var player_data = Game.players[i]
-		var player_inst
-		
-		# Associating the correct scene depending on the selected rol
-		if player_data.role == Statics.Role.ROLE_A:
-			player_inst = alquimist_scene.instantiate()
-		elif player_data.role == Statics.Role.ROLE_B:
-			player_inst = armor_master_scene.instantiate()
-		elif player_data.role == Statics.Role.ROLE_C:
-			player_inst = weapon_master_scene.instantiate()
-		
-		# Setting the players in the main scene
-		add_child(player_inst)
-		player_inst.player_id = i
-		player_inst.global_position.x = marker_2d.global_position.x*i + 50
+		var player_data: Statics.PlayerData = Game.players[i]
+
+		var player_inst: Player = player_scene.instantiate() 
+
+
+		player_inst.name = "Player_%d" % player_data.id 
+
+		var cfg_path: String = ROLE_CONFIGS.get(player_data.role, "res://scenes/player/resources/WeaponMaster.tres")  
+		var config: PlayerClassConfig = load(cfg_path) as PlayerClassConfig  
+		player_inst.class_config = config
+
+		players_root.add_child(player_inst)
+		player_inst.global_position.x = marker_2d.global_position.x * i + 50
 		player_inst.global_position.y = marker_2d.global_position.y
+
+
 		player_inst.setup(player_data)
-			
