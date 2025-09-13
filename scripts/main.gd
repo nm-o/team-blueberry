@@ -1,7 +1,6 @@
 # res://scenes/main.gd
 extends Node2D
 
-# Escena única del jugador (asignar en el Inspector)
 @export var player_scene: PackedScene
 
 # Mapeo de rol → ruta del Resource de configuración
@@ -22,12 +21,11 @@ func _ensure_players_root() -> Node:
 	return root
 
 func _ready() -> void:
-	# Carga de respaldo si el export no fue asignado
+
 	if player_scene == null:
 		player_scene = load("res://scenes/player/Player.tscn") as PackedScene
 	assert(player_scene != null, "Player scene no asignada")
 
-	# Si este peer es el servidor, guarda su ID en algún autoload como Game.SERVER_ID (opcional)
 	if multiplayer.is_server():
 		if "SERVER_ID" in Game:
 			Game.SERVER_ID = multiplayer.get_unique_id()
@@ -37,7 +35,7 @@ func _ready() -> void:
 	for i in len(Game.players):
 		var player_data: Statics.PlayerData = Game.players[i]
 
-		# Instanciar y nombrar de forma determinística
+
 		var player_inst: Player = player_scene.instantiate()
 		player_inst.name = "Player_%d" % player_data.id
 
@@ -46,14 +44,11 @@ func _ready() -> void:
 		var config: PlayerClassConfig = load(cfg_path) as PlayerClassConfig
 		player_inst.class_config = config
 
-		# Añadir al árbol y posicionar
 		players_root.add_child(player_inst)
 		player_inst.global_position.x = marker_2d.global_position.x * i + 50
 		player_inst.global_position.y = marker_2d.global_position.y
 
-		# Setup del jugador (autoridad, labels, etc.)
 		player_inst.setup(player_data)
 
-		# Registrar el actor en Combat para resolver por id -> NodePath (autoridad de daño)
 		if Engine.has_singleton("Combat") or (typeof(Combat) == TYPE_OBJECT):
 			Combat.register_actor(player_data.id, player_inst.get_path())

@@ -12,7 +12,7 @@ class_name Player
 # Inventario e interacción
 var is_inventory_open: bool = false
 var selected_item: Item
-var selected_areas: Array = [] # objetos en el área de interacción
+var selected_areas: Array = []
 @onready var inventory: CanvasLayer = $Inventory
 @onready var interaction_area: Area2D = $InteractionArea
 @export var item_drop_scene: PackedScene
@@ -44,20 +44,24 @@ func _ready() -> void:
 		health_component.died.connect(_on_died)
 
 func attack_primary() -> void:
+	print("[PL] attack by id:", player_id)
 	if hitbox:
 		hitbox.activate()
 
+
 func _on_damaged(amount: int) -> void:
-	# feedback: parpadeo, sonido, knockback
+
 	$Sprite2D.modulate = Color(1, 0.6, 0.6)
 	await get_tree().create_timer(0.08).timeout
 	$Sprite2D.modulate = Color(1, 1, 1)
 
 func _on_died() -> void:
-	# deshabilitar control y notificar si usas multiplayer
+
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	if is_multiplayer_authority():
 		mouse_sprite.global_position = get_global_mouse_position()
 		if Input.is_action_just_pressed("interact") and not selected_areas.is_empty():
@@ -77,6 +81,11 @@ func _physics_process(delta: float) -> void:
 		attack_primary()
 func setup(player_data: Statics.PlayerData) -> void:
 	player_id = player_data.id
+	print("[PL] setup id:", player_id, " peer:", multiplayer.get_unique_id())
+	if hitbox:
+		hitbox.owner_id = player_id
+	print("[PL] hitbox.owner_id =", hitbox.owner_id)
+	await get_tree().process_frame
 
 
 	# Labels y autoridad
@@ -85,7 +94,6 @@ func setup(player_data: Statics.PlayerData) -> void:
 	set_multiplayer_authority(player_data.id, false)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id, false)
 	
-	# Aplicar stats desde la config y cargar inventario inicial
 	if class_config and health_component:
 		health_component.max_hp = class_config.hp
 		health_component.hp = health_component.max_hp
@@ -103,9 +111,6 @@ func setup(player_data: Statics.PlayerData) -> void:
 		self.add_child(personal_camera_2d)
 		self.personal_camera_2d.make_current()
 
-	if hitbox:
-		hitbox.owner_id = player_id  # usado como attacker_id [2]
-	await get_tree().process_frame
 func _apply_visuals_from_config() -> void:
 	if class_config:
 		if class_config.sprite_texture and $Sprite2D:
@@ -113,7 +118,6 @@ func _apply_visuals_from_config() -> void:
 		if class_config.mouse_sprite_texture and mouse_sprite:
 			mouse_sprite.texture = class_config.mouse_sprite_texture
 
-# En Player.gd, después de player_inst.class_config = config y de tener inventory listo:
 func _load_starting_items() -> void:
 	if not (inventory and class_config):
 		push_warning("Inventory o class_config no listos")
@@ -137,6 +141,33 @@ func _load_starting_items() -> void:
 
 
 		inventory.add_item(item)
+
+
+var is_dead: bool = false
+
+
+
+func _apply_death_state() -> void:
+	print("[PL] death on peer:", multiplayer.get_unique_id(), " id:", player_id)
+	is_dead = true
+	if $Hitbox:
+		$Hitbox.set_deferred("monitoring", false)
+		$Hitbox.set_deferred("monitorable", false)
+	if $Hurtbox:
+		$Hurtbox.set_deferred("monitoring", false)
+		$Hurtbox.set_deferred("monitorable", false)
+	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+
+func _refresh_hp_ui() -> void:
+	if not health_component:
+		return
+	print("[PL] UI sees HP:", health_component.hp, "/", health_component.max_hp,
+		  " for id:", player_id, " peer:", multiplayer.get_unique_id()) 
+	if $HPBar:
+		$HPBar.max_value = health_component.max_hp
+		$HPBar.value = health_component.hp
+	if $HPLabel:
+		$HPLabel.text = "%d / %d" % [health_component.hp, health_component.max_hp]
 
 
 
@@ -205,7 +236,7 @@ func _notify_damage(attacker_id: int, victim_id: int, damage: int) -> void:
 			pass
 
 func _damage_authoritative(attacker_id: int, victim_id: int, damage: int) -> void:
-	# Resolver víctima por nombre estable en el árbol
+
 	var victim_node := get_tree().get_root().get_node_or_null("Main/Players/Player_%d" % victim_id)
 	if victim_node == null:
 		return
@@ -213,7 +244,7 @@ func _damage_authoritative(attacker_id: int, victim_id: int, damage: int) -> voi
 	if hc == null:
 		return
 	hc.apply_damage(damage)
-	# Notificar a todos para efectos/UI si quieres enviar delta de vida
+
 	_notify_damage.rpc(attacker_id, victim_id, damage)
 
 @rpc("authority","reliable","call_local")
