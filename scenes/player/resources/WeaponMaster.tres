@@ -10,5 +10,5 @@ movement_speed = 300.0
 attack = 12
 defense = 6
 label_role_text = "role: Weapon Master"
-starting_items = Array[String](["res://scripts/Items/Armor/legs_item.gd", ""])
+starting_items = Array[String](["res://scripts/Items/Armor/legs_item.gd"])
 metadata/_custom_type_script = "uid://jjifgdyvywmv"

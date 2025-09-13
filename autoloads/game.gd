@@ -1,4 +1,8 @@
+# res://autoloads/Game.gd
 extends Node
+
+var SERVER_ID: int = 1
+
 
 signal players_updated
 signal player_updated(id)

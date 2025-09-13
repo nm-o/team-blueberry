@@ -75,13 +75,16 @@ func _physics_process(delta: float) -> void:
 		position = position.lerp(target_position, delta * 10.0)
 	if is_multiplayer_authority() and Input.is_action_just_pressed("attack"):
 		attack_primary()
-func setup(player_data: Statics.PlayerData):
+func setup(player_data: Statics.PlayerData) -> void:
+	player_id = player_data.id
+
+
 	# Labels y autoridad
 	label_name.text = player_data.name
 	label_role.text = class_config.label_role_text if class_config else "role: Unknown"
 	set_multiplayer_authority(player_data.id, false)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id, false)
-
+	
 	# Aplicar stats desde la config y cargar inventario inicial
 	if class_config and health_component:
 		health_component.max_hp = class_config.hp
@@ -100,6 +103,9 @@ func setup(player_data: Statics.PlayerData):
 		self.add_child(personal_camera_2d)
 		self.personal_camera_2d.make_current()
 
+	if hitbox:
+		hitbox.owner_id = player_id  # usado como attacker_id [2]
+	await get_tree().process_frame
 func _apply_visuals_from_config() -> void:
 	if class_config:
 		if class_config.sprite_texture and $Sprite2D:
@@ -107,28 +113,32 @@ func _apply_visuals_from_config() -> void:
 		if class_config.mouse_sprite_texture and mouse_sprite:
 			mouse_sprite.texture = class_config.mouse_sprite_texture
 
+# En Player.gd, después de player_inst.class_config = config y de tener inventory listo:
 func _load_starting_items() -> void:
 	if not (inventory and class_config):
+		push_warning("Inventory o class_config no listos")
 		return
 	for path in class_config.starting_items:
-
 		if path == null:
 			continue
-		var s := str(path).strip_edges()
+		var s: String = str(path).strip_edges()
 		if s.is_empty():
 			continue
-
-		var res := load(s)
+		var res: Script = load(s) as Script
 		if res == null:
-			push_warning("No se pudo cargar Item Resource en ruta: %s" % s)
+			push_warning("Ruta inválida de item: %s" % s)
 			continue
-
-		var item = res.new()
+		var item: Object = res.new() as Object
 		if item == null:
-			push_warning("No se pudo instanciar script de ítem en: %s" % s)
+			push_warning("No se pudo instanciar ítem: %s" % s)
 			continue
+		inventory.add_item(item)
+		print("Item añadido desde:", s)
+
 
 		inventory.add_item(item)
+
+
 
 
 @rpc("authority", "call_remote", "unreliable_ordered")
@@ -185,3 +195,28 @@ func _interaction_area_exited(area: Area2D):
 	selected_areas.erase(area.owner)
 	if not selected_areas.is_empty():
 		selected_areas.back().interaction_name_label.visible = true
+
+@rpc("any_peer","reliable","call_local")
+func _notify_damage(attacker_id: int, victim_id: int, damage: int) -> void:
+	var victim_node := get_tree().get_root().get_node_or_null("Main/Players/Player_%d" % victim_id)
+	if victim_node:
+		var hc := victim_node.get_node_or_null("HealthComponent") as HealthComponent
+		if hc:
+			pass
+
+func _damage_authoritative(attacker_id: int, victim_id: int, damage: int) -> void:
+	# Resolver víctima por nombre estable en el árbol
+	var victim_node := get_tree().get_root().get_node_or_null("Main/Players/Player_%d" % victim_id)
+	if victim_node == null:
+		return
+	var hc := victim_node.get_node_or_null("HealthComponent") as HealthComponent
+	if hc == null:
+		return
+	hc.apply_damage(damage)
+	# Notificar a todos para efectos/UI si quieres enviar delta de vida
+	_notify_damage.rpc(attacker_id, victim_id, damage)
+
+@rpc("authority","reliable","call_local")
+func _request_damage(attacker_id: int, victim_id: int, damage: int) -> void:
+	# Solo corre en el servidor (authority)
+	_damage_authoritative(attacker_id, victim_id, damage)

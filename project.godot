@@ -22,6 +22,7 @@ Game="*res://autoloads/game.tscn"
 Lobby="*res://autoloads/lobby.tscn"
 Global="*res://autoloads/global.gd"
 Mouse="*res://autoloads/mouse.gd"
+Combat="*res://autoloads/Combat.gd"
 
 [display]
 

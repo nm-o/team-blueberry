@@ -12,11 +12,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
 radius = 65.0308
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v42im"]
-size = Vector2(127, 56)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_524rm"]
 radius = 55.0364
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v42im"]
+size = Vector2(127, 56)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npwbq"]
 radius = 63.3482
@@ -45,16 +45,6 @@ shape = SubResource("CircleShape2D_4kuee")
 
 [node name="Inventory" parent="." instance=ExtResource("2_gfjak")]
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 33
-collision_mask = 17
-monitoring = false
-script = ExtResource("6_v42im")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(136, 2)
-shape = SubResource("RectangleShape2D_v42im")
-
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
@@ -70,6 +60,15 @@ spawn_path = NodePath(".")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_c3xxp")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 33
+collision_mask = 25
+script = ExtResource("6_v42im")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(136, 2)
+shape = SubResource("RectangleShape2D_v42im")
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 9

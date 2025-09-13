@@ -22,27 +22,38 @@ func _ensure_players_root() -> Node:
 	return root
 
 func _ready() -> void:
-	
+	# Carga de respaldo si el export no fue asignado
 	if player_scene == null:
 		player_scene = load("res://scenes/player/Player.tscn") as PackedScene
-	assert(player_scene != null, "Player scene no asignada") 
-	var players_root := _ensure_players_root() 
+	assert(player_scene != null, "Player scene no asignada")
+
+	# Si este peer es el servidor, guarda su ID en algún autoload como Game.SERVER_ID (opcional)
+	if multiplayer.is_server():
+		if "SERVER_ID" in Game:
+			Game.SERVER_ID = multiplayer.get_unique_id()
+
+	var players_root := _ensure_players_root()
 
 	for i in len(Game.players):
 		var player_data: Statics.PlayerData = Game.players[i]
 
-		var player_inst: Player = player_scene.instantiate() 
+		# Instanciar y nombrar de forma determinística
+		var player_inst: Player = player_scene.instantiate()
+		player_inst.name = "Player_%d" % player_data.id
 
-
-		player_inst.name = "Player_%d" % player_data.id 
-
-		var cfg_path: String = ROLE_CONFIGS.get(player_data.role, "res://scenes/player/resources/WeaponMaster.tres")  
-		var config: PlayerClassConfig = load(cfg_path) as PlayerClassConfig  
+		# Seleccionar configuración por rol (.tres)
+		var cfg_path: String = ROLE_CONFIGS.get(player_data.role, "res://scenes/player/resources/WeaponMaster.tres")
+		var config: PlayerClassConfig = load(cfg_path) as PlayerClassConfig
 		player_inst.class_config = config
 
+		# Añadir al árbol y posicionar
 		players_root.add_child(player_inst)
 		player_inst.global_position.x = marker_2d.global_position.x * i + 50
 		player_inst.global_position.y = marker_2d.global_position.y
 
-
+		# Setup del jugador (autoridad, labels, etc.)
 		player_inst.setup(player_data)
+
+		# Registrar el actor en Combat para resolver por id -> NodePath (autoridad de daño)
+		if Engine.has_singleton("Combat") or (typeof(Combat) == TYPE_OBJECT):
+			Combat.register_actor(player_data.id, player_inst.get_path())
