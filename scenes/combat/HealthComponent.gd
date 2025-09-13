@@ -2,17 +2,17 @@
 extends Node
 class_name HealthComponent
 
-signal damaged(amount: int)
+signal damaged(amount: int) # la señal no causa Variant si el uso tipado es consistente [1]
 signal died
 
 @export var max_hp: int = 100
-var hp: int
+var hp: int = 100
 
 func _ready() -> void:
-	hp = max_hp
+	hp = clamp(hp, 0, max_hp)
 
 func apply_damage(amount: int) -> void:
-	var dmg := max(0, amount)
+	var dmg: int = max(0, amount)
 	if dmg <= 0:
 		return
 	hp = max(0, hp - dmg)

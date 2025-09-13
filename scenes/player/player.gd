@@ -83,14 +83,9 @@ func setup(player_data: Statics.PlayerData):
 	multiplayer_spawner.set_multiplayer_authority(player_data.id, false)
 
 	# Aplicar stats desde la config y cargar inventario inicial
-	if class_config:
-		hp = class_config.hp
-		movement_speed = class_config.movement_speed
-		attack = class_config.attack
-		defense = class_config.defense
-		max_speed = int(class_config.movement_speed)
-		_apply_visuals_from_config()
-		_load_starting_items()
+	if class_config and health_component:
+		health_component.max_hp = class_config.hp
+		health_component.hp = health_component.max_hp
 
 	# Conexiones y cámara para autoridad
 	if is_multiplayer_authority() and inventory:

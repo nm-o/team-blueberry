@@ -11,8 +11,8 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		var hb := area as Hitbox
-		# Evitar fuego amigo: si equipos coinciden, ignorar
-		if hb.team == team:
-			return
+# 		fuego aliado
+#		if hb.team == team:
+#			return
 		if health:
 			health.apply_damage(hb.damage)
