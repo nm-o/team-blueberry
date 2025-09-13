@@ -90,10 +90,25 @@ func _load_starting_items() -> void:
 	if not (inventory and class_config):
 		return
 	for path in class_config.starting_items:
-		var script := load(path)
-		if script:
-			var item = script.new()
-			inventory.add_item(item)
+
+		if path == null:
+			continue
+		var s := str(path).strip_edges()
+		if s.is_empty():
+			continue
+
+		var res := load(s)
+		if res == null:
+			push_warning("No se pudo cargar Item Resource en ruta: %s" % s)
+			continue
+
+		var item = res.new()
+		if item == null:
+			push_warning("No se pudo instanciar script de ítem en: %s" % s)
+			continue
+
+		inventory.add_item(item)
+
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_pos(pos):
