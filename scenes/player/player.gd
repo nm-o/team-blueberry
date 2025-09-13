@@ -227,6 +227,32 @@ func _interaction_area_exited(area: Area2D):
 	if not selected_areas.is_empty():
 		selected_areas.back().interaction_name_label.visible = true
 
+# Cliente -> servidor
+@rpc("any_peer","reliable","call_local")
+func request_pos(id: int, pos: Vector2, vel: Vector2) -> void:
+	if not multiplayer.is_server():
+		return
+	_server_apply_pos(id, pos, vel)
+
+
+func _server_apply_pos(id: int, pos: Vector2, vel: Vector2) -> void:
+	var path: NodePath = Combat.actors.get(id, NodePath())
+	var node: Node2D = get_node_or_null(path) as Node2D
+	if node:
+		node.global_position = pos
+		apply_pos.rpc(id, pos, vel)  # broadcast a todos
+
+
+@rpc("authority","reliable","call_local")
+func apply_pos(id: int, pos: Vector2, vel: Vector2) -> void:
+	var path: NodePath = Combat.actors.get(id, NodePath())
+	var node: Node2D = get_node_or_null(path) as Node2D
+	if node:
+		node.global_position = pos
+
+
+
+
 @rpc("any_peer","reliable","call_local")
 func _notify_damage(attacker_id: int, victim_id: int, damage: int) -> void:
 	var victim_node := get_tree().get_root().get_node_or_null("Main/Players/Player_%d" % victim_id)
