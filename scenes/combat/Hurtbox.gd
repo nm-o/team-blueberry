@@ -18,7 +18,7 @@ func _on_area_entered(area: Area2D) -> void:
 		victim_id = (victim as Player).player_id
 	var attacker_id: int = hb.get_attacker_id()
 
-	print("[HB] overlap PVP hb.team=", hb.team, " vs team=", team, " dmg=", hb.damage) 
+	print("\n[HB] overlap PVP hb.team=", hb.team, " vs team=", team, " dmg=", hb.damage) 
 	print("[HB] req -> attacker:", attacker_id, " victim:", victim_id) 
 
 	if attacker_id == victim_id and attacker_id != -1:

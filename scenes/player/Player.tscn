@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=18 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_wr5hl"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_tpg5x"]
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="6_v42im"]
+[ext_resource type="Script" uid="uid://cle2lyt27e2dn" path="res://scripts/selected_object_marker.gd" id="7_7oing"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="7_npwbq"]
+[ext_resource type="Texture2D" uid="uid://b2x2h3wwvc41d" path="res://team_blueberry_logo.jpg" id="8_pn6s4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
 radius = 65.0308
@@ -16,7 +18,164 @@ radius = 65.0308
 radius = 55.0364
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v42im"]
-size = Vector2(127, 56)
+size = Vector2(127, 102)
+
+[sub_resource type="Animation" id="Animation_7oing"]
+resource_name = "sketch_anim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_pn6s4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(136.5, 0), Vector2(136.5, -20), Vector2(136.5, 20), Vector2(136.5, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.254804, 0.254818, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5stf6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_pn6s4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136.5, -20)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.254804]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_180ig"]
+_data = {
+&"RESET": SubResource("Animation_5stf6"),
+&"sketch_anim": SubResource("Animation_7oing")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npwbq"]
 radius = 63.3482
@@ -61,14 +220,28 @@ spawn_path = NodePath(".")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_c3xxp")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="SelectedObjectMarker" type="Marker2D" parent="."]
+script = ExtResource("7_7oing")
+
+[node name="Sprite2D" type="Sprite2D" parent="SelectedObjectMarker"]
+position = Vector2(136.5, -20)
+rotation = -0.254804
+scale = Vector2(0.198437, 0.0390625)
+texture = ExtResource("8_pn6s4")
+
+[node name="Hitbox" type="Area2D" parent="SelectedObjectMarker"]
 collision_layer = 33
 collision_mask = 25
 script = ExtResource("6_v42im")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(136, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectedObjectMarker/Hitbox"]
+position = Vector2(136, 0)
 shape = SubResource("RectangleShape2D_v42im")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SelectedObjectMarker"]
+libraries = {
+&"": SubResource("AnimationLibrary_180ig")
+}
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 9

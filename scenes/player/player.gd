@@ -4,10 +4,13 @@ class_name Player
 # Camera
 @export var personal_camera_2d: Camera2D
 
+# Hurt/Hit boxes
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox: Hurtbox = $Hurtbox
-@onready var hitbox: Hitbox = $Hitbox
+@onready var hitbox: Hitbox = $SelectedObjectMarker/Hitbox
 
+# Selected object marker
+@onready var selected_object_marker: Marker2D = $SelectedObjectMarker
 
 # Inventario e interacción
 var is_inventory_open: bool = false
@@ -45,18 +48,15 @@ func _ready() -> void:
 
 func attack_primary() -> void:
 	print("[PL] attack by id:", player_id)
-	if hitbox:
-		hitbox.activate()
-
+	if is_multiplayer_authority() and hitbox:
+		activate_hitbox.rpc()
 
 func _on_damaged(amount: int) -> void:
-
 	$Sprite2D.modulate = Color(1, 0.6, 0.6)
 	await get_tree().create_timer(0.08).timeout
 	$Sprite2D.modulate = Color(1, 1, 1)
 
 func _on_died() -> void:
-
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
@@ -69,18 +69,26 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("inventory") and inventory:
 			inventory.change_visibility()
 		if not is_inventory_open:
+			# Selected object marker rotation
+			rotate_selected_obj.rpc(get_global_mouse_position())
+
+			# Movement
 			var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 			if move_input_vector.length() > 1.0:
 				move_input_vector = move_input_vector.normalized()
 			velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
 			move_and_slide()
 			send_pos.rpc(position)
+
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack"):
+
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open:
 		attack_primary()
+
 func setup(player_data: Statics.PlayerData) -> void:
 	player_id = player_data.id
+	selected_object_marker.name = "marker_" + str(player_id)
 	print("[PL] setup id:", player_id, " peer:", multiplayer.get_unique_id())
 	if hitbox:
 		hitbox.owner_id = player_id
@@ -150,9 +158,9 @@ var is_dead: bool = false
 func _apply_death_state() -> void:
 	print("[PL] death on peer:", multiplayer.get_unique_id(), " id:", player_id)
 	is_dead = true
-	if $Hitbox:
-		$Hitbox.set_deferred("monitoring", false)
-		$Hitbox.set_deferred("monitorable", false)
+	if hitbox:
+		hitbox.set_deferred("monitoring", false)
+		hitbox.set_deferred("monitorable", false)
 	if $Hurtbox:
 		$Hurtbox.set_deferred("monitoring", false)
 		$Hurtbox.set_deferred("monitorable", false)
@@ -168,9 +176,6 @@ func _refresh_hp_ui() -> void:
 		$HPBar.value = health_component.hp
 	if $HPLabel:
 		$HPLabel.text = "%d / %d" % [health_component.hp, health_component.max_hp]
-
-
-
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_pos(pos):
@@ -277,3 +282,13 @@ func _damage_authoritative(attacker_id: int, victim_id: int, damage: int) -> voi
 func _request_damage(attacker_id: int, victim_id: int, damage: int) -> void:
 	# Solo corre en el servidor (authority)
 	_damage_authoritative(attacker_id, victim_id, damage)
+
+
+# RPC for selected object rotation
+@rpc("authority", "call_local", "reliable")
+func rotate_selected_obj(mouse_pos):
+	selected_object_marker.look_at(mouse_pos)
+
+@rpc("authority", "call_local", "reliable")
+func activate_hitbox():
+		hitbox.activate()
