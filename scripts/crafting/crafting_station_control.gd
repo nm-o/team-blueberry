@@ -1,15 +1,11 @@
 extends Control
+class_name CraftingControl
 
-var number_of_slots: int
 var current_items: Array[String] = []
-var recipes = {
-	["", "", "Iron", "Iron"]: Legs,
-	["Iron", "Iron", "Iron", "Iron"]: Chestplate
-}
+var recipes
 
-func _ready() -> void:
+func super_ready() -> void:
 	var i = 0
-	Debug.log(get_children())
 	for child in get_children():
 		if child.get_class() != "Button":
 			child.slot_number = i

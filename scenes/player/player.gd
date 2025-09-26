@@ -34,11 +34,18 @@ var target_position: Vector2
 # Configuración de clase
 @export var class_config: PlayerClassConfig
 
+# Hotbar
+@export var max_hotbar_containers = 3
+var selected_container_number: int
+
+var is_dead: bool = false
+
 func _ready() -> void:
 	mouse_sprite.top_level = true
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
 	_apply_visuals_from_config()
+	_load_starting_items() 
 	
 	if hurtbox:
 		hurtbox.health = health_component
@@ -83,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
 
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open:
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui:
 		attack_primary()
 
 func setup(player_data: Statics.PlayerData) -> void:
@@ -128,7 +135,7 @@ func _apply_visuals_from_config() -> void:
 
 func _load_starting_items() -> void:
 	if not (inventory and class_config):
-		push_warning("Inventory o class_config no listos")
+		push_warning("Inventory or class_config not ready")
 		return
 	for path in class_config.starting_items:
 		if path == null:
@@ -138,22 +145,14 @@ func _load_starting_items() -> void:
 			continue
 		var res: Script = load(s) as Script
 		if res == null:
-			push_warning("Ruta inválida de item: %s" % s)
+			push_warning("Invalid item route: %s" % s)
 			continue
 		var item: Object = res.new() as Object
 		if item == null:
-			push_warning("No se pudo instanciar ítem: %s" % s)
+			push_warning("Couldn't instantiate item: %s" % s)
 			continue
 		inventory.add_item(item)
-		print("Item añadido desde:", s)
-
-
-		inventory.add_item(item)
-
-
-var is_dead: bool = false
-
-
+		print("Item added from:", s)
 
 func _apply_death_state() -> void:
 	print("[PL] death on peer:", multiplayer.get_unique_id(), " id:", player_id)
@@ -197,6 +196,35 @@ func destroy_drop_item(drop_id):
 		for child in spawner.get_children():
 			if child.item.drop_id == drop_id:
 				child.queue_free()
+
+# manages the hotbar selection
+func _input(event: InputEvent) -> void:
+	if is_multiplayer_authority():
+		if event is InputEventMouseButton and event.pressed:  # Just when it gets pressed
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				selected_container_number -= 1
+			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				selected_container_number += 1
+			if selected_container_number > max_hotbar_containers - 1:
+				selected_container_number = 0
+			if selected_container_number < 0:
+				selected_container_number = max_hotbar_containers - 1
+			inventory.select_container(selected_container_number)
+
+func manage_hotbar_item(texture: String):
+	if is_multiplayer_authority():
+		hotbar_item_server.rpc_id(1, texture, player_id)
+
+@rpc("authority", "call_local", "reliable")
+func hotbar_item_server(texture: String, player_idx: int):
+	hotbar_item_else.rpc(texture, player_idx)
+
+@rpc("any_peer", "call_local", "reliable")
+func hotbar_item_else(texture: String, player_idx: int):
+	var players = get_node("/root/Main/Players").get_children()
+	for player in players:
+		if player.player_id == player_idx:
+			player.selected_object_marker.change_selected_object(texture)
 
 # Drops items to all the players
 func manage_drop(item_to_drop, drop_id):

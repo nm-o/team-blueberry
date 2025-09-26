@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=5 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
-[ext_resource type="PackedScene" uid="uid://bryws7w371ha0" path="res://scenes/crafting_table.tscn" id="5_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://ql7wgu71kbrj" path="res://scenes/crafting/stations/weapons_station.tscn" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://bryws7w371ha0" path="res://scenes/crafting/stations/brewing_station.tscn" id="5_vcsgt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_elqb8")
@@ -16,8 +17,8 @@ text = "MAIN SCENE"
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(335, 388)
 
-[node name="CtraftingTable" parent="." instance=ExtResource("5_vcsgt")]
-position = Vector2(905, 149)
+[node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
+position = Vector2(665, 82)
 
-[node name="CtraftingTable2" parent="." instance=ExtResource("5_vcsgt")]
-position = Vector2(1126, 719)
+[node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
+position = Vector2(1010, 89)

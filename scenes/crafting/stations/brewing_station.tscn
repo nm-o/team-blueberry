@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bryws7w371ha0"]
+
+[ext_resource type="Script" uid="uid://yjktleghyqv1" path="res://scripts/crafting/crafting_station.gd" id="1_hd7vg"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_bmhc7"]
+[ext_resource type="PackedScene" uid="uid://h7wquqld14kt" path="res://scenes/crafting/stations_ui/brewing_station_interface.tscn" id="3_jim14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htwqn"]
+size = Vector2(119, 122)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arcde"]
+radius = 94.1329
+
+[node name="BrewingStation" type="StaticBody2D"]
+script = ExtResource("1_hd7vg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.16537762, 0.4708094, 0.17426014, 1)
+texture = ExtResource("2_bmhc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_htwqn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_arcde")
+
+[node name="InteractionName" type="Label" parent="."]
+offset_left = -62.0
+offset_top = -55.0
+offset_right = 61.0
+offset_bottom = -6.0
+text = "Brewing Station
+E"
+horizontal_alignment = 1
+
+[node name="FailedInteraction" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -45.0
+offset_right = 67.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This station can
+ only be used by
+ an alchemist!!!"
+horizontal_alignment = 1
+
+[node name="interface" type="CanvasLayer" parent="."]
+
+[node name="BrewingStationInterface" parent="interface" instance=ExtResource("3_jim14")]
+visible = false

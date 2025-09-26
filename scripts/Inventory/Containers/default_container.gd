@@ -10,7 +10,7 @@ var item: Item
 
 # Function to change the description and texture of the container
 func update_container():
-	texture.texture = item.texture
+	texture.texture = load(item.texture)
 	description.text = item.description
 	if container.number_of_items > 1:
 		number.text = str(container.number_of_items)

@@ -7,7 +7,7 @@ class_name PlayerClassConfig
 @export var attack: int = 10
 @export var defense: int = 5
 
-@export var label_role_text: String = "role: Weapon Master"
+@export var label_role_text: String = "Weapon Master"
 @export var starting_items: Array[String] = [] # rutas a scripts de ítems
 
 # visuales por clase
