@@ -19,11 +19,11 @@ static func get_role_name(role: Role) -> String:
 		Role.NONE:
 			return "None"
 		Role.ROLE_A:
-			return "Role A"
+			return "Alchemist"
 		Role.ROLE_B:
-			return "Role B"
+			return "Armor Master"
 		Role.ROLE_C:
-			return "Role C"
+			return "Weapons Master"
 	return "Unknown"
 
 

@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func update_item_drop():
 	if item:
-		sprite_2d.texture = item.texture
+		sprite_2d.texture = load(item.texture)
 
 func interact():
 	Mouse.player.selected_areas.erase(self)

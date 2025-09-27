@@ -4,6 +4,6 @@ extends Materials
 # Function that acivates once the game starts
 func _init() -> void:
 	description = "Iron: kill yourself"
-	texture = preload("res://icon.svg")
+	texture = "res://placeholder_images/5-ezgif.com-resize.png"
 	max_number = 5
 	name = "Iron"

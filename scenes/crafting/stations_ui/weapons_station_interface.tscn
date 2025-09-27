@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dko7flh5j18sv"]
+
+[ext_resource type="Script" uid="uid://mkqngpa5wuyu" path="res://scripts/crafting/weapons_station_control.gd" id="1_74yhn"]
+[ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="2_52tfj"]
+[ext_resource type="Script" uid="uid://8hpxqrcfdfi1" path="res://scripts/Inventory/Containers/crafting_table_container.gd" id="3_ojn2s"]
+
+[node name="WeaponsStationInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_74yhn")
+
+[node name="ItemContainer" parent="." instance=ExtResource("2_52tfj")]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 82.0
+offset_right = 106.0
+offset_bottom = 82.0
+script = ExtResource("3_ojn2s")
+
+[node name="ItemContainer2" parent="." instance=ExtResource("2_52tfj")]
+layout_mode = 1
+offset_left = 316.0
+offset_top = 83.0
+offset_right = 316.0
+offset_bottom = 83.0
+script = ExtResource("3_ojn2s")
+
+[node name="ItemContainer3" parent="." instance=ExtResource("2_52tfj")]
+layout_mode = 1
+offset_left = 211.0
+offset_top = 248.0
+offset_right = 211.0
+offset_bottom = 248.0
+script = ExtResource("3_ojn2s")
+
+[node name="CraftButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 90.0
+offset_right = 632.0
+offset_bottom = 144.0
+text = "Craft"
+
+[connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]

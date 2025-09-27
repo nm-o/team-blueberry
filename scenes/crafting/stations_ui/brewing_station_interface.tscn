@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://h7wquqld14kt"]
+
+[ext_resource type="Script" uid="uid://jofehfs1mje6" path="res://scripts/crafting/brewing_station_control.gd" id="1_w3ukv"]
+[ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="2_nvcqy"]
+[ext_resource type="Script" uid="uid://8hpxqrcfdfi1" path="res://scripts/Inventory/Containers/crafting_table_container.gd" id="3_7lbuv"]
+
+[node name="BrewingStationInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_w3ukv")
+
+[node name="ItemContainer" parent="." instance=ExtResource("2_nvcqy")]
+layout_mode = 1
+offset_left = 152.0
+offset_top = 60.0
+offset_right = 152.0
+offset_bottom = 60.0
+script = ExtResource("3_7lbuv")
+
+[node name="ItemContainer2" parent="." instance=ExtResource("2_nvcqy")]
+layout_mode = 1
+offset_left = 304.0
+offset_top = 120.0
+offset_right = 304.0
+offset_bottom = 120.0
+script = ExtResource("3_7lbuv")
+
+[node name="ItemContainer3" parent="." instance=ExtResource("2_nvcqy")]
+layout_mode = 1
+offset_left = 154.0
+offset_top = 229.0
+offset_right = 154.0
+offset_bottom = 229.0
+script = ExtResource("3_7lbuv")
+
+[node name="ItemContainer4" parent="." instance=ExtResource("2_nvcqy")]
+layout_mode = 1
+offset_left = 310.0
+offset_top = 276.0
+offset_right = 310.0
+offset_bottom = 276.0
+script = ExtResource("3_7lbuv")
+
+[node name="CraftButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 90.0
+offset_right = 632.0
+offset_bottom = 144.0
+text = "Brew"
+
+[connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]

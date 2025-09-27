@@ -15,7 +15,6 @@ func add_item(item_to_add: Item) -> bool:
 		else:
 			return false
 	get_parent().current_items[slot_number] = item_to_add.name
-	Debug.log(get_parent().current_items)
 	item = item_to_add
 	container.number_of_items += 1
 	update_container()
@@ -28,7 +27,6 @@ func remove_item():
 		update_container()
 		return
 	get_parent().current_items[slot_number] = ""
-	Debug.log(get_parent().current_items)
 	container.number_of_items -= 1
 	update_container()
 	item = null
