@@ -26,6 +26,7 @@ func select_container(num: int):
 	container.selected = true
 	container.selector.visible = true
 	selected_container_number = num
+	Mouse.player.selected_container_number = num
 	if container.item:
 		Mouse.player.manage_hotbar_item(container.item.texture)
 	else:
