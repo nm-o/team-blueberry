@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 			Mouse.from_stack = true
 		else:
 			Mouse.from_stack = false
-		Mouse.player.mouse_sprite.texture = Mouse.item.texture
+		Mouse.player.mouse_sprite.texture = load(Mouse.item.texture)
 		Mouse.old_container = self
 		item_container.remove_item()
 	if Input.is_action_just_released("left_click") and Mouse.item:

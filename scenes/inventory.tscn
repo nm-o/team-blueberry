@@ -1,64 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://clak1ljsk80a5"]
+[gd_scene load_steps=6 format=3 uid="uid://clak1ljsk80a5"]
 
 [ext_resource type="Script" uid="uid://qp33f5h0e8as" path="res://scripts/Inventory/inventory.gd" id="1_hj2ta"]
 [ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="1_qw0r6"]
-[ext_resource type="Script" uid="uid://co3g3rrx56b5b" path="res://scenes/crafting_table_interface.gd" id="2_uae8j"]
 [ext_resource type="Script" uid="uid://cs4wneh7lwkyj" path="res://scripts/Inventory/Containers/default_container.gd" id="3_ty45s"]
-[ext_resource type="Script" uid="uid://8hpxqrcfdfi1" path="res://scripts/Inventory/Containers/crafting_table_container.gd" id="4_s887n"]
 [ext_resource type="Script" uid="uid://vb5ocjkr8v0o" path="res://scripts/Inventory/Containers/helmet_container.gd" id="4_yyk2a"]
 [ext_resource type="Script" uid="uid://x230qed11fr2" path="res://scripts/Inventory/Containers/hotbar_container.gd" id="5_yyk2a"]
 
 [node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_hj2ta")
-
-[node name="CraftingTableInterface" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_uae8j")
-
-[node name="ItemContainer" parent="CraftingTableInterface" instance=ExtResource("1_qw0r6")]
-layout_mode = 1
-offset_left = 152.0
-offset_top = 60.0
-offset_right = 152.0
-offset_bottom = 60.0
-script = ExtResource("4_s887n")
-
-[node name="ItemContainer2" parent="CraftingTableInterface" instance=ExtResource("1_qw0r6")]
-layout_mode = 1
-offset_left = 315.0
-offset_top = 62.0
-offset_right = 315.0
-offset_bottom = 62.0
-script = ExtResource("4_s887n")
-
-[node name="ItemContainer3" parent="CraftingTableInterface" instance=ExtResource("1_qw0r6")]
-layout_mode = 1
-offset_left = 154.0
-offset_top = 208.0
-offset_right = 154.0
-offset_bottom = 208.0
-script = ExtResource("4_s887n")
-
-[node name="ItemContainer4" parent="CraftingTableInterface" instance=ExtResource("1_qw0r6")]
-layout_mode = 1
-offset_left = 310.0
-offset_top = 210.0
-offset_right = 310.0
-offset_bottom = 210.0
-script = ExtResource("4_s887n")
-
-[node name="CraftButton" type="Button" parent="CraftingTableInterface"]
-layout_mode = 0
-offset_left = 502.0
-offset_top = 90.0
-offset_right = 632.0
-offset_bottom = 144.0
-text = "Craft
-"
 
 [node name="InventoryContainers" type="Control" parent="."]
 visible = false
@@ -144,5 +93,3 @@ offset_top = 586.0
 offset_right = 624.0
 offset_bottom = 586.0
 script = ExtResource("5_yyk2a")
-
-[connection signal="pressed" from="CraftingTableInterface/CraftButton" to="CraftingTableInterface" method="_on_craft_button_pressed"]
