@@ -11,10 +11,10 @@ class_name Player
 
 # Selected object marker
 @onready var selected_object_marker: Marker2D = $SelectedObjectMarker
+@onready var selected_item_sprite: Sprite2D = $SelectedObjectMarker/Sprite2D
 
 # Inventario e interacción
 var is_inventory_open: bool = false
-var selected_item: Item
 var selected_areas: Array = []
 @onready var inventory: CanvasLayer = $Inventory
 @onready var interaction_area: Area2D = $InteractionArea
@@ -90,7 +90,8 @@ func _physics_process(delta: float) -> void:
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
 
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui:
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui and selected_item_sprite.texture!=null:
+		print(selected_item_sprite)
 		attack_primary()
 
 func setup(player_data: Statics.PlayerData) -> void:
