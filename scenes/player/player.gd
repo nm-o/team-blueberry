@@ -124,6 +124,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 		inventory.backpack_containers.visible = false
 		inventory.hotbar_containers.visible = true
 		self.personal_camera_2d = Camera2D.new()
+		self.personal_camera_2d.zoom = Vector2(0.65, 0.65)
 		self.add_child(personal_camera_2d)
 		self.personal_camera_2d.make_current()
 

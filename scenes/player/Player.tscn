@@ -10,8 +10,9 @@
 [ext_resource type="Script" uid="uid://cle2lyt27e2dn" path="res://scripts/selected_object_marker.gd" id="7_7oing"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="7_npwbq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pn6s4"]
-radius = 63.007935
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn6s4"]
+radius = 48.0
+height = 128.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_524rm"]
 radius = 55.0364
@@ -187,8 +188,9 @@ size_flags_horizontal = 3
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
 rotation = 1.5707964
-shape = SubResource("CircleShape2D_pn6s4")
+shape = SubResource("CapsuleShape2D_pn6s4")
 
 [node name="Inventory" parent="." instance=ExtResource("2_gfjak")]
 
@@ -212,6 +214,7 @@ script = ExtResource("6_c3xxp")
 script = ExtResource("7_7oing")
 
 [node name="Sprite2D" type="Sprite2D" parent="SelectedObjectMarker"]
+z_index = 2
 position = Vector2(136.5, -20)
 rotation = -0.254804
 scale = Vector2(1, 0.37207407)
