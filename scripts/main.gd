@@ -21,10 +21,9 @@ func _ensure_players_root() -> Node:
 	return root
 
 func _ready() -> void:
-
 	if player_scene == null:
 		player_scene = load("res://scenes/player/Player.tscn") as PackedScene
-	assert(player_scene != null, "Player scene no asignada")
+	assert(player_scene != null, "Player scene not assigned")
 
 	if multiplayer.is_server():
 		if "SERVER_ID" in Game:
@@ -32,10 +31,8 @@ func _ready() -> void:
 
 	var players_root := _ensure_players_root()
 
-	for i in len(Game.players):
-		var player_data: Statics.PlayerData = Game.players[i]
-
-
+	for i in Game.players.size():
+		var player_data = Game.players[i]
 		var player_inst: Player = player_scene.instantiate()
 		player_inst.name = "Player_%d" % player_data.id
 
@@ -45,10 +42,12 @@ func _ready() -> void:
 		player_inst.class_config = config
 
 		players_root.add_child(player_inst)
-		player_inst.global_position.x = marker_2d.global_position.x * i + 50
+		player_inst.global_position.x = marker_2d.global_position.x * 2 * i
 		player_inst.global_position.y = marker_2d.global_position.y
 
 		player_inst.setup(player_data)
+		player_data.scene = player_inst
 
 		if Engine.has_singleton("Combat") or (typeof(Combat) == TYPE_OBJECT):
 			Combat.register_actor(player_data.id, player_inst.get_path())
+	await get_tree().create_timer(5).timeout

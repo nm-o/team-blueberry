@@ -21,6 +21,7 @@ var selected_areas: Array = []
 @export var item_drop_scene: PackedScene
 @onready var mouse_sprite: Sprite2D = $MouseSprite
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 # Labels
 @export var label_name: Label
@@ -28,7 +29,7 @@ var selected_areas: Array = []
 @export var player_id: int = -1
 # Movimiento
 @export var max_speed: int = 300
-@export var acceleration: int = 1000
+@export var acceleration: int = 20000
 var target_position: Vector2
 
 # Configuración de clase
@@ -40,7 +41,18 @@ var selected_container_number: int
 
 var is_dead: bool = false
 
+var rolling: bool = false
+@onready var roll_cooldown: Timer = $RollCooldown
+
+@export var hp = 100 
+func get_attacked(damage: int):
+	hp -= damage
+	inventory.health_bar.value = hp
+	if hp <= 0:
+		is_dead = true
+
 func _ready() -> void:
+	selected_container_number = 0
 	mouse_sprite.top_level = true
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
@@ -54,14 +66,14 @@ func _ready() -> void:
 		health_component.died.connect(_on_died)
 
 func attack_primary() -> void:
-	print("[PL] attack by id:", player_id)
+	#print("[PL] attack by id:", player_id)
 	if is_multiplayer_authority() and hitbox:
 		activate_hitbox.rpc()
 
-func _on_damaged(amount: int) -> void:
-	$Sprite2D.modulate = Color(1, 0.6, 0.6)
+func _on_damaged(_amount: int) -> void:
+	sprite_2d.modulate = Color(1, 0.6, 0.6)
 	await get_tree().create_timer(0.08).timeout
-	$Sprite2D.modulate = Color(1, 1, 1)
+	sprite_2d.modulate = Color(1, 1, 1)
 
 func _on_died() -> void:
 	set_physics_process(false)
@@ -83,7 +95,16 @@ func _physics_process(delta: float) -> void:
 			var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 			if move_input_vector.length() > 1.0:
 				move_input_vector = move_input_vector.normalized()
-			velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
+			if Input.is_action_just_pressed("roll") and roll_cooldown.time_left == 0:
+				rolling = true
+				velocity = velocity.move_toward(move_input_vector * max_speed * 2, acceleration * 10 * delta)
+				hurtbox.monitoring = false
+				await get_tree().create_timer(0.2).timeout
+				roll_cooldown.start()
+				hurtbox.monitoring = true
+				rolling = false
+			elif not rolling:
+				velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
 			move_and_slide()
 			send_pos.rpc(position)
 
@@ -96,10 +117,10 @@ func _physics_process(delta: float) -> void:
 func setup(player_data: Statics.PlayerData) -> void:
 	player_id = player_data.id
 	selected_object_marker.name = "marker_" + str(player_id)
-	print("[PL] setup id:", player_id, " peer:", multiplayer.get_unique_id())
+	#print("[PL] setup id:", player_id, " peer:", multiplayer.get_unique_id())
 	if hitbox:
 		hitbox.owner_id = player_id
-	print("[PL] hitbox.owner_id =", hitbox.owner_id)
+	#print("[PL] hitbox.owner_id =", hitbox.owner_id)
 	await get_tree().process_frame
 
 
@@ -122,14 +143,17 @@ func setup(player_data: Statics.PlayerData) -> void:
 		inventory.inventory_containers.visible = false
 		inventory.backpack_containers.visible = false
 		inventory.hotbar_containers.visible = true
+		inventory.health_bar.visible = true
+		inventory.health_bar.max_value = hp
 		self.personal_camera_2d = Camera2D.new()
 		self.add_child(personal_camera_2d)
+		personal_camera_2d.zoom = Vector2(1.7, 1.7)
 		self.personal_camera_2d.make_current()
 
 func _apply_visuals_from_config() -> void:
 	if class_config:
-		if class_config.sprite_texture and $Sprite2D:
-			$Sprite2D.texture = class_config.sprite_texture
+		if class_config.sprite_texture and sprite_2d:
+			sprite_2d.texture = class_config.sprite_texture
 		if class_config.mouse_sprite_texture and mouse_sprite:
 			mouse_sprite.texture = class_config.mouse_sprite_texture
 
@@ -152,24 +176,23 @@ func _load_starting_items() -> void:
 			push_warning("Couldn't instantiate item: %s" % s)
 			continue
 		inventory.add_item(item)
-		print("Item added from:", s)
 
 func _apply_death_state() -> void:
-	print("[PL] death on peer:", multiplayer.get_unique_id(), " id:", player_id)
+	#print("[PL] death on peer:", multiplayer.get_unique_id(), " id:", player_id)
 	is_dead = true
 	if hitbox:
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitorable", false)
-	if $Hurtbox:
-		$Hurtbox.set_deferred("monitoring", false)
-		$Hurtbox.set_deferred("monitorable", false)
+	if hurtbox:
+		hurtbox.set_deferred("monitoring", false)
+		hurtbox.set_deferred("monitorable", false)
 	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _refresh_hp_ui() -> void:
 	if not health_component:
 		return
-	print("[PL] UI sees HP:", health_component.hp, "/", health_component.max_hp,
-		  " for id:", player_id, " peer:", multiplayer.get_unique_id()) 
+	#print("[PL] UI sees HP:", health_component.hp, "/", health_component.max_hp,
+	#	  " for id:", player_id, " peer:", multiplayer.get_unique_id()) 
 	if $HPBar:
 		$HPBar.max_value = health_component.max_hp
 		$HPBar.value = health_component.hp
@@ -196,11 +219,12 @@ func destroy_drop_item(drop_id):
 		for child in spawner.get_children():
 			if child.item.drop_id == drop_id:
 				child.queue_free()
+				
 
 # manages the hotbar selection
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
-		if event is InputEventMouseButton and event.pressed:  # Just when it gets pressed
+		if event is InputEventMouseButton and event.pressed and max_hotbar_containers:  # Just when it gets pressed
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				selected_container_number -= 1
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
@@ -236,7 +260,7 @@ func drop_item_server(pos, item_to_drop, drop_id):
 	drop_item.rpc(pos, item_to_drop, drop_id)
 
 @rpc("any_peer", "call_local", "reliable")
-func drop_item(pos, item_to_drop, drop_id):
+func drop_item(_pos, item_to_drop, drop_id):
 	if not item_drop_scene:
 		return
 	var item_drop = item_drop_scene.instantiate()
@@ -277,7 +301,7 @@ func _server_apply_pos(id: int, pos: Vector2, vel: Vector2) -> void:
 
 
 @rpc("authority","reliable","call_local")
-func apply_pos(id: int, pos: Vector2, vel: Vector2) -> void:
+func apply_pos(id: int, pos: Vector2, _vel: Vector2) -> void:
 	var path: NodePath = Combat.actors.get(id, NodePath())
 	var node: Node2D = get_node_or_null(path) as Node2D
 	if node:
@@ -287,7 +311,7 @@ func apply_pos(id: int, pos: Vector2, vel: Vector2) -> void:
 
 
 @rpc("any_peer","reliable","call_local")
-func _notify_damage(attacker_id: int, victim_id: int, damage: int) -> void:
+func _notify_damage(_attacker_id: int, victim_id: int, _damage: int) -> void:
 	var victim_node := get_tree().get_root().get_node_or_null("Main/Players/Player_%d" % victim_id)
 	if victim_node:
 		var hc := victim_node.get_node_or_null("HealthComponent") as HealthComponent
@@ -319,4 +343,4 @@ func rotate_selected_obj(mouse_pos):
 
 @rpc("authority", "call_local", "reliable")
 func activate_hitbox():
-		hitbox.activate()
+	selected_object_marker.activate()
