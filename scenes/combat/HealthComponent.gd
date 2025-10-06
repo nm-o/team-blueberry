@@ -17,8 +17,8 @@ func apply_damage(amount: int) -> void:
 	if dmg <= 0:
 		return
 	hp = max(0, hp - dmg)
-	print("[HC] damaged:", dmg, " HP:", before, "->", hp)
+	#print("[HC] damaged:", dmg, " HP:", before, "->", hp)
 	damaged.emit(dmg)
 	if hp == 0 and before > 0:
-		print("[HC] died") 
+		#print("[HC] died") 
 		died.emit()

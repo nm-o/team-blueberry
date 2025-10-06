@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_wr5hl"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="2_gfjak"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_tpg5x"]
+[ext_resource type="Texture2D" uid="uid://blc8s1nky0xy4" path="res://assets/Pixel Crawler - Free Pack/Entities/Mobs/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="4_pn6s4"]
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="6_v42im"]
 [ext_resource type="Script" uid="uid://cle2lyt27e2dn" path="res://scripts/selected_object_marker.gd" id="7_7oing"]
@@ -164,8 +164,8 @@ label_role = NodePath("label_role")
 class_config = ExtResource("2_524rm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.982772, 0.163779, 0.816556, 1)
-texture = ExtResource("1_wr5hl")
+texture = ExtResource("4_pn6s4")
+hframes = 4
 
 [node name="label_name" type="Label" parent="."]
 offset_left = -20.0
@@ -193,7 +193,7 @@ shape = SubResource("CircleShape2D_4kuee")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 64
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(1, 1)
@@ -216,8 +216,8 @@ rotation = -0.254804
 scale = Vector2(1, 0.37207407)
 
 [node name="Hitbox" type="Area2D" parent="SelectedObjectMarker"]
-collision_layer = 33
-collision_mask = 25
+collision_layer = 32
+collision_mask = 16
 script = ExtResource("6_v42im")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SelectedObjectMarker/Hitbox"]
@@ -229,10 +229,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_180ig")
 }
 
+[node name="RollCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-collision_layer = 9
+collision_layer = 8
+collision_mask = 64
 script = ExtResource("7_npwbq")
 health = NodePath("../HealthComponent")
+mine = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_npwbq")

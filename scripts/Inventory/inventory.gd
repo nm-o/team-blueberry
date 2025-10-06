@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var backpack_containers: Control = $BackpackContainers
 @onready var hotbar_containers: Control = $HotbarContainers
 @onready var player: Player = $".."
+@onready var health_bar: ProgressBar = $HealthBar
 
 @export var max_hotbar_containers: int = 3
 

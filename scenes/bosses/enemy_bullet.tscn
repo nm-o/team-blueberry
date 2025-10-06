@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://btopgynxkb2w3"]
+
+[ext_resource type="Script" uid="uid://buekvl3jj5tdr" path="res://scenes/bosses/enemy_bullet.gd" id="1_km2td"]
+[ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="2_b03ii"]
+[ext_resource type="Texture2D" uid="uid://c2aakloa2nses" path="res://placeholder_images/1-ezgif.com-resize.jpg" id="3_luwoj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1351u"]
+radius = 18.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_udtew"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 0
+
+[node name="EnemyBullet" type="Node2D"]
+script = ExtResource("1_km2td")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_luwoj")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("2_b03ii")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_1351u")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_udtew")
