@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://br67vhgj73ee"
-path="res://.godot/imported/Death-Sheet.png-3ac64479784cc8eae982595b50b9d408.ctex"
+path="res://.godot/imported/Death-Sheet.png-0c18a2b70b7a84614d31163f2c3c7507.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Npc's/Knight/Death/Death-Sheet.png"
-dest_files=["res://.godot/imported/Death-Sheet.png-3ac64479784cc8eae982595b50b9d408.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Npc's/Knight/Death/Death-Sheet.png"
+dest_files=["res://.godot/imported/Death-Sheet.png-0c18a2b70b7a84614d31163f2c3c7507.ctex"]
 
 [params]
 

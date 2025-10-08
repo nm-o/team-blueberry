@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxa431wbttgsc"
-path="res://.godot/imported/Slice_Down-Sheet.png-1d03697734f9770cee7ab5e195bfa1e6.ctex"
+path="res://.godot/imported/Slice_Down-Sheet.png-b7a2c6da042ce4b2f9991f01fa0afca7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Slice_Base/Slice_Down-Sheet.png"
-dest_files=["res://.godot/imported/Slice_Down-Sheet.png-1d03697734f9770cee7ab5e195bfa1e6.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Slice_Base/Slice_Down-Sheet.png"
+dest_files=["res://.godot/imported/Slice_Down-Sheet.png-b7a2c6da042ce4b2f9991f01fa0afca7.ctex"]
 
 [params]
 

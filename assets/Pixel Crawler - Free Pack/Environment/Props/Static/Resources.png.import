@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4d8jlha6p06y"
-path="res://.godot/imported/Resources.png-18f318954449af412d2bcdb8298bc6ac.ctex"
+path="res://.godot/imported/Resources.png-0a9c735bfe6595cd2b7c10d50271c3c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Resources.png"
-dest_files=["res://.godot/imported/Resources.png-18f318954449af412d2bcdb8298bc6ac.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Props/Static/Resources.png"
+dest_files=["res://.godot/imported/Resources.png-0a9c735bfe6595cd2b7c10d50271c3c4.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdex6vcn3c6px"
-path="res://.godot/imported/Run-Sheet.png-7fa2e2cee684604297f3a047af53c612.ctex"
+path="res://.godot/imported/Run-Sheet.png-04a5b29e8d8173954ffc08472de9aef2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Npc's/Knight/Run/Run-Sheet.png"
-dest_files=["res://.godot/imported/Run-Sheet.png-7fa2e2cee684604297f3a047af53c612.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Npc's/Knight/Run/Run-Sheet.png"
+dest_files=["res://.godot/imported/Run-Sheet.png-04a5b29e8d8173954ffc08472de9aef2.ctex"]
 
 [params]
 

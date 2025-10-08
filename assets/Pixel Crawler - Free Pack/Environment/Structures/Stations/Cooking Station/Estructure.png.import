@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgs0qytpbfccq"
-path="res://.godot/imported/Estructure.png-266409a0b503452d2e31dad5d4016b37.ctex"
+path="res://.godot/imported/Estructure.png-0cd16caf9dd5a6255cadf41f2d061708.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Cooking Station/Estructure.png"
-dest_files=["res://.godot/imported/Estructure.png-266409a0b503452d2e31dad5d4016b37.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Cooking Station/Estructure.png"
+dest_files=["res://.godot/imported/Estructure.png-0cd16caf9dd5a6255cadf41f2d061708.ctex"]
 
 [params]
 

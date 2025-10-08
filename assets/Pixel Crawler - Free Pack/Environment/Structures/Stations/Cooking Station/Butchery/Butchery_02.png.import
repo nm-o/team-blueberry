@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0txyohy8pisq"
-path="res://.godot/imported/Butchery_02.png-6167b865928762af4574e82746b99fc7.ctex"
+path="res://.godot/imported/Butchery_02.png-46c357e121c3317d4711293a9c69850e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Cooking Station/Butchery/Butchery_02.png"
-dest_files=["res://.godot/imported/Butchery_02.png-6167b865928762af4574e82746b99fc7.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Cooking Station/Butchery/Butchery_02.png"
+dest_files=["res://.godot/imported/Butchery_02.png-46c357e121c3317d4711293a9c69850e.ctex"]
 
 [params]
 

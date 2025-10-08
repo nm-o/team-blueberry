@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4om8bvy2l3c6"
-path="res://.godot/imported/Idle-Sheet.png-250382d48f5f8fd05657d12218829534.ctex"
+path="res://.godot/imported/Idle-Sheet.png-f8a47a3dfb61ec56ff338f9d59038922.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Mobs/Skeleton Crew/Skeleton - Warrior/Idle/Idle-Sheet.png"
-dest_files=["res://.godot/imported/Idle-Sheet.png-250382d48f5f8fd05657d12218829534.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Mobs/Skeleton Crew/Skeleton - Warrior/Idle/Idle-Sheet.png"
+dest_files=["res://.godot/imported/Idle-Sheet.png-f8a47a3dfb61ec56ff338f9d59038922.ctex"]
 
 [params]
 

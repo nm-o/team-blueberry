@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b34go6gp5ifwh"
-path="res://.godot/imported/Bonfire_04-Sheet.png-c96a0077cce15ef2778ef2916576cb9e.ctex"
+path="res://.godot/imported/Bonfire_04-Sheet.png-cc76289ae08406fa5e1329a04872177d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Bonfire/Bonfire_04-Sheet.png"
-dest_files=["res://.godot/imported/Bonfire_04-Sheet.png-c96a0077cce15ef2778ef2916576cb9e.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Bonfire/Bonfire_04-Sheet.png"
+dest_files=["res://.godot/imported/Bonfire_04-Sheet.png-cc76289ae08406fa5e1329a04872177d.ctex"]
 
 [params]
 

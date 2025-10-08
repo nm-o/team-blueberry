@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://cdbavcfdovkdc" path="res://scenes/Tilemap_ph1.tscn" id="3_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://ql7wgu71kbrj" path="res://scenes/crafting/stations/weapons_station.tscn" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://hxcj0pwcyq0a" path="res://scenes/bosses/eagle_boss.tscn" id="5_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bryws7w371ha0" path="res://scenes/crafting/stations/brewing_station.tscn" id="5_vcsgt"]
@@ -10,19 +11,17 @@
 script = ExtResource("1_elqb8")
 player_scene = ExtResource("2_0bbpv")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "MAIN SCENE"
+[node name="Tilemap_ph1" parent="." instance=ExtResource("3_vcsgt")]
+position = Vector2(284.28976, -476.5875)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(121, 575)
+position = Vector2(1295, -444)
 
 [node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
-position = Vector2(675, 48)
+position = Vector2(250, -778)
 
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
-position = Vector2(1010, 89)
+position = Vector2(700, -805)
 
 [node name="EagleBoss" parent="." instance=ExtResource("5_c01mt")]
 position = Vector2(1132, 356)

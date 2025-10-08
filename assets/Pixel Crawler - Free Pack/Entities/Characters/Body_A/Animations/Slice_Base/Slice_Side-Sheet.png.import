@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cn1gdlwkyvnxm"
-path="res://.godot/imported/Slice_Side-Sheet.png-b65270bbefb8d6af05c2be67c35dcd77.ctex"
+path="res://.godot/imported/Slice_Side-Sheet.png-4efa700ef3f6801f821ddd5db611f486.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Slice_Base/Slice_Side-Sheet.png"
-dest_files=["res://.godot/imported/Slice_Side-Sheet.png-b65270bbefb8d6af05c2be67c35dcd77.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Slice_Base/Slice_Side-Sheet.png"
+dest_files=["res://.godot/imported/Slice_Side-Sheet.png-4efa700ef3f6801f821ddd5db611f486.ctex"]
 
 [params]
 

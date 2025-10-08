@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyw4q6u8g3h67"
-path="res://.godot/imported/Bricks_01-Sheet.png-13ca533651670b2527e2f6c2a00e2125.ctex"
+path="res://.godot/imported/Bricks_01-Sheet.png-295cba3a6c1a5d189c765d77e4084ce6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Furnace/Bricks_01-Sheet.png"
-dest_files=["res://.godot/imported/Bricks_01-Sheet.png-13ca533651670b2527e2f6c2a00e2125.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Furnace/Bricks_01-Sheet.png"
+dest_files=["res://.godot/imported/Bricks_01-Sheet.png-295cba3a6c1a5d189c765d77e4084ce6.ctex"]
 
 [params]
 

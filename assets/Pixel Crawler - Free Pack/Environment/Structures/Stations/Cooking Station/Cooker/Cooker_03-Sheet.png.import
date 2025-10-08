@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcagapv13t36e"
-path="res://.godot/imported/Cooker_03-Sheet.png-d5d3770a0d25b8f0a286ae40119b9643.ctex"
+path="res://.godot/imported/Cooker_03-Sheet.png-d3e963eb5a832f9c009667b09ce3e64d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Cooking Station/Cooker/Cooker_03-Sheet.png"
-dest_files=["res://.godot/imported/Cooker_03-Sheet.png-d5d3770a0d25b8f0a286ae40119b9643.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Cooking Station/Cooker/Cooker_03-Sheet.png"
+dest_files=["res://.godot/imported/Cooker_03-Sheet.png-d3e963eb5a832f9c009667b09ce3e64d.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmuggbkeyecq"
-path="res://.godot/imported/Rocks.png-a386da1511c16d995bc81c8c1dd28acd.ctex"
+path="res://.godot/imported/Rocks.png-4f51611b456debb151d5df8ae625abb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Rocks.png"
-dest_files=["res://.godot/imported/Rocks.png-a386da1511c16d995bc81c8c1dd28acd.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Props/Static/Rocks.png"
+dest_files=["res://.godot/imported/Rocks.png-4f51611b456debb151d5df8ae625abb5.ctex"]
 
 [params]
 

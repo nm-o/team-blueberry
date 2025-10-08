@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0heipwpq73yc"
-path="res://.godot/imported/Death_Down-Sheet.png-96ff923ddc47f0bbdfa459b04bf47c49.ctex"
+path="res://.godot/imported/Death_Down-Sheet.png-fe1acead85846000106f0c5987c15ab2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Death_Base/Death_Down-Sheet.png"
-dest_files=["res://.godot/imported/Death_Down-Sheet.png-96ff923ddc47f0bbdfa459b04bf47c49.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Death_Base/Death_Down-Sheet.png"
+dest_files=["res://.godot/imported/Death_Down-Sheet.png-fe1acead85846000106f0c5987c15ab2.ctex"]
 
 [params]
 

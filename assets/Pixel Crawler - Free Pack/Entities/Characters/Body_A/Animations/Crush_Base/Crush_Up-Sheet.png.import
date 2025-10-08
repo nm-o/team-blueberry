@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctf0q6obru2mq"
-path="res://.godot/imported/Crush_Up-Sheet.png-5f162d5c881d400e3b94b94445c40cb9.ctex"
+path="res://.godot/imported/Crush_Up-Sheet.png-e674029fa05eb997622b032211847d96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Crush_Base/Crush_Up-Sheet.png"
-dest_files=["res://.godot/imported/Crush_Up-Sheet.png-5f162d5c881d400e3b94b94445c40cb9.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Crush_Base/Crush_Up-Sheet.png"
+dest_files=["res://.godot/imported/Crush_Up-Sheet.png-e674029fa05eb997622b032211847d96.ctex"]
 
 [params]
 

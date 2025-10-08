@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj3x5qs7byjxo"
-path="res://.godot/imported/Walls.png-5964a4757a4672ed0f7c7626b47857a1.ctex"
+path="res://.godot/imported/Walls.png-7c003f5dfdf3852f87cc11d7c159f206.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Buildings/Walls.png"
-dest_files=["res://.godot/imported/Walls.png-5964a4757a4672ed0f7c7626b47857a1.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Buildings/Walls.png"
+dest_files=["res://.godot/imported/Walls.png-7c003f5dfdf3852f87cc11d7c159f206.ctex"]
 
 [params]
 

@@ -147,6 +147,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 		inventory.health_bar.visible = true
 		inventory.health_bar.max_value = hp
 		self.personal_camera_2d = Camera2D.new()
+		self.personal_camera_2d.zoom = Vector2(0.65, 0.65)
 		self.add_child(personal_camera_2d)
 		personal_camera_2d.zoom = Vector2(1.7, 1.7)
 		self.personal_camera_2d.make_current()

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dut6ycy8uavld"
-path="res://.godot/imported/Size_04.png-c8c179f701fab973b793a398f021199b.ctex"
+path="res://.godot/imported/Size_04.png-ab3f582f7a857f1a8bf99012ef3ea9bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Trees/Model_02/Size_04.png"
-dest_files=["res://.godot/imported/Size_04.png-c8c179f701fab973b793a398f021199b.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Props/Static/Trees/Model_02/Size_04.png"
+dest_files=["res://.godot/imported/Size_04.png-ab3f582f7a857f1a8bf99012ef3ea9bb.ctex"]
 
 [params]
 

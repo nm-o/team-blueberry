@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bewkyul6r4iy2"
-path="res://.godot/imported/Idle_Up-Sheet.png-a17244965445f8992a6cfedfcccb736c.ctex"
+path="res://.godot/imported/Idle_Up-Sheet.png-5fc885fa7aaa29f677d54b78d00f94cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up-Sheet.png"
-dest_files=["res://.godot/imported/Idle_Up-Sheet.png-a17244965445f8992a6cfedfcccb736c.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Idle_Base/Idle_Up-Sheet.png"
+dest_files=["res://.godot/imported/Idle_Up-Sheet.png-5fc885fa7aaa29f677d54b78d00f94cb.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nkn4ksueiw7w"
-path="res://.godot/imported/Wood.png-d4d91d6eeb837ab433b199aa77b0d670.ctex"
+path="res://.godot/imported/Wood.png-81b8f88858a4167b1832a756f29d809d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack/Weapons/Wood/Wood.png"
-dest_files=["res://.godot/imported/Wood.png-d4d91d6eeb837ab433b199aa77b0d670.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Weapons/Wood/Wood.png"
+dest_files=["res://.godot/imported/Wood.png-81b8f88858a4167b1832a756f29d809d.ctex"]
 
 [params]
 
