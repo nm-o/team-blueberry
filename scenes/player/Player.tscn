@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="2_gfjak"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_tpg5x"]
-[ext_resource type="Texture2D" uid="uid://blc8s1nky0xy4" path="res://assets/Pixel Crawler - Free Pack/Entities/Mobs/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="4_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_pn6s4"]
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="6_v42im"]
 [ext_resource type="Script" uid="uid://cle2lyt27e2dn" path="res://scripts/selected_object_marker.gd" id="7_7oing"]
@@ -165,7 +165,6 @@ class_config = ExtResource("2_524rm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_pn6s4")
-hframes = 4
 
 [node name="label_name" type="Label" parent="."]
 offset_left = -20.0
