@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bo73u7vic34yq"
-path="res://.godot/imported/Idle-Sheet.png-4357ddf07e7309f2fe91d72d2314ee4e.ctex"
+path="res://.godot/imported/Idle-Sheet.png-34f3dd89042283ae8422f0ca41ea64c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Npc's/Wizzard/Idle/Idle-Sheet.png"
-dest_files=["res://.godot/imported/Idle-Sheet.png-4357ddf07e7309f2fe91d72d2314ee4e.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Npc's/Wizzard/Idle/Idle-Sheet.png"
+dest_files=["res://.godot/imported/Idle-Sheet.png-34f3dd89042283ae8422f0ca41ea64c0.ctex"]
 
 [params]
 

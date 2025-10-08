@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddahj8bfx4u12"
-path="res://.godot/imported/Collect_Up-Sheet.png-c780cdc43918960c1516c1707ec716d3.ctex"
+path="res://.godot/imported/Collect_Up-Sheet.png-efdbe96eee41b0637e82afcdb3822b7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Collect_Base/Collect_Up-Sheet.png"
-dest_files=["res://.godot/imported/Collect_Up-Sheet.png-c780cdc43918960c1516c1707ec716d3.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Collect_Base/Collect_Up-Sheet.png"
+dest_files=["res://.godot/imported/Collect_Up-Sheet.png-efdbe96eee41b0637e82afcdb3822b7e.ctex"]
 
 [params]
 

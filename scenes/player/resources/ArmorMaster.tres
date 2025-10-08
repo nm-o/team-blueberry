@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1")
 hp = 120
-movement_speed = 260.0
+movement_speed = 500.0
 attack = 9
 defense = 12
 label_role_text = "Armor Master"

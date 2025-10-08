@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bomk0rj1hr22t"
-path="res://.godot/imported/Bone.png-c0c303e0bba4ace38d89c206170e6d22.ctex"
+path="res://.godot/imported/Bone.png-2c67581d03bb01caf29fb744aa5659e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Weapons/Bone/Bone.png"
-dest_files=["res://.godot/imported/Bone.png-c0c303e0bba4ace38d89c206170e6d22.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Weapons/Bone/Bone.png"
+dest_files=["res://.godot/imported/Bone.png-2c67581d03bb01caf29fb744aa5659e4.ctex"]
 
 [params]
 

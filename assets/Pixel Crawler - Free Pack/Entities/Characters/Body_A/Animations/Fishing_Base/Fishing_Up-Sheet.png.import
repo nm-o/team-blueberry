@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp2n0y8567nku"
-path="res://.godot/imported/Fishing_Up-Sheet.png-efec75ea422dc6acac8a9d174f09086f.ctex"
+path="res://.godot/imported/Fishing_Up-Sheet.png-61b14358d88a4ba09ebcbe448f9b8f59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Fishing_Base/Fishing_Up-Sheet.png"
-dest_files=["res://.godot/imported/Fishing_Up-Sheet.png-efec75ea422dc6acac8a9d174f09086f.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Fishing_Base/Fishing_Up-Sheet.png"
+dest_files=["res://.godot/imported/Fishing_Up-Sheet.png-61b14358d88a4ba09ebcbe448f9b8f59.ctex"]
 
 [params]
 

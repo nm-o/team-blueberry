@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqx3xev0dqrrd"
-path="res://.godot/imported/Hit_Side-Sheet.png-25e8c32dfe17b87b2e6091c9fb815b3b.ctex"
+path="res://.godot/imported/Hit_Side-Sheet.png-d70b11a081c500fb20d354bf156db429.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Hit_Base/Hit_Side-Sheet.png"
-dest_files=["res://.godot/imported/Hit_Side-Sheet.png-25e8c32dfe17b87b2e6091c9fb815b3b.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Hit_Base/Hit_Side-Sheet.png"
+dest_files=["res://.godot/imported/Hit_Side-Sheet.png-d70b11a081c500fb20d354bf156db429.ctex"]
 
 [params]
 

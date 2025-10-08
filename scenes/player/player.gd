@@ -28,7 +28,7 @@ var selected_areas: Array = []
 @export var label_role: Label
 @export var player_id: int = -1
 # Movimiento
-@export var max_speed: int = 300
+@export var max_speed: int = 1000
 @export var acceleration: int = 20000
 var target_position: Vector2
 
@@ -149,7 +149,6 @@ func setup(player_data: Statics.PlayerData) -> void:
 		self.personal_camera_2d = Camera2D.new()
 		self.personal_camera_2d.zoom = Vector2(0.65, 0.65)
 		self.add_child(personal_camera_2d)
-		personal_camera_2d.zoom = Vector2(1.7, 1.7)
 		self.personal_camera_2d.make_current()
 
 func _apply_visuals_from_config() -> void:

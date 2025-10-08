@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dki11ch77wv6d"
-path="res://.godot/imported/Workbench.png-cd04dead9bf71e75e7f8ed8f0bd6f779.ctex"
+path="res://.godot/imported/Workbench.png-3d6e409edba33b414a8098a43ae2a64a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Workbench/Workbench.png"
-dest_files=["res://.godot/imported/Workbench.png-cd04dead9bf71e75e7f8ed8f0bd6f779.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Workbench/Workbench.png"
+dest_files=["res://.godot/imported/Workbench.png-3d6e409edba33b414a8098a43ae2a64a.ctex"]
 
 [params]
 

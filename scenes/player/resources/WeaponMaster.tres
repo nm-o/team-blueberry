@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1")
+movement_speed = 500.0
 attack = 12
 defense = 6
 starting_items = Array[String](["res://scripts/Items/Armor/legs_item.gd"])

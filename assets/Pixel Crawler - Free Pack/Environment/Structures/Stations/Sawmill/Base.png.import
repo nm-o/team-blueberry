@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c50fcsjef4b17"
-path="res://.godot/imported/Base.png-8564f41ae01f9a05a8eef4b0849e1f14.ctex"
+path="res://.godot/imported/Base.png-dc51465caa6cce2ebd63b0f5660cfd2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Sawmill/Base.png"
-dest_files=["res://.godot/imported/Base.png-8564f41ae01f9a05a8eef4b0849e1f14.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Sawmill/Base.png"
+dest_files=["res://.godot/imported/Base.png-dc51465caa6cce2ebd63b0f5660cfd2c.ctex"]
 
 [params]
 

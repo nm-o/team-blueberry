@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2xdej8n0yd8m"
-path="res://.godot/imported/Farm.png-9f3d43038c495757ed0834af80ff529a.ctex"
+path="res://.godot/imported/Farm.png-6b0b1bd5b24492ee3647eebc7c000f30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Props/Static/Farm.png"
-dest_files=["res://.godot/imported/Farm.png-9f3d43038c495757ed0834af80ff529a.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Farm.png"
+dest_files=["res://.godot/imported/Farm.png-6b0b1bd5b24492ee3647eebc7c000f30.ctex"]
 
 [params]
 

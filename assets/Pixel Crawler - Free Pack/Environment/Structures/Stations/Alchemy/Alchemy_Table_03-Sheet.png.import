@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsljbhm1b4hce"
-path="res://.godot/imported/Alchemy_Table_03-Sheet.png-9021a89f19cf6a0d181945ba0e921f90.ctex"
+path="res://.godot/imported/Alchemy_Table_03-Sheet.png-b6bf34e1d9a75c5c748aba7c05bd3d29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Alchemy/Alchemy_Table_03-Sheet.png"
-dest_files=["res://.godot/imported/Alchemy_Table_03-Sheet.png-9021a89f19cf6a0d181945ba0e921f90.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Alchemy/Alchemy_Table_03-Sheet.png"
+dest_files=["res://.godot/imported/Alchemy_Table_03-Sheet.png-b6bf34e1d9a75c5c748aba7c05bd3d29.ctex"]
 
 [params]
 
