@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bikc8rvlqnlp1"
-path="res://.godot/imported/Idle-Sheet.png-1966ae0979f80a7b45e49d929bbd8466.ctex"
+path="res://.godot/imported/Idle-Sheet.png-9939a05d32fba0e4588da6403e21ba08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Mobs/Orc Crew/Orc - Rogue/Idle/Idle-Sheet.png"
-dest_files=["res://.godot/imported/Idle-Sheet.png-1966ae0979f80a7b45e49d929bbd8466.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Mobs/Orc Crew/Orc - Rogue/Idle/Idle-Sheet.png"
+dest_files=["res://.godot/imported/Idle-Sheet.png-9939a05d32fba0e4588da6403e21ba08.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy3sm5nhc5u8n"
-path="res://.godot/imported/Furniture.png-305037ba30c4a996a5b6a8134dfa28da.ctex"
+path="res://.godot/imported/Furniture.png-a6b8153c1825a6f50a40a6d369f95c4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Props/Static/Furniture.png"
-dest_files=["res://.godot/imported/Furniture.png-305037ba30c4a996a5b6a8134dfa28da.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Furniture.png"
+dest_files=["res://.godot/imported/Furniture.png-a6b8153c1825a6f50a40a6d369f95c4b.ctex"]
 
 [params]
 

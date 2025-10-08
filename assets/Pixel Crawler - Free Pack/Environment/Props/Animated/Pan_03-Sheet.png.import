@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3kg7ubek3md2"
-path="res://.godot/imported/Pan_03-Sheet.png-a71a6f348e3aea50b55ade8d2bd049d1.ctex"
+path="res://.godot/imported/Pan_03-Sheet.png-eb57e1274b4327a318c60a030d516dbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Props/Animated/Pan_03-Sheet.png"
-dest_files=["res://.godot/imported/Pan_03-Sheet.png-a71a6f348e3aea50b55ade8d2bd049d1.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Props/Animated/Pan_03-Sheet.png"
+dest_files=["res://.godot/imported/Pan_03-Sheet.png-eb57e1274b4327a318c60a030d516dbf.ctex"]
 
 [params]
 

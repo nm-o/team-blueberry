@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hi136dmw7311"
-path="res://.godot/imported/Water_tiles.png-c87bff5d250c3ea9c39a0eeb08af74c1.ctex"
+path="res://.godot/imported/Water_tiles.png-7a7fa633fd904026729c9b983380fcfa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Tilesets/Water_tiles.png"
-dest_files=["res://.godot/imported/Water_tiles.png-c87bff5d250c3ea9c39a0eeb08af74c1.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Tilesets/Water_tiles.png"
+dest_files=["res://.godot/imported/Water_tiles.png-7a7fa633fd904026729c9b983380fcfa.ctex"]
 
 [params]
 

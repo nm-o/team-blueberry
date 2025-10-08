@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5tffq6k6hoty"
-path="res://.godot/imported/Anvil_02-Sheet.png-cad41dbfc77c3f7f0187fd2833bcf9d9.ctex"
+path="res://.godot/imported/Anvil_02-Sheet.png-87243244fece0439933bcfbd79e69bff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Anvil/Anvil_02-Sheet.png"
-dest_files=["res://.godot/imported/Anvil_02-Sheet.png-cad41dbfc77c3f7f0187fd2833bcf9d9.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Anvil/Anvil_02-Sheet.png"
+dest_files=["res://.godot/imported/Anvil_02-Sheet.png-87243244fece0439933bcfbd79e69bff.ctex"]
 
 [params]
 

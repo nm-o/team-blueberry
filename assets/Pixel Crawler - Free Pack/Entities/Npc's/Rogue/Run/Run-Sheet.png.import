@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1t563ltctsco"
-path="res://.godot/imported/Run-Sheet.png-2baee764d3e151a4bc4d11b382765db0.ctex"
+path="res://.godot/imported/Run-Sheet.png-2bd916d95cbf74414f50265beddbd964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Npc's/Rogue/Run/Run-Sheet.png"
-dest_files=["res://.godot/imported/Run-Sheet.png-2baee764d3e151a4bc4d11b382765db0.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Npc's/Rogue/Run/Run-Sheet.png"
+dest_files=["res://.godot/imported/Run-Sheet.png-2bd916d95cbf74414f50265beddbd964.ctex"]
 
 [params]
 

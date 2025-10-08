@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uefaq35aycq7"
-path="res://.godot/imported/Walk_Up-Sheet.png-b2000ef2280e38ea2db1438e86feb2e7.ctex"
+path="res://.godot/imported/Walk_Up-Sheet.png-fc5810023f155fe7deb55a59694bc134.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Up-Sheet.png"
-dest_files=["res://.godot/imported/Walk_Up-Sheet.png-b2000ef2280e38ea2db1438e86feb2e7.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Up-Sheet.png"
+dest_files=["res://.godot/imported/Walk_Up-Sheet.png-fc5810023f155fe7deb55a59694bc134.ctex"]
 
 [params]
 

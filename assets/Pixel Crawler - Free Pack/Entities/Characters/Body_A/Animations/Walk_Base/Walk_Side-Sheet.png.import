@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btmmusd81mlb2"
-path="res://.godot/imported/Walk_Side-Sheet.png-e21eb7290f1f597db4de5db7d596ddfb.ctex"
+path="res://.godot/imported/Walk_Side-Sheet.png-733887770355dd3513b3c5b1b41c97f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Crawler - Free Pack 2.0.4/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Side-Sheet.png"
-dest_files=["res://.godot/imported/Walk_Side-Sheet.png-e21eb7290f1f597db4de5db7d596ddfb.ctex"]
+source_file="res://assets/Pixel Crawler - Free Pack/Entities/Characters/Body_A/Animations/Walk_Base/Walk_Side-Sheet.png"
+dest_files=["res://.godot/imported/Walk_Side-Sheet.png-733887770355dd3513b3c5b1b41c97f4.ctex"]
 
 [params]
 
