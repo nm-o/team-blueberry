@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=3 uid="uid://ql7wgu71kbrj"]
 
 [ext_resource type="Script" uid="uid://yjktleghyqv1" path="res://scripts/crafting/crafting_station.gd" id="1_xx52l"]
-[ext_resource type="Texture2D" uid="uid://bk3deg8ux3c55" path="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Anvil/Anvil_01-Sheet.png" id="2_xx52l"]
+[ext_resource type="Texture2D" uid="uid://bk3deg8ux3c55" path="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Anvil/Anvil_01-Sheet.png" id="2_xx52l"]
 [ext_resource type="PackedScene" uid="uid://dko7flh5j18sv" path="res://scenes/crafting/stations_ui/weapons_station_interface.tscn" id="3_xx52l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mta6"]
@@ -278,7 +278,7 @@ position = Vector2(5.5, 52.5)
 shape = SubResource("RectangleShape2D_htwqn")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 64
+collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
