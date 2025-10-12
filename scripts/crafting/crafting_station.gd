@@ -11,11 +11,13 @@ func _ready() -> void:
 func interact():
 	for role in interface.get_child(0).accepted_player_roles:
 		if Mouse.player.label_role.text == role:
-			interface.get_child(0).visible = true
-			Mouse.player.inventory.change_visibility()
+			if (not Mouse.player.is_inventory_open and not interface.get_child(0).visible) or (Mouse.player.is_inventory_open and interface.get_child(0).visible):
+				Mouse.player.inventory.change_visibility()
+			interface.get_child(0).visible = not interface.get_child(0).visible 
 			return
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
+		Mouse.player.inventory.change_visibility()
 		interface.get_child(0).visible = false
 		

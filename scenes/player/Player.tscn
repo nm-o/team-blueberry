@@ -1,159 +1,102 @@
-[gd_scene load_steps=17 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=22 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="2_gfjak"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_tpg5x"]
-[ext_resource type="Texture2D" uid="uid://blc8s1nky0xy4" path="res://assets/Pixel Crawler - Free Pack/Entities/Mobs/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="4_pn6s4"]
+[ext_resource type="PackedScene" uid="uid://bflx5pqrlws82" path="res://scenes/player/player_weapon.tscn" id="4_5stf6"]
+[ext_resource type="Texture2D" uid="uid://djk04wpi44d73" path="res://assets/OriginalAssets/alchemist_sprites.png" id="4_pn6s4"]
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
-[ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="6_v42im"]
-[ext_resource type="Script" uid="uid://cle2lyt27e2dn" path="res://scripts/selected_object_marker.gd" id="7_7oing"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="7_npwbq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4kuee"]
-radius = 65.0308
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn6s4"]
+radius = 4.0
+height = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_524rm"]
-radius = 55.0364
+radius = 24.020824
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v42im"]
-size = Vector2(127, 102)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7oing"]
+radius = 4.0
+height = 16.0
 
-[sub_resource type="Animation" id="Animation_5stf6"]
+[sub_resource type="Animation" id="Animation_180ig"]
+resource_name = "idle_animation"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpritePivot/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_20koh"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox:monitoring")
+tracks/0/path = NodePath("PlayerSpritePivot/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:monitorable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(136.5, -20)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.254804]
+"values": [Vector2i(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_7oing"]
-resource_name = "sketch_anim"
-length = 0.5
+[sub_resource type="Animation" id="Animation_ov1oi"]
+resource_name = "running_animation"
+length = 0.6
+loop_mode = 1
+step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox:monitoring")
+tracks/0/path = NodePath("PlayerSpritePivot/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:monitorable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(136.5, 0), Vector2(136.5, -20), Vector2(136.5, 20), Vector2(136.5, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.254804, 0.254818, 0.0]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_180ig"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rn7t0"]
 _data = {
-&"RESET": SubResource("Animation_5stf6"),
-&"sketch_anim": SubResource("Animation_7oing")
+&"RESET": SubResource("Animation_20koh"),
+&"idle_animation": SubResource("Animation_180ig"),
+&"running_animation": SubResource("Animation_ov1oi")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_npwbq"]
-radius = 63.3482
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn6s4"]
+animation = &"idle_animation"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7oing"]
+animation = &"running_animation"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5stf6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pn6s4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7oing"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ov1oi"]
+states/idle_animation/node = SubResource("AnimationNodeAnimation_pn6s4")
+states/idle_animation/position = Vector2(368, 99.75034)
+states/running_animation/node = SubResource("AnimationNodeAnimation_7oing")
+states/running_animation/position = Vector2(615.99994, 100.090546)
+transitions = ["Start", "idle_animation", SubResource("AnimationNodeStateMachineTransition_5stf6"), "idle_animation", "running_animation", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "running_animation", "idle_animation", SubResource("AnimationNodeStateMachineTransition_7oing")]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
 motion_mode = 1
@@ -163,31 +106,40 @@ label_name = NodePath("label_name")
 label_role = NodePath("label_role")
 class_config = ExtResource("2_524rm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerWeapon" parent="." instance=ExtResource("4_5stf6")]
+
+[node name="PlayerSpritePivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerSpritePivot"]
 texture = ExtResource("4_pn6s4")
-hframes = 4
+hframes = 6
+vframes = 2
 
 [node name="label_name" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -112.0
-offset_right = 25.0
-offset_bottom = -89.0
-horizontal_alignment = 3
-vertical_alignment = 1
+offset_left = -132.0
+offset_top = -36.0
+offset_right = 398.0
+offset_bottom = -13.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+horizontal_alignment = 1
 
 [node name="label_role" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -6.0
-offset_top = -90.0
-offset_right = 8.0
-offset_bottom = -67.0
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 452.0
+offset_bottom = -2.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4kuee")
+position = Vector2(0, 7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pn6s4")
 
 [node name="Inventory" parent="." instance=ExtResource("2_gfjak")]
 
@@ -196,7 +148,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(1, 1)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_524rm")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." groups=["DropSpawners"]]
@@ -206,28 +158,6 @@ spawn_path = NodePath(".")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_c3xxp")
-
-[node name="SelectedObjectMarker" type="Marker2D" parent="."]
-script = ExtResource("7_7oing")
-
-[node name="Sprite2D" type="Sprite2D" parent="SelectedObjectMarker"]
-position = Vector2(136.5, -20)
-rotation = -0.254804
-scale = Vector2(1, 0.37207407)
-
-[node name="Hitbox" type="Area2D" parent="SelectedObjectMarker"]
-collision_layer = 32
-collision_mask = 16
-script = ExtResource("6_v42im")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectedObjectMarker/Hitbox"]
-position = Vector2(136, 0)
-shape = SubResource("RectangleShape2D_v42im")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SelectedObjectMarker"]
-libraries = {
-&"": SubResource("AnimationLibrary_180ig")
-}
 
 [node name="RollCooldown" type="Timer" parent="."]
 wait_time = 0.5
@@ -242,4 +172,18 @@ health = NodePath("../HealthComponent")
 mine = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CircleShape2D_npwbq")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_7oing")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rn7t0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ov1oi")
+anim_player = NodePath("../PlayerAnimationPlayer")

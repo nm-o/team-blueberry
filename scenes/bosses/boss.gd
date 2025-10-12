@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var acceleration = 10000
 
 @onready var bullet_spawner: MultiplayerSpawner = $BulletSpawner
+@onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
 
 var target_position: Vector2
 var attacks
@@ -14,6 +15,15 @@ var doable_attacks: Array[String]
 var target
 var dashing = false
 var block_movement = false
+
+var hp: int = 100
+var is_dead: bool = false
+
+func get_attacked(damage: int):
+	hp -= damage
+	health_bar.value = hp
+	if hp <= 0:
+		is_dead = true
 
 func update_target():
 	var closest_target = null
@@ -39,21 +49,23 @@ func spawn_bullet(pos: Vector2, rot: float, vel: float):
 	bullet_spawner.add_child(bullet_inst)
 	
 func _physics_process(delta: float) -> void:
-		update_target()
-		if target and not block_movement and not dashing:
-			var target_distance = global_position.distance_to(target)
-			if target_distance > 4:
-				var target_direction = global_position.direction_to(target)
-				velocity = velocity.move_toward(target_direction * max_speed, acceleration * delta)
-			else:
-				velocity = Vector2(0,0)
-		elif not dashing:
+	if is_dead:
+		return
+	update_target()
+	if target and not block_movement and not dashing:
+		var target_distance = global_position.distance_to(target)
+		if target_distance > 4:
+			var target_direction = global_position.direction_to(target)
+			velocity = velocity.move_toward(target_direction * max_speed, acceleration * delta)
+		else:
 			velocity = Vector2(0,0)
-		move_and_slide()
-		if position.distance_to(target_position) > 100:
-			if target_position != Vector2(0,0):
-				position = target_position
-			manage_send_pos()
+	elif not dashing:
+		velocity = Vector2(0,0)
+	move_and_slide()
+	if position.distance_to(target_position) > 100:
+		if target_position != Vector2(0,0):
+			position = target_position
+		manage_send_pos()
 
 func manage_send_pos():
 	if is_multiplayer_authority():
@@ -87,6 +99,8 @@ func get_attack(attack: String):
 	do_attack(attack)
 
 func do_attack(attack: String):
+	if is_dead:
+		await call("play_death")
 	if attack:
 		await call(attack)
 		attacks[attack][0]=attacks[attack][1]

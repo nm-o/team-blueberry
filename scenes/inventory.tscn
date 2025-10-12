@@ -8,6 +8,7 @@
 
 [node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_hj2ta")
+max_hotbar_containers = null
 
 [node name="InventoryContainers" type="Control" parent="."]
 visible = false
