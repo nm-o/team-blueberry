@@ -69,3 +69,4 @@ func _process(_delta: float) -> void:
 		Mouse.player.mouse_sprite.texture = null
 		Mouse.item = null
 		Mouse.old_container = null
+		Mouse.player.inventory.select_container(Mouse.player.selected_container_number)

@@ -10,7 +10,7 @@ const ROLE_CONFIGS := {
 	Statics.Role.ROLE_C: "res://scenes/player/resources/WeaponMaster.tres",
 }
 
-@onready var marker_2d: Marker2D = $Marker2D
+@onready var player_spawn: Marker2D = $PlayerSpawn
 
 func _ensure_players_root() -> Node:
 	var root := get_node_or_null("Players")
@@ -22,13 +22,6 @@ func _ensure_players_root() -> Node:
 
 func _ready() -> void:
 	# Establecemos spawn point para jugadores
-	
-	# Coliseo
-	#marker_2d.position = Vector2(6000, 400)
-	
-	# Fase 1
-	marker_2d.position = Vector2(1500, 300)
-	
 	if player_scene == null:
 		player_scene = load("res://scenes/player/Player.tscn") as PackedScene
 	assert(player_scene != null, "Player scene not assigned")
@@ -50,8 +43,7 @@ func _ready() -> void:
 		player_inst.class_config = config
 
 		players_root.add_child(player_inst)
-		player_inst.global_position.x = marker_2d.global_position.x * (i+1)
-		player_inst.global_position.y = marker_2d.global_position.y
+		player_inst.global_position = player_spawn.global_position + Vector2(10 * i, 0)
 
 		player_inst.setup(player_data)
 		player_data.scene = player_inst

@@ -16,10 +16,11 @@ player_scene = ExtResource("2_0bbpv")
 [node name="Tilemap_ph2" parent="." instance=ExtResource("6_c01mt")]
 position = Vector2(8513, 221)
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(155, 258)
 
 [node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
-position = Vector2(250, -778)
+position = Vector2(57, -136)
 
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
-position = Vector2(700, -805)
+position = Vector2(125, -156)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yjktleghyqv1" path="res://scripts/crafting/crafting_station.gd" id="1_hd7vg"]
 [ext_resource type="PackedScene" uid="uid://h7wquqld14kt" path="res://scenes/crafting/stations_ui/brewing_station_interface.tscn" id="3_jim14"]
-[ext_resource type="Texture2D" uid="uid://dyacco8cq2qrv" path="res://assets/Pixel Crawler - Free Pack 2.0.4/Environment/Structures/Stations/Alchemy/Alchemy_Table_02-Sheet.png" id="4_bmhc7"]
+[ext_resource type="Texture2D" uid="uid://dyacco8cq2qrv" path="res://assets/Pixel Crawler - Free Pack/Environment/Structures/Stations/Alchemy/Alchemy_Table_02-Sheet.png" id="4_bmhc7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jim14"]
 atlas = ExtResource("4_bmhc7")
@@ -370,10 +370,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htwqn"]
-size = Vector2(241, 187)
+size = Vector2(45.5, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hd7vg"]
-size = Vector2(271, 173)
+size = Vector2(52, 39)
 
 [node name="BrewingStation" type="StaticBody2D"]
 script = ExtResource("1_hd7vg")
@@ -381,13 +381,12 @@ script = ExtResource("1_hd7vg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -19)
-scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_fb1fo")
 autoplay = "default"
 frame_progress = 0.44653946
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 14.5)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_htwqn")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -395,7 +394,7 @@ collision_layer = 128
 collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 90.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_hd7vg")
 
 [node name="InteractionName" type="Label" parent="."]

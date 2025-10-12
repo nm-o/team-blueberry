@@ -29,9 +29,11 @@ func select_container(num: int):
 	selected_container_number = num
 	Mouse.player.selected_container_number = num
 	if container.item:
-		Mouse.player.manage_hotbar_item(container.item.texture)
+		Mouse.player.selected_item = container.item
+		Mouse.player.manage_update_item_sprite(container.item.texture)
 	else:
-		Mouse.player.manage_hotbar_item("")
+		Mouse.player.selected_item = null
+		Mouse.player.manage_update_item_sprite("")
 
 # Deselecta all the containers in the hotbar
 func _deselect_containers():

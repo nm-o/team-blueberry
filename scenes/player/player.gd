@@ -7,11 +7,6 @@ class_name Player
 # Hurt/Hit boxes
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox: Hurtbox = $Hurtbox
-@onready var hitbox: Hitbox = $SelectedObjectMarker/Hitbox
-
-# Selected object marker
-@onready var selected_object_marker: Marker2D = $SelectedObjectMarker
-@onready var selected_item_sprite: Sprite2D = $SelectedObjectMarker/Sprite2D
 
 # Inventario e interacción
 var is_inventory_open: bool = false
@@ -21,16 +16,17 @@ var selected_areas: Array = []
 @export var item_drop_scene: PackedScene
 @onready var mouse_sprite: Sprite2D = $MouseSprite
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d: Sprite2D = $PlayerSpritePivot/Sprite2D
 
 # Labels
 @export var label_name: Label
 @export var label_role: Label
 @export var player_id: int = -1
 # Movimiento
-@export var max_speed: int = 1000
+@export var max_speed: int = 200
 @export var acceleration: int = 20000
 var target_position: Vector2
+var sprite_rotation: int = 1
 
 # Configuración de clase
 @export var class_config: PlayerClassConfig
@@ -44,12 +40,25 @@ var is_dead: bool = false
 var rolling: bool = false
 @onready var roll_cooldown: Timer = $RollCooldown
 
-@export var hp = 100 
+@export var hp = 100
+@export var invulneravility_time: float = 0.1
+@onready var invulnerability_timer: Timer = $InvulnerabilityTimer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback = animation_tree.get("parameters/playback")
+@onready var player_sprite_pivot: Node2D = $PlayerSpritePivot
+@onready var player_weapon: Node2D = $PlayerWeapon
+
+var selected_item: Item = null
+
+
 func get_attacked(damage: int):
+	if invulnerability_timer.time_left != 0:
+		return
 	hp -= damage
 	inventory.health_bar.value = hp
 	if hp <= 0:
 		is_dead = true
+	invulnerability_timer.start(invulneravility_time)
 
 func _ready() -> void:
 	selected_container_number = 0
@@ -66,8 +75,7 @@ func _ready() -> void:
 		health_component.died.connect(_on_died)
 
 func attack_primary() -> void:
-	#print("[PL] attack by id:", player_id)
-	if is_multiplayer_authority() and hitbox:
+	if is_multiplayer_authority():
 		activate_hitbox.rpc()
 
 func _on_damaged(_amount: int) -> void:
@@ -85,6 +93,7 @@ func _physics_process(delta: float) -> void:
 		mouse_sprite.global_position = get_global_mouse_position()
 		if Input.is_action_just_pressed("interact") and not selected_areas.is_empty():
 			selected_areas.back().interact()
+			inventory.select_container(selected_container_number)
 		if Input.is_action_just_pressed("inventory") and inventory:
 			inventory.change_visibility()
 		if not is_inventory_open:
@@ -95,9 +104,15 @@ func _physics_process(delta: float) -> void:
 			var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()
 			if move_input_vector.length() > 1.0:
 				move_input_vector = move_input_vector.normalized()
+			if move_input_vector.x != 0:
+				player_sprite_pivot.scale.x = move_input_vector.x / abs(move_input_vector.x)
+			if move_input_vector == Vector2(0,0):
+				manage_animation("idle_animation")
+			else:
+				manage_animation("running_animation")
 			if Input.is_action_just_pressed("roll") and roll_cooldown.time_left == 0:
 				rolling = true
-				velocity = velocity.move_toward(move_input_vector * max_speed * 2, acceleration * 10 * delta)
+				velocity = velocity.move_toward(move_input_vector * max_speed * 1.5, acceleration * 10 * delta)
 				hurtbox.monitoring = false
 				await get_tree().create_timer(0.2).timeout
 				roll_cooldown.start()
@@ -107,29 +122,25 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
 			move_and_slide()
 			send_pos.rpc(position)
+			if move_input_vector.x != 0:
+				send_rot.rpc(move_input_vector.x / abs(move_input_vector.x))
 
 	elif not is_inventory_open:
 		position = position.lerp(target_position, delta * 10.0)
+		player_sprite_pivot.scale.x = sprite_rotation
 
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui and selected_item_sprite.texture!=null:
-		print(selected_item_sprite)
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui and selected_item is Weapon:
 		attack_primary()
 
 func setup(player_data: Statics.PlayerData) -> void:
 	player_id = player_data.id
-	selected_object_marker.name = "marker_" + str(player_id)
-	#print("[PL] setup id:", player_id, " peer:", multiplayer.get_unique_id())
-	if hitbox:
-		hitbox.owner_id = player_id
-	#print("[PL] hitbox.owner_id =", hitbox.owner_id)
 	await get_tree().process_frame
-
-
 	# Labels y autoridad
 	label_name.text = player_data.name
 	label_role.text = class_config.label_role_text if class_config else "role: Unknown"
 	set_multiplayer_authority(player_data.id, false)
 	multiplayer_spawner.set_multiplayer_authority(player_data.id, false)
+	player_weapon.set_multiplayer_authority(player_data.id, false)
 	
 	if class_config and health_component:
 		health_component.max_hp = class_config.hp
@@ -147,9 +158,10 @@ func setup(player_data: Statics.PlayerData) -> void:
 		inventory.health_bar.visible = true
 		inventory.health_bar.max_value = hp
 		self.personal_camera_2d = Camera2D.new()
-		self.personal_camera_2d.zoom = Vector2(0.45, 0.45)
+		self.personal_camera_2d.zoom = Vector2(2.5, 2.5)
 		self.add_child(personal_camera_2d)
 		self.personal_camera_2d.make_current()
+		inventory.select_container(0)
 
 func _apply_visuals_from_config() -> void:
 	if class_config:
@@ -181,9 +193,6 @@ func _load_starting_items() -> void:
 func _apply_death_state() -> void:
 	#print("[PL] death on peer:", multiplayer.get_unique_id(), " id:", player_id)
 	is_dead = true
-	if hitbox:
-		hitbox.set_deferred("monitoring", false)
-		hitbox.set_deferred("monitorable", false)
 	if hurtbox:
 		hurtbox.set_deferred("monitoring", false)
 		hurtbox.set_deferred("monitorable", false)
@@ -203,6 +212,9 @@ func _refresh_hp_ui() -> void:
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_pos(pos):
 	target_position = pos
+@rpc("authority", "call_remote", "unreliable_ordered")
+func send_rot(rot):
+	sprite_rotation = rot
 
 # Destroys dropped items on all the players
 func manage_destroy_item_drop(drop_id):
@@ -236,20 +248,16 @@ func _input(event: InputEvent) -> void:
 				selected_container_number = max_hotbar_containers - 1
 			inventory.select_container(selected_container_number)
 
-func manage_hotbar_item(texture: String):
+# Animation manager
+func manage_animation(animation_name: String):
 	if is_multiplayer_authority():
-		hotbar_item_server.rpc_id(1, texture, player_id)
-
+		manage_animation_server.rpc_id(1, animation_name)
 @rpc("authority", "call_local", "reliable")
-func hotbar_item_server(texture: String, player_idx: int):
-	hotbar_item_else.rpc(texture, player_idx)
-
+func manage_animation_server(animation_name: String):
+	do_the_animation.rpc(animation_name)
 @rpc("any_peer", "call_local", "reliable")
-func hotbar_item_else(texture: String, player_idx: int):
-	var players = get_node("/root/Main/Players").get_children()
-	for player in players:
-		if player.player_id == player_idx:
-			player.selected_object_marker.change_selected_object(texture)
+func do_the_animation(animation_name: String):
+	playback.travel(animation_name)
 
 # Drops items to all the players
 func manage_drop(item_to_drop, drop_id):
@@ -271,6 +279,7 @@ func drop_item(_pos, item_to_drop, drop_id):
 	multiplayer_spawner.add_child(item_drop)
 	item_drop.update_item_drop()
 	item_drop.global_position = global_position
+	inventory.select_container(selected_container_number)
 
 func _interaction_area_entered(area: Area2D):
 	if not selected_areas.is_empty():
@@ -340,8 +349,12 @@ func _request_damage(attacker_id: int, victim_id: int, damage: int) -> void:
 # RPC for selected object rotation
 @rpc("authority", "call_local", "reliable")
 func rotate_selected_obj(mouse_pos):
-	selected_object_marker.look_at(mouse_pos)
+	player_weapon.look_at(mouse_pos)
 
 @rpc("authority", "call_local", "reliable")
 func activate_hitbox():
-	selected_object_marker.activate()
+	player_weapon.activate()
+
+func manage_update_item_sprite(sprite_path: String):
+	if is_multiplayer_authority():
+		player_weapon.update_item_sprite_server.rpc_id(1, sprite_path)

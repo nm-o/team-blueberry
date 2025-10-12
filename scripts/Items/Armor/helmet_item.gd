@@ -4,6 +4,6 @@ extends Armor
 # Function that acivates once the game starts
 func _init() -> void:
 	description = "Helmet: keep yourself safe"
-	texture = "res://placeholder_images/2-ezgif.com-resize.jpg"
+	texture = "res://assets/OriginalAssets/item_placeholders/helmet_test.png"
 	max_number = 1
 	name = "Helmet"

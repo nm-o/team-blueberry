@@ -5,6 +5,7 @@ extends Boss
 @onready var sprite_2d: Sprite2D = $Pivot/Sprite2D
 
 func _ready() -> void:
+	sprite_2d.modulate = Color(1,1,1,1)
 	attacks = {
 		"quick_dash": [0, 2],
 		"quick_feathers": [0, 2],
@@ -16,7 +17,12 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	bullet_spawner.add_spawnable_scene(bullet_scene.resource_path)
 	attack_workflow()
-	
+
+func play_death():
+	animation_player.play("death_animation")
+	await animation_player.animation_finished
+	queue_free()
+
 func circle_attack():
 	#vars
 	var fire_rate = 23

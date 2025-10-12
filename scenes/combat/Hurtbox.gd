@@ -12,7 +12,7 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if mine:
 		var hitbox = area as Hitbox
-		owner.get_attacked(hitbox.damage)
+		await owner.get_attacked(hitbox.damage)
 	else:
 		if not (area is Hitbox):
 			return

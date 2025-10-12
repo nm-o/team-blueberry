@@ -48049,7 +48049,6 @@ sources/4 = SubResource("TileSetAtlasSource_o8hbv")
 sources/1 = SubResource("TileSetAtlasSource_5fs2o")
 
 [node name="Tilemap_ph2" type="Node2D"]
-scale = Vector2(5, 5)
 
 [node name="Ground" type="TileMapLayer" parent="."]
 texture_filter = 1

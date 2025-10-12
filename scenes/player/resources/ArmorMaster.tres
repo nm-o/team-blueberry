@@ -9,5 +9,5 @@ movement_speed = 500.0
 attack = 9
 defense = 12
 label_role_text = "Armor Master"
-starting_items = Array[String](["res://scripts/Items/Armor/helmet_item.gd", "res://scripts/Items/Armor/legs_item.gd", "res://scripts/Items/Armor/chestplate_item.gd", "res://scripts/Items/Armor/legs_item.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd"])
+starting_items = Array[String](["res://scripts/Items/Weapons/Sword.gd", "res://scripts/Items/Armor/helmet_item.gd", "res://scripts/Items/Armor/legs_item.gd", "res://scripts/Items/Armor/chestplate_item.gd", "res://scripts/Items/Armor/legs_item.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/iron.gd"])
 metadata/_custom_type_script = "uid://jjifgdyvywmv"
