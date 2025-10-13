@@ -17,11 +17,11 @@ func activate():
 	tween = create_tween()
 	tween.tween_property(double_pivot, "rotation", double_pivot.rotation - deg_to_rad(35), attack_starting_cooldown)
 	await tween.finished
-	hitbox.monitoring = true
+	weapon_collision.disabled = false
 	tween = create_tween()
 	tween.tween_property(double_pivot, "rotation", double_pivot.rotation + deg_to_rad(50), 0.07)
 	await tween.finished
-	hitbox.monitoring = false
+	weapon_collision.disabled = true
 	tween = create_tween()
 	tween.tween_property(double_pivot, "rotation", double_pivot.rotation - deg_to_rad(15), 0.2)
 	await tween.finished

@@ -3,8 +3,10 @@ extends Boss
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var pivot: Node2D = $Pivot
 @onready var sprite_2d: Sprite2D = $Pivot/Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $Pivot/Hurtbox/CollisionShape2D
 
 func _ready() -> void:
+	collision_shape_2d.disabled = false
 	sprite_2d.modulate = Color(1,1,1,1)
 	attacks = {
 		"quick_dash": [0, 2],
@@ -16,7 +18,12 @@ func _ready() -> void:
 	acceleration = 10000
 	await get_tree().create_timer(0.1).timeout
 	bullet_spawner.add_spawnable_scene(bullet_scene.resource_path)
+	super_ready()
 	attack_workflow()
+
+func defeat():
+	Debug.log("wa")
+	await play_death()
 
 func play_death():
 	animation_player.play("death_animation")
@@ -26,7 +33,8 @@ func play_death():
 func circle_attack():
 	#vars
 	var fire_rate = 23
-	var bullet_speed = 500
+	var bullet_speed = 200
+	var end_delay = 0.5
 	
 	block_movement = true
 	animation_player.play("prepare_circle")
@@ -38,11 +46,13 @@ func circle_attack():
 	animation_player.play("end_circle")
 	block_movement = false
 	await animation_player.animation_finished
+	await get_tree().create_timer(end_delay).timeout
 
 
 func quick_dash():
 	# vars
 	var dash_duration = 0.3
+	var end_delay = 1.5
 	
 	block_movement = true
 	var direction = global_position.direction_to(target)
@@ -50,7 +60,7 @@ func quick_dash():
 		direction = Vector2.RIGHT
 	global_rotation = direction.angle()
 	var old_speed = max_speed
-	max_speed = 800 / dash_duration
+	max_speed = 400 / dash_duration
 	dashing = true
 	velocity = Vector2(0, 0)
 	animation_player.play("quick_dash_animation")
@@ -63,20 +73,21 @@ func quick_dash():
 	await get_tree().create_timer(0.5).timeout
 	global_rotation = 0
 	block_movement = false
+	await get_tree().create_timer(end_delay).timeout
 	
-
 func appear_on_top(time: float):
 	await get_tree().create_timer(time).timeout
 	global_position = target
 
 func fly():
 	#vars
-	var bullet_speed = 500
+	var bullet_speed = 250
 	var fire_rate = 3
 	var amount_of_triggers = 3
 	var bullet_amount = 16
+	var end_delay = 0.5
 	
-	max_speed += 100
+	max_speed += 50
 	animation_player.play("prapare_to_fly_animation")
 	block_movement = true
 	await get_tree().create_timer(0.3).timeout
@@ -85,7 +96,7 @@ func fly():
 	animation_player.play("fly_animation")
 	appear_on_top(0.8)
 	await get_tree().create_timer(3.4).timeout
-	max_speed -= 100
+	max_speed -= 50
 	for trigger in amount_of_triggers:
 		var rot = deg_to_rad(randf_range(-90, 90))
 		for bullet in bullet_amount:
@@ -93,14 +104,16 @@ func fly():
 			rot += deg_to_rad(360.0 / bullet_amount)
 			spawn_bullet(pos, rot, bullet_speed)
 		await get_tree().create_timer(1.0/fire_rate).timeout
+	await get_tree().create_timer(end_delay).timeout
 
 func quick_feathers():
 	#vars
 	var spread = 60.0
-	var bullet_speed = 700
+	var bullet_speed = 300
 	var fire_rate = 6
 	var amount_of_triggers = 3
 	var bullet_amount = 5
+	var end_delay = 1.5
 	
 	block_movement = true
 	for trigger in amount_of_triggers:
@@ -114,3 +127,4 @@ func quick_feathers():
 			spawn_bullet(pos, rot, bullet_speed)
 		await get_tree().create_timer(1.0/fire_rate).timeout
 	block_movement = false
+	await get_tree().create_timer(end_delay).timeout

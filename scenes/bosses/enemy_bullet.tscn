@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c2aakloa2nses" path="res://placeholder_images/1-ezgif.com-resize.jpg" id="3_luwoj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1351u"]
-radius = 18.0
+radius = 6.0827627
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_udtew"]
 properties/0/path = NodePath(".:position")
@@ -19,7 +19,7 @@ properties/1/replication_mode = 0
 script = ExtResource("1_km2td")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_luwoj")
 
 [node name="Hitbox" type="Area2D" parent="."]

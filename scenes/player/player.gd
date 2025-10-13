@@ -7,6 +7,7 @@ class_name Player
 # Hurt/Hit boxes
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var collision_shape_2d: CollisionShape2D = $Hurtbox/CollisionShape2D
 
 # Inventario e interacción
 var is_inventory_open: bool = false
@@ -49,18 +50,37 @@ var rolling: bool = false
 @onready var player_weapon: Node2D = $PlayerWeapon
 
 var selected_item: Item = null
+@onready var hc: CollisionShape2D = $Pivot/Hurtbox/CollisionShape2D
 
 
 func get_attacked(damage: int):
 	if invulnerability_timer.time_left != 0:
 		return
+	manage_do_damage(damage)
+	invulnerability_timer.start(invulneravility_time)
+
+func manage_do_damage(damage: int):
+	if is_multiplayer_authority():
+		do_damage_server.rpc_id(1, damage)
+
+@rpc("authority", "call_local", "reliable")
+func do_damage_server(damage: int):
+	do_damage.rpc(damage)
+
+@rpc("any_peer", "call_local", "reliable")
+func do_damage(damage: int):
 	hp -= damage
 	inventory.health_bar.value = hp
 	if hp <= 0:
 		is_dead = true
-	invulnerability_timer.start(invulneravility_time)
+		if is_multiplayer_authority():
+			Mouse.set_player_is_dead.rpc(true, player_id)
+
+func _victory():
+	Debug.log("Waaa")
 
 func _ready() -> void:
+	Mouse.boss_dead.connect(_victory)
 	selected_container_number = 0
 	mouse_sprite.top_level = true
 	if item_drop_scene:
@@ -113,10 +133,10 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("roll") and roll_cooldown.time_left == 0:
 				rolling = true
 				velocity = velocity.move_toward(move_input_vector * max_speed * 1.5, acceleration * 10 * delta)
-				hurtbox.monitoring = false
+				collision_shape_2d.disabled = true
 				await get_tree().create_timer(0.2).timeout
 				roll_cooldown.start()
-				hurtbox.monitoring = true
+				collision_shape_2d.disabled = false
 				rolling = false
 			elif not rolling:
 				velocity = velocity.move_toward(move_input_vector * max_speed, acceleration * delta)
