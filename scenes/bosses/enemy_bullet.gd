@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var max_speed = 100
-@export var lifetime = 2
+@export var lifetime = 5
 
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 

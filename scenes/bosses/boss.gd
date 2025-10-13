@@ -19,11 +19,29 @@ var block_movement = false
 var hp: int = 100
 var is_dead: bool = false
 
+func super_ready():
+	Mouse.players_lost.connect(_defeat)
+func _defeat():
+	await call("defeat")
+
 func get_attacked(damage: int):
+	manage_do_damage(damage)
+		
+func manage_do_damage(damage: int):
+	if is_multiplayer_authority():
+		do_damage_server.rpc_id(1, damage)
+
+@rpc("authority", "call_local", "reliable")
+func do_damage_server(damage: int):
+	do_damage.rpc(damage)
+
+@rpc("any_peer", "call_local", "reliable")
+func do_damage(damage: int):
 	hp -= damage
 	health_bar.value = hp
 	if hp <= 0:
 		is_dead = true
+		Mouse.boss_dead.emit()
 
 func update_target():
 	var closest_target = null
@@ -107,13 +125,12 @@ func do_attack(attack: String):
 		for key in attacks.keys():
 			if attacks[key][0] > 0:
 				attacks[key][0] -= 1
-		await get_tree().create_timer(0.1).timeout
 		attack_workflow()
 	else: 
 		for key in attacks.keys():
 			if attacks[key][0] > 0:
 				attacks[key][0] -= 1
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(3).timeout
 		attack_workflow()
 			
 			

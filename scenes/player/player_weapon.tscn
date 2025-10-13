@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bflx5pqrlws82"]
+[gd_scene load_steps=4 format=3 uid="uid://bflx5pqrlws82"]
 
 [ext_resource type="Script" uid="uid://f5ghkd07uq5v" path="res://player_weapon.gd" id="1_we4ha"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_ue6w6"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="3_46dkx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ue6w6"]
@@ -18,16 +17,15 @@ one_shot = true
 [node name="Sprite2D" type="Sprite2D" parent="DoublePivot"]
 position = Vector2(72, 0)
 rotation = 1.5707964
-texture = ExtResource("2_ue6w6")
 region_rect = Rect2(33.446064, 16.1346, 13.147026, 29.686834)
 
 [node name="Hitbox" type="Area2D" parent="DoublePivot"]
 collision_layer = 32
 collision_mask = 16
-monitoring = false
 script = ExtResource("3_46dkx")
 metadata/_custom_type_script = "uid://b4dv5nl24aqe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoublePivot/Hitbox"]
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_ue6w6")
+disabled = true

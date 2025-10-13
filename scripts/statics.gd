@@ -34,6 +34,8 @@ class PlayerData:
 	var index: int = -1
 	var role: Role
 	var vote: bool = false
+	var is_dead: bool = false
+	var teleport: bool = false
 	var scene: Player
 	
 	func _init(new_id: int, new_name: String, new_index: int = -1, new_role: Role = Role.NONE) -> void:
