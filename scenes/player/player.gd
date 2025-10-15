@@ -80,6 +80,7 @@ func _victory():
 	Debug.log("Waaa")
 
 func _ready() -> void:
+	add_to_group("players")
 	Mouse.boss_dead.connect(_victory)
 	selected_container_number = 0
 	mouse_sprite.top_level = true
