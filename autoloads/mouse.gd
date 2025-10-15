@@ -10,9 +10,17 @@ var player: Player
 var drop_id: String = ""
 var drop_id_first: int = 0
 var drop_id_second: int = 0
+var boss_number: int = 1
 
 signal players_lost
 signal boss_dead
+signal on_teleport(id)
+signal exited_teleport(id)
+signal teleport_timer_started(time)
+signal teleport_timer_stopped()
+signal teleport_started(to_coliseum)
+signal defeat_ui()
+signal super_victory
 
 func get_drop_id():
 	drop_id_first += 1

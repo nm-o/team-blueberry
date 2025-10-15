@@ -18,12 +18,12 @@ func _ready() -> void:
 	acceleration = 10000
 	await get_tree().create_timer(0.1).timeout
 	bullet_spawner.add_spawnable_scene(bullet_scene.resource_path)
-	super_ready()
+	await super_ready()
 	attack_workflow()
 
-func defeat():
-	Debug.log("wa")
-	await play_death()
+func spawn_boss():
+	animation_player.play("spawn_animation")
+	await animation_player.animation_finished
 
 func play_death():
 	animation_player.play("death_animation")
