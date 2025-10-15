@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=23 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://djk04wpi44d73" path="res://assets/OriginalAssets/alchemist_sprites.png" id="4_pn6s4"]
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="7_npwbq"]
+[ext_resource type="Script" uid="uid://b3jj3snioasel" path="res://scenes/player/spectator_ghost.gd" id="9_pn6s4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn6s4"]
 radius = 5.0
@@ -98,7 +99,7 @@ states/running_animation/node = SubResource("AnimationNodeAnimation_7oing")
 states/running_animation/position = Vector2(615.99994, 100.090546)
 transitions = ["Start", "idle_animation", SubResource("AnimationNodeStateMachineTransition_5stf6"), "idle_animation", "running_animation", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "running_animation", "idle_animation", SubResource("AnimationNodeStateMachineTransition_7oing")]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role") groups=["Players"]]
 motion_mode = 1
 script = ExtResource("1_4kuee")
 item_drop_scene = ExtResource("2_tpg5x")
@@ -187,3 +188,15 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ov1oi")
 anim_player = NodePath("../PlayerAnimationPlayer")
+
+[node name="SpectatorGhost" type="CharacterBody2D" parent="."]
+visible = false
+script = ExtResource("9_pn6s4")
+
+[node name="Node2D" type="Node2D" parent="SpectatorGhost"]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpectatorGhost/Node2D"]
+modulate = Color(1, 1, 1, 0.7176471)
+texture = ExtResource("4_pn6s4")
+hframes = 6
+vframes = 2

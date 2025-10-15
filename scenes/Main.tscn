@@ -1,28 +1,40 @@
-[gd_scene load_steps=9 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=12 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://hxcj0pwcyq0a" path="res://scenes/bosses/eagle_boss.tscn" id="3_jlsqs"]
 [ext_resource type="PackedScene" uid="uid://cdbavcfdovkdc" path="res://scenes/Tilemaps/Tilemap_ph1.tscn" id="3_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://buxla4a3c3k2" path="res://ui/main_menu.tscn" id="4_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://ql7wgu71kbrj" path="res://scenes/crafting/stations/weapons_station.tscn" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://bryws7w371ha0" path="res://scenes/crafting/stations/brewing_station.tscn" id="5_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://dkm2k2s7kku77" path="res://scenes/Tilemaps/Tilemap_ph2.tscn" id="6_c01mt"]
 [ext_resource type="Script" uid="uid://dnwafjt81mbgi" path="res://scripts/teleport_area.gd" id="8_jlsqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
-size = Vector2(110.5, 41.25)
+size = Vector2(785, 794)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlsqs"]
+size = Vector2(171, 93)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_elqb8")
 player_scene = ExtResource("2_0bbpv")
+boss_1_scene = ExtResource("3_jlsqs")
+boss_2_scene = ExtResource("3_jlsqs")
+boss_3_scene = ExtResource("3_jlsqs")
+menu_scene = ExtResource("4_q8u5g")
 
 [node name="ColiseoToBase" type="Area2D" parent="." node_paths=PackedStringArray("teleport_marker")]
 script = ExtResource("8_jlsqs")
 teleport_marker = NodePath("PointTeleportBase")
-required_time = 1.0
+required_time = 3.0
+show_labels = false
+to_coliseum = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColiseoToBase"]
-position = Vector2(8921, 445)
+position = Vector2(8620, 161)
 shape = SubResource("RectangleShape2D_q8u5g")
+disabled = true
 
 [node name="PointTeleportBase" type="Marker2D" parent="ColiseoToBase"]
 position = Vector2(230, -83)
@@ -30,14 +42,13 @@ position = Vector2(230, -83)
 [node name="BaseToColiseo" type="Area2D" parent="." node_paths=PackedStringArray("teleport_marker")]
 script = ExtResource("8_jlsqs")
 teleport_marker = NodePath("PointTeleportColiseo")
-required_time = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseToColiseo"]
-position = Vector2(416, -108.625)
-shape = SubResource("RectangleShape2D_q8u5g")
 
 [node name="PointTeleportColiseo" type="Marker2D" parent="BaseToColiseo"]
 position = Vector2(8668, 394)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseToColiseo"]
+position = Vector2(431.5, -93.5)
+shape = SubResource("RectangleShape2D_jlsqs")
 
 [node name="Tilemap_ph1" parent="." instance=ExtResource("3_vcsgt")]
 
@@ -52,3 +63,6 @@ position = Vector2(57, -136)
 
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
 position = Vector2(125, -156)
+
+[node name="BossSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(8622, 135)

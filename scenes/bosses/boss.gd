@@ -15,14 +15,16 @@ var doable_attacks: Array[String]
 var target
 var dashing = false
 var block_movement = false
+var players_defeated: bool = false
 
 var hp: int = 100
 var is_dead: bool = false
 
 func super_ready():
 	Mouse.players_lost.connect(_defeat)
+	await call("spawn_boss")
 func _defeat():
-	await call("defeat")
+	players_defeated = true
 
 func get_attacked(damage: int):
 	manage_do_damage(damage)
@@ -41,7 +43,6 @@ func do_damage(damage: int):
 	health_bar.value = hp
 	if hp <= 0:
 		is_dead = true
-		Mouse.boss_dead.emit()
 
 func update_target():
 	var closest_target = null
@@ -67,7 +68,7 @@ func spawn_bullet(pos: Vector2, rot: float, vel: float):
 	bullet_spawner.add_child(bullet_inst)
 	
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if is_dead or players_defeated:
 		return
 	update_target()
 	if target and not block_movement and not dashing:
@@ -119,6 +120,13 @@ func get_attack(attack: String):
 func do_attack(attack: String):
 	if is_dead:
 		await call("play_death")
+		if Mouse.boss_number < 4:
+			Mouse.boss_dead.emit()
+		else:
+			Mouse.super_victory.emit()
+	if players_defeated:
+		await call("play_death")
+		Mouse.defeat_ui.emit()
 	if attack:
 		await call(attack)
 		attacks[attack][0]=attacks[attack][1]

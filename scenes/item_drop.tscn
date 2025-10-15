@@ -22,7 +22,6 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_gvv6n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e8wxw")

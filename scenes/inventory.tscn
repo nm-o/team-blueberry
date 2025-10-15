@@ -8,7 +8,6 @@
 
 [node name="Inventory" type="CanvasLayer"]
 script = ExtResource("1_hj2ta")
-max_hotbar_containers = null
 
 [node name="InventoryContainers" type="Control" parent="."]
 visible = false
@@ -101,4 +100,93 @@ offset_left = 29.0
 offset_top = 24.0
 offset_right = 304.0
 offset_bottom = 51.0
+mouse_filter = 2
 value = 100.0
+
+[node name="PlayersReady" type="VBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -15.0
+offset_right = -9.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="TeleportTimerLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -156.0
+offset_right = 109.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 96
+
+[node name="TeleportTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VictoryLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 108
+text = "Victory!!1"
+
+[node name="SuperVictoryLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 0)
+offset_left = 53.0
+offset_top = 215.0
+offset_right = 1449.5
+offset_bottom = 489.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 116
+bbcode_enabled = true
+text = "[rainbow freq=0.2 sat=1.4 high=5.0] Super Victory!!11!!!!!1 [/rainbow]"
+fit_content = true
+
+[node name="DefeatLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 108
+text = "Defeat :C"

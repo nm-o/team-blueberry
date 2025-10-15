@@ -41,6 +41,7 @@ var is_dead: bool = false
 var rolling: bool = false
 @onready var roll_cooldown: Timer = $RollCooldown
 
+@export var max_hp = 100
 @export var hp = 100
 @export var invulneravility_time: float = 0.1
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
@@ -51,6 +52,9 @@ var rolling: bool = false
 
 var selected_item: Item = null
 @onready var hc: CollisionShape2D = $Pivot/Hurtbox/CollisionShape2D
+@onready var spectator_ghost: CharacterBody2D = $SpectatorGhost
+
+var old_direction: Vector2 = Vector2(1,0)
 
 
 func get_attacked(damage: int):
@@ -71,17 +75,20 @@ func do_damage_server(damage: int):
 func do_damage(damage: int):
 	hp -= damage
 	inventory.health_bar.value = hp
-	if hp <= 0:
+	if hp <= 0 and not is_dead:
 		is_dead = true
 		if is_multiplayer_authority():
+			ghost_enabled(true)
 			Mouse.set_player_is_dead.rpc(true, player_id)
 
-func _victory():
-	Debug.log("Waaa")
+func ghost_enabled(is_enabled: bool):
+	spectator_ghost.visible = is_enabled
+	spectator_ghost.top_level = is_enabled
+	spectator_ghost.set_physics_process(is_enabled)
+	spectator_ghost.set_spawn_position(global_position)
 
 func _ready() -> void:
 	add_to_group("players")
-	Mouse.boss_dead.connect(_victory)
 	selected_container_number = 0
 	mouse_sprite.top_level = true
 	if item_drop_scene:
@@ -123,6 +130,8 @@ func _physics_process(delta: float) -> void:
 
 			# Movement
 			var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()
+			if move_input_vector != Vector2.ZERO:
+				old_direction = move_input_vector
 			if move_input_vector.length() > 1.0:
 				move_input_vector = move_input_vector.normalized()
 			if move_input_vector.x != 0:
@@ -133,7 +142,7 @@ func _physics_process(delta: float) -> void:
 				manage_animation("running_animation")
 			if Input.is_action_just_pressed("roll") and roll_cooldown.time_left == 0:
 				rolling = true
-				velocity = velocity.move_toward(move_input_vector * max_speed * 1.5, acceleration * 10 * delta)
+				velocity = velocity.move_toward(old_direction * max_speed * 1.5, acceleration * 10 * delta)
 				collision_shape_2d.disabled = true
 				await get_tree().create_timer(0.2).timeout
 				roll_cooldown.start()
@@ -178,11 +187,11 @@ func setup(player_data: Statics.PlayerData) -> void:
 		inventory.hotbar_containers.visible = true
 		inventory.health_bar.visible = true
 		inventory.health_bar.max_value = hp
-		self.personal_camera_2d = Camera2D.new()
-		self.personal_camera_2d.zoom = Vector2(2.5, 2.5)
-		self.personal_camera_2d.position = Vector2(0, 0)
-		self.add_child(personal_camera_2d)
-		self.personal_camera_2d.make_current()
+		personal_camera_2d = Camera2D.new()
+		personal_camera_2d.zoom = Vector2(2.5, 2.5)
+		personal_camera_2d.position = Vector2(0, 0)
+		spectator_ghost.add_child(personal_camera_2d)
+		personal_camera_2d.make_current()
 		inventory.select_container(0)
 
 func _apply_visuals_from_config() -> void:
@@ -285,6 +294,7 @@ func do_the_animation(animation_name: String):
 func manage_drop(item_to_drop, drop_id):
 	if is_multiplayer_authority():
 		drop_item_server.rpc_id(1, global_position, item_to_drop, drop_id)
+		inventory.select_container(selected_container_number)
 
 @rpc("authority", "call_local", "reliable")
 func drop_item_server(pos, item_to_drop, drop_id):
@@ -301,7 +311,6 @@ func drop_item(_pos, item_to_drop, drop_id):
 	multiplayer_spawner.add_child(item_drop)
 	item_drop.update_item_drop()
 	item_drop.global_position = global_position
-	inventory.select_container(selected_container_number)
 
 func _interaction_area_entered(area: Area2D):
 	if not selected_areas.is_empty():
@@ -314,7 +323,8 @@ func _interaction_area_exited(area: Area2D):
 		area.owner.interaction_name_label.visible = false
 	selected_areas.erase(area.owner)
 	if not selected_areas.is_empty():
-		selected_areas.back().interaction_name_label.visible = true
+		if selected_areas.back() != null:
+			selected_areas.back().interaction_name_label.visible = true
 
 # Cliente -> servidor
 @rpc("any_peer","reliable","call_local")

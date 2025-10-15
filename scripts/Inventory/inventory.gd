@@ -5,10 +5,88 @@ extends CanvasLayer
 @onready var hotbar_containers: Control = $HotbarContainers
 @onready var player: Player = $".."
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var players_ready: VBoxContainer = $PlayersReady
+@onready var teleport_timer_label: Label = $TeleportTimerLabel
+@onready var teleport_timer: Timer = $TeleportTimer
+@onready var black_screen: ColorRect = $BlackScreen
+@onready var victory_label: Label = $VictoryLabel
+@onready var defeat_label: Label = $DefeatLabel
+@onready var super_victory_label: RichTextLabel = $SuperVictoryLabel
 
 @export var max_hotbar_containers: int = 3
 
 var selected_container_number: int = 0
+var stop_countdown: bool = false
+
+func _ready() -> void:
+	Mouse.on_teleport.connect(_add_label)
+	Mouse.exited_teleport.connect(_destroy_label)
+	Mouse.teleport_timer_started.connect(_start_countdown)
+	Mouse.teleport_timer_stopped.connect(_stop_countdown)
+	Mouse.teleport_started.connect(_start_teleport_animation)
+	Mouse.boss_dead.connect(_victory_ui)
+	Mouse.defeat_ui.connect(_defeat_ui)
+	Mouse.super_victory.connect(_super_victory_ui)
+	for players in Game.players:
+		var label = Label.new()
+		label.add_theme_font_size_override("font_size", 26)
+		players_ready.add_child(label)
+		label.MOUSE_FILTER_IGNORE
+func _super_victory_ui():
+	var tween: Tween = create_tween()
+	tween.tween_property(super_victory_label, "modulate", Color(1,1,1,1), 1).set_ease(Tween.EASE_IN)
+	tween.tween_property(super_victory_label, "modulate", Color(1,1,1,1), 4)
+	tween.tween_property(super_victory_label, "modulate", Color(1,1,1,0), 1)
+	await tween.finished
+	defeat_label.modulate = Color(0,0,0,0)
+func _defeat_ui():
+	var tween: Tween = create_tween()
+	tween.tween_property(defeat_label, "modulate", Color(0,0,0,1), 1).set_ease(Tween.EASE_IN)
+	tween.tween_property(defeat_label, "modulate", Color(0.753, 0.0, 0.0, 1.0), 1)
+	tween.tween_property(defeat_label, "modulate", Color(0.753, 0.0, 0.0, 1.0), 1)
+	tween.tween_property(defeat_label, "modulate", Color(0.753, 0.0, 0.0, 0), 1)
+	await tween.finished
+	defeat_label.modulate = Color(1,1,1,0)
+func _victory_ui():
+	var tween: Tween = create_tween()
+	tween.tween_property(victory_label, "modulate", Color(0,0,0,1), 1).set_ease(Tween.EASE_IN)
+	tween.tween_property(victory_label, "modulate", Color(0.955, 0.801, 0.0, 1.0), 1)
+	tween.tween_property(victory_label, "modulate", Color(0.955, 0.801, 0.0, 1.0), 2)
+	tween.tween_property(victory_label, "modulate", Color(0.955, 0.801, 0.0, 0), 1)
+	await tween.finished
+	victory_label.modulate = Color(1,1,1,0)
+
+func _start_teleport_animation(_to_coliseum):
+	var tween: Tween = create_tween()
+	tween.tween_property(black_screen, "modulate", Color(0,0,0,1), 2)
+	tween.tween_property(black_screen, "modulate", Color(0,0,0,1), 1)
+	tween.tween_property(black_screen, "modulate", Color(0,0,0,0), 1)
+
+func _start_countdown(time):
+	stop_countdown = false
+	teleport_timer_label.visible = true
+	teleport_timer.start(time)
+	for i in range(time, 0, -1):
+		if stop_countdown:
+			break
+		teleport_timer_label.text = str(i)
+		await get_tree().create_timer(1.0).timeout
+func _stop_countdown():
+	stop_countdown = true
+	teleport_timer_label.visible = false
+			
+func _destroy_label(player_id):
+	var teleporting_player = Game.get_player(player_id)
+	for label in players_ready.get_children():
+		if label.text == teleporting_player.name + "   READY":
+			label.text = ""
+			return
+func _add_label(player_id):
+	var teleporting_player = Game.get_player(player_id)
+	for label in players_ready.get_children():
+		if label.text == "":
+			label.text = teleporting_player.name + "   READY"
+			return
 
 # Gets the current selected container in the hotbar
 func search_selected_container():
