@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=29 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="7_npwbq"]
 [ext_resource type="Script" uid="uid://b3jj3snioasel" path="res://scenes/player/spectator_ghost.gd" id="9_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://6ygf2upi4mgl" path="res://assets/OriginalAssets/ghost_anim.png" id="10_7oing"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn6s4"]
 radius = 5.0
@@ -98,6 +99,42 @@ states/idle_animation/position = Vector2(368, 99.75034)
 states/running_animation/node = SubResource("AnimationNodeAnimation_7oing")
 states/running_animation/position = Vector2(615.99994, 100.090546)
 transitions = ["Start", "idle_animation", SubResource("AnimationNodeStateMachineTransition_5stf6"), "idle_animation", "running_animation", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "running_animation", "idle_animation", SubResource("AnimationNodeStateMachineTransition_7oing")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5stf6"]
+atlas = ExtResource("10_7oing")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_180ig"]
+atlas = ExtResource("10_7oing")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20koh"]
+atlas = ExtResource("10_7oing")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov1oi"]
+atlas = ExtResource("10_7oing")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rn7t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5stf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_180ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20koh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov1oi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label_name", "label_role") groups=["Players"]]
 motion_mode = 1
@@ -195,8 +232,8 @@ script = ExtResource("9_pn6s4")
 
 [node name="Node2D" type="Node2D" parent="SpectatorGhost"]
 
-[node name="Sprite2D" type="Sprite2D" parent="SpectatorGhost/Node2D"]
-modulate = Color(1, 1, 1, 0.7176471)
-texture = ExtResource("4_pn6s4")
-hframes = 6
-vframes = 2
+[node name="GhostSprite" type="AnimatedSprite2D" parent="SpectatorGhost/Node2D"]
+modulate = Color(1, 1, 1, 0.6784314)
+sprite_frames = SubResource("SpriteFrames_rn7t0")
+autoplay = "default"
+frame_progress = 0.05440998
