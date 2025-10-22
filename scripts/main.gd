@@ -7,6 +7,10 @@ extends Node2D
 @export var boss_3_scene: PackedScene
 @export var menu_scene: PackedScene
 
+# Obstacles
+@onready var area_1: Node2D = $AreasObstacle/Area1
+@onready var area_2: Node2D = $AreasObstacle/Area2
+
 @onready var boss_spawn_marker: Marker2D = $BossSpawnMarker
 @onready var collision_shape_2d: CollisionShape2D = $ColiseoToBase/CollisionShape2D
 
@@ -22,6 +26,12 @@ const ROLE_CONFIGS := {
 }
 
 @onready var player_spawn: Marker2D = $PlayerSpawn
+
+func update_collecting_areas(unlocked_area):
+	if unlocked_area==1:
+		area_1.queue_free()
+	elif unlocked_area==2:
+		area_2.queue_free()
 
 func _ensure_players_root() -> Node:
 	var root := get_node_or_null("Players")
@@ -54,6 +64,9 @@ func _victory():
 		player.inventory.health_bar.value = player.hp
 	await get_tree().create_timer(5.0).timeout
 	collision_shape_2d.disabled = true
+	
+	# Manages obstacles in first phase to unlock new areas
+	update_collecting_areas(current_boss-1)
 
 func _defeat():
 	await get_tree().create_timer(5.0).timeout
