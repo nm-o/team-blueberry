@@ -39,3 +39,4 @@ func update_item_sprite(sprite_path: String):
 	sprite_2d.position.x = (sprite_2d.texture.get_size().y / 2) + 15
 	weapon_collision.shape.size = Vector2(sprite_2d.texture.get_size().x + 2 ,sprite_2d.texture.get_size().y + 2)
 	hitbox.position.x = sprite_2d.position.x
+	sprite_2d.rotation_degrees = 45
