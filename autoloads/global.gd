@@ -6,10 +6,8 @@ extends Node
 enum States {
 	NORMAL,
 	HEALING,
-	ENERGIZED,
 	FROZEN,
 	POISONED,
-	THORNED,
 	DEAD,
 	RESURRECTED
 }

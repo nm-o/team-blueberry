@@ -1,9 +1,9 @@
-class_name Iron
+class_name FlowerPoison
 extends Materials
 
 # Function that acivates once the game starts
 func _init() -> void:
-	description = "Iron: kill yourself"
+	description = "Poisonous flower:"
 	texture = "res://assets/OriginalAssets/item_placeholders/iron_test.png"
 	max_number = 10
-	name = "Iron"
+	name = "Poisonous flower"
