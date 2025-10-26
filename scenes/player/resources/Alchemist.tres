@@ -9,5 +9,5 @@ movement_speed = 500.0
 attack = 8
 defense = 4
 label_role_text = "Alchemist"
-starting_items = Array[String](["res://scripts/Items/Materials/iron.gd", "res://scripts/Items/Materials/legendary_mineral.gd"])
+starting_items = Array[String](["res://scripts/Items/Potions/potion_poison_1.gd", "res://scripts/Items/Potions/potion_poison_2.gd"])
 metadata/_custom_type_script = "uid://jjifgdyvywmv"
