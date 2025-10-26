@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://clak1ljsk80a5"]
+[gd_scene load_steps=13 format=3 uid="uid://clak1ljsk80a5"]
 
 [ext_resource type="Script" uid="uid://qp33f5h0e8as" path="res://scripts/Inventory/inventory.gd" id="1_hj2ta"]
 [ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="1_qw0r6"]
 [ext_resource type="Texture2D" uid="uid://8hi1o750ye6t" path="res://assets/UI/UI_TravelBook_Spritesheet01a.png" id="2_uae8j"]
 [ext_resource type="Script" uid="uid://cs4wneh7lwkyj" path="res://scripts/Inventory/Containers/default_container.gd" id="3_ty45s"]
 [ext_resource type="Script" uid="uid://vb5ocjkr8v0o" path="res://scripts/Inventory/Containers/helmet_container.gd" id="4_yyk2a"]
+[ext_resource type="Texture2D" uid="uid://cs0yc52dnx1wl" path="res://assets/UI/helmet_space.png" id="5_s887n"]
 [ext_resource type="Script" uid="uid://x230qed11fr2" path="res://scripts/Inventory/Containers/hotbar_container.gd" id="5_yyk2a"]
+[ext_resource type="Texture2D" uid="uid://ckqs0yqo37hwa" path="res://assets/UI/chestplate_space.png" id="6_sr8g6"]
+[ext_resource type="Script" uid="uid://dq46j3pbxqpk4" path="res://scripts/Inventory/Containers/chestplate_container.gd" id="6_td2ew"]
+[ext_resource type="Texture2D" uid="uid://dg67pmv1gcu6h" path="res://assets/UI/legs_space.png" id="7_p7iul"]
+[ext_resource type="Script" uid="uid://c2038txlmqes8" path="res://scripts/Inventory/Containers/legs_container.gd" id="8_ylenm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s887n"]
 texture = ExtResource("2_uae8j")
@@ -49,13 +54,25 @@ offset_right = 1030.0
 offset_bottom = 110.0
 script = ExtResource("4_yyk2a")
 
+[node name="Helmet" type="Sprite2D" parent="InventoryContainers/ItemContainer"]
+modulate = Color(1, 1, 1, 0.50980395)
+position = Vector2(60, 60)
+scale = Vector2(5, 5)
+texture = ExtResource("5_s887n")
+
 [node name="ItemContainer2" parent="InventoryContainers" instance=ExtResource("1_qw0r6")]
 layout_mode = 1
 offset_left = 1030.0
-offset_top = 240.0
+offset_top = 236.0
 offset_right = 1030.0
-offset_bottom = 240.0
-script = ExtResource("4_yyk2a")
+offset_bottom = 236.0
+script = ExtResource("6_td2ew")
+
+[node name="Chest" type="Sprite2D" parent="InventoryContainers/ItemContainer2"]
+modulate = Color(1, 1, 1, 0.50980395)
+position = Vector2(60, 60)
+scale = Vector2(5, 5)
+texture = ExtResource("6_sr8g6")
 
 [node name="ItemContainer3" parent="InventoryContainers" instance=ExtResource("1_qw0r6")]
 layout_mode = 1
@@ -63,7 +80,13 @@ offset_left = 1028.0
 offset_top = 362.0
 offset_right = 1028.0
 offset_bottom = 362.0
-script = ExtResource("4_yyk2a")
+script = ExtResource("8_ylenm")
+
+[node name="Legs" type="Sprite2D" parent="InventoryContainers/ItemContainer3"]
+modulate = Color(1, 1, 1, 0.50980395)
+position = Vector2(60, 60)
+scale = Vector2(5, 5)
+texture = ExtResource("7_p7iul")
 
 [node name="BackpackContainers" type="Control" parent="."]
 visible = false
