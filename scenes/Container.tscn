@@ -1,20 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgfgnqu8fva07"]
+[gd_scene load_steps=5 format=3 uid="uid://cgfgnqu8fva07"]
 
 [ext_resource type="Script" uid="uid://b03dtr35t0wn4" path="res://scripts/Inventory/container.gd" id="1_fhxe0"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_cb67s"]
+[ext_resource type="Theme" uid="uid://f2n5d6o4bwed" path="res://ui/inventoryTheme.tres" id="1_woho8"]
+[ext_resource type="Texture2D" uid="uid://342sv3k03qln" path="res://assets/OriginalAssets/item_selector.png" id="3_woho8"]
 
-[node name="ItemContainer" type="Control"]
-layout_mode = 3
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_woho8"]
+color = Color(0, 0, 0, 0)
+
+[node name="ItemContainer" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1160.0
+offset_bottom = -600.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_woho8")
 
 [node name="Container" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 120.0
+theme = ExtResource("1_woho8")
 script = ExtResource("1_fhxe0")
 
 [node name="Texture" type="TextureRect" parent="Container"]
@@ -22,24 +29,23 @@ layout_mode = 2
 
 [node name="Description" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_right = 121.0
-offset_bottom = 102.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 105.0
 
 [node name="Selector" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 39.0
-offset_top = -59.0
-offset_right = 167.0
-offset_bottom = 69.0
-scale = Vector2(0.400001, 0.4)
-texture = ExtResource("2_cb67s")
+offset_right = 120.0
+offset_bottom = 120.0
+texture = ExtResource("3_woho8")
 
 [node name="Number" type="Label" parent="."]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 91.0
-offset_right = 130.0
-offset_bottom = 114.0
+offset_left = 65.0
+offset_top = 82.0
+offset_right = 105.0
+offset_bottom = 105.0
 horizontal_alignment = 1
 justification_flags = 131

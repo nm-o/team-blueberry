@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var victory_label: Label = $VictoryLabel
 @onready var defeat_label: Label = $DefeatLabel
 @onready var super_victory_label: RichTextLabel = $SuperVictoryLabel
+@onready var inventory_back: MarginContainer = $InventoryBack
 
 @export var max_hotbar_containers: int = 3
 
@@ -32,6 +33,7 @@ func _ready() -> void:
 		label.add_theme_font_size_override("font_size", 26)
 		players_ready.add_child(label)
 		label.MOUSE_FILTER_IGNORE
+	
 func _super_victory_ui():
 	var tween: Tween = create_tween()
 	tween.tween_property(super_victory_label, "modulate", Color(1,1,1,1), 1).set_ease(Tween.EASE_IN)
@@ -124,6 +126,8 @@ func _deselect_containers():
 func change_visibility():
 	inventory_containers.visible = not inventory_containers.visible
 	backpack_containers.visible = not backpack_containers.visible
+	inventory_back.visible = not inventory_back.visible
+	
 	Mouse.player.is_inventory_open = inventory_containers.visible
 
 # Function to add an item into the inventory
