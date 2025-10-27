@@ -1,25 +1,25 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://f2n5d6o4bwed"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bvs72icoc27r5"]
 
-[ext_resource type="Texture2D" uid="uid://p6kvmi5ecxlt" path="res://assets/UI/UI assets Demo (1x).png" id="1_1aqk3"]
+[ext_resource type="Texture2D" uid="uid://p6kvmi5ecxlt" path="res://assets/UI/UI assets Demo (1x).png" id="1_ma3cl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cs7gu"]
 content_margin_left = 20.0
 content_margin_top = 20.0
 content_margin_right = 20.0
 content_margin_bottom = 20.0
-texture = ExtResource("1_1aqk3")
+texture = ExtResource("1_ma3cl")
 region_rect = Rect2(0, 80, 16, 16)
 modulate_color = Color(0.7954927, 0.44161588, 0.26203662, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1aqk3"]
-texture = ExtResource("1_1aqk3")
+texture = ExtResource("1_ma3cl")
 expand_margin_left = 20.0
 expand_margin_right = 20.0
 region_rect = Rect2(0, 163, 48, 10)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gsbxc"]
-texture = ExtResource("1_1aqk3")
-region_rect = Rect2(196, 163, 40, 10)
+texture = ExtResource("1_ma3cl")
+region_rect = Rect2(52, 163, 40, 10)
 
 [resource]
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_cs7gu")

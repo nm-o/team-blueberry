@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://clak1ljsk80a5"]
+[gd_scene load_steps=17 format=3 uid="uid://clak1ljsk80a5"]
 
 [ext_resource type="Script" uid="uid://qp33f5h0e8as" path="res://scripts/Inventory/inventory.gd" id="1_hj2ta"]
 [ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="1_qw0r6"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://dq46j3pbxqpk4" path="res://scripts/Inventory/Containers/chestplate_container.gd" id="6_td2ew"]
 [ext_resource type="Texture2D" uid="uid://dg67pmv1gcu6h" path="res://assets/UI/legs_space.png" id="7_p7iul"]
 [ext_resource type="Script" uid="uid://c2038txlmqes8" path="res://scripts/Inventory/Containers/legs_container.gd" id="8_ylenm"]
+[ext_resource type="Theme" uid="uid://f2n5d6o4bwed" path="res://ui/inventoryTheme.tres" id="12_ylenm"]
+[ext_resource type="Theme" uid="uid://bvs72icoc27r5" path="res://ui/inventoryThemeBlueBar.tres" id="13_0df5h"]
+[ext_resource type="Texture2D" uid="uid://bih3y02prtco2" path="res://assets/UI/heart.png" id="13_brsb2"]
+[ext_resource type="Texture2D" uid="uid://ctuc238j5wipn" path="res://assets/UI/shield.png" id="15_nq6oc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s887n"]
 texture = ExtResource("2_uae8j")
@@ -284,12 +288,46 @@ offset_bottom = 590.0
 script = ExtResource("5_yyk2a")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 29.0
-offset_top = 24.0
-offset_right = 304.0
-offset_bottom = 51.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 315.0
+offset_bottom = 75.0
+scale = Vector2(0.8, 0.8)
 mouse_filter = 2
+theme = ExtResource("12_ylenm")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8392157)
+theme_override_constants/outline_size = 10
 value = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar"]
+self_modulate = Color(0.6784314, 1, 0.56078434, 1)
+layout_mode = 0
+offset_left = 310.0
+offset_top = 6.0
+offset_right = 353.0
+offset_bottom = 49.0
+texture = ExtResource("13_brsb2")
+
+[node name="ProtectBar" type="ProgressBar" parent="."]
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 315.0
+offset_bottom = 135.0
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+theme = ExtResource("13_0df5h")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8392157)
+theme_override_constants/outline_size = 10
+value = 50.0
+
+[node name="TextureRect" type="TextureRect" parent="ProtectBar"]
+self_modulate = Color(0.43137255, 1, 1, 1)
+layout_mode = 0
+offset_left = 310.0
+offset_top = 6.0
+offset_right = 353.0
+offset_bottom = 49.0
+texture = ExtResource("15_nq6oc")
 
 [node name="PlayersReady" type="VBoxContainer" parent="."]
 anchors_preset = 6
@@ -349,7 +387,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 108
-text = "Victory!!1"
+text = "VICTORY"
 
 [node name="SuperVictoryLabel" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 0)
@@ -360,7 +398,7 @@ offset_bottom = 489.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 116
 bbcode_enabled = true
-text = "[rainbow freq=0.2 sat=1.4 high=5.0] Super Victory!!11!!!!!1 [/rainbow]"
+text = "[rainbow freq=0.2 sat=1.4 high=5.0] SUPER VICTORY [/rainbow]"
 fit_content = true
 
 [node name="DefeatLabel" type="Label" parent="."]
