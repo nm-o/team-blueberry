@@ -17,6 +17,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxLine_woho8")
 
+[node name="Selector" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 127.0
+offset_bottom = 127.0
+texture = ExtResource("3_woho8")
+
 [node name="Container" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 120.0
@@ -28,23 +37,17 @@ script = ExtResource("1_fhxe0")
 layout_mode = 2
 
 [node name="Description" type="RichTextLabel" parent="."]
+z_index = 1
+clip_contents = false
 layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 105.0
 offset_bottom = 105.0
-theme_override_font_sizes/normal_font_size = 10
-theme_override_font_sizes/bold_font_size = 10
-theme_override_font_sizes/bold_italics_font_size = 10
-theme_override_font_sizes/italics_font_size = 10
-theme_override_font_sizes/mono_font_size = 10
-
-[node name="Selector" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 120.0
-offset_bottom = 120.0
-texture = ExtResource("3_woho8")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+fit_content = true
+scroll_active = false
 
 [node name="Number" type="Label" parent="."]
 layout_mode = 0

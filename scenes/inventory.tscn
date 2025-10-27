@@ -55,7 +55,7 @@ offset_bottom = 110.0
 script = ExtResource("4_yyk2a")
 
 [node name="Helmet" type="Sprite2D" parent="InventoryContainers/ItemContainer"]
-modulate = Color(1, 1, 1, 0.50980395)
+self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(60, 60)
 scale = Vector2(5, 5)
 texture = ExtResource("5_s887n")
@@ -69,7 +69,7 @@ offset_bottom = 236.0
 script = ExtResource("6_td2ew")
 
 [node name="Chest" type="Sprite2D" parent="InventoryContainers/ItemContainer2"]
-modulate = Color(1, 1, 1, 0.50980395)
+self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(60, 60)
 scale = Vector2(5, 5)
 texture = ExtResource("6_sr8g6")
@@ -83,7 +83,7 @@ offset_bottom = 362.0
 script = ExtResource("8_ylenm")
 
 [node name="Legs" type="Sprite2D" parent="InventoryContainers/ItemContainer3"]
-modulate = Color(1, 1, 1, 0.50980395)
+self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(60, 60)
 scale = Vector2(5, 5)
 texture = ExtResource("7_p7iul")

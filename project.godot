@@ -35,6 +35,10 @@ window/stretch/mode="canvas_items"
 DropSpawners=""
 Players=""
 
+[gui]
+
+theme/custom_font="uid://dsolp758qhgqh"
+
 [input]
 
 test={
