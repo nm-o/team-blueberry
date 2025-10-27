@@ -34,9 +34,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 420
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_left = 490
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 200
 
 [node name="Panel2" type="Panel" parent="InventoryBack"]
@@ -47,8 +47,10 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_s887n")
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 60.0
 
 [node name="ItemContainer" parent="InventoryContainers" instance=ExtResource("1_qw0r6")]
 layout_mode = 1
@@ -67,9 +69,9 @@ texture = ExtResource("5_s887n")
 [node name="ItemContainer2" parent="InventoryContainers" instance=ExtResource("1_qw0r6")]
 layout_mode = 1
 offset_left = 1030.0
-offset_top = 236.0
+offset_top = 240.0
 offset_right = 1030.0
-offset_bottom = 236.0
+offset_bottom = 240.0
 script = ExtResource("6_td2ew")
 
 [node name="Chest" type="Sprite2D" parent="InventoryContainers/ItemContainer2"]
@@ -81,9 +83,9 @@ texture = ExtResource("6_sr8g6")
 [node name="ItemContainer3" parent="InventoryContainers" instance=ExtResource("1_qw0r6")]
 layout_mode = 1
 offset_left = 1028.0
-offset_top = 362.0
+offset_top = 370.0
 offset_right = 1028.0
-offset_bottom = 362.0
+offset_bottom = 370.0
 script = ExtResource("8_ylenm")
 
 [node name="Legs" type="Sprite2D" parent="InventoryContainers/ItemContainer3"]
@@ -100,10 +102,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -250.0
-offset_right = -150.0
-offset_bottom = -210.0
+offset_left = -120.0
+offset_top = -230.0
+offset_right = -80.0
+offset_bottom = -190.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -292,7 +294,7 @@ offset_left = 40.0
 offset_top = 20.0
 offset_right = 315.0
 offset_bottom = 75.0
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.9, 0.9)
 mouse_filter = 2
 theme = ExtResource("12_ylenm")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8392157)
@@ -313,7 +315,7 @@ offset_left = 40.0
 offset_top = 80.0
 offset_right = 315.0
 offset_bottom = 135.0
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.9, 0.9)
 mouse_filter = 2
 theme = ExtResource("13_0df5h")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8392157)

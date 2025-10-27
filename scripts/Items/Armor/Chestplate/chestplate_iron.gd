@@ -3,7 +3,7 @@ extends Chestplate
 
 # Function that acivates once the game starts
 func _init() -> void:
-	description = "Chestplate: protect yourself"
+	description = "Iron Chestplate"
 	texture = "res://assets/Items/Craftables/chest_iron.png"
 	max_number = 3
 	name = "Iron Chestplate"

@@ -3,7 +3,7 @@ extends Sword
 
 # Function that acivates once the game starts
 func _init() -> void:
-	description = "Sword: kill them"
+	description = "Iron Sword"
 	texture = "res://assets/Items/Craftables/sword_iron.png"
 	max_number = 1
 	name = "Iron Sword"

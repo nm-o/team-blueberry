@@ -3,7 +3,7 @@ extends Legs
 
 # Function that acivates once the game starts
 func _init() -> void:
-	description = "Legs: cover yourself"
+	description = "Iron Leg Armor"
 	texture = "res://assets/Items/Craftables/legs_iron.png"
 	max_number = 3
 	name = "Iron Legs"
