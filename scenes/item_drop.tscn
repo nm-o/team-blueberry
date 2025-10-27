@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bwt4dyhv4ahtl" path="res://scripts/world_objects/item_drop.gd" id="1_gvv6n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvv6n"]
-radius = 35.0571
+radius = 20.024984
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8wxw"]
-radius = 17.1172
+radius = 9.0
 
 [node name="ItemDrop" type="RigidBody2D"]
 collision_layer = 128
@@ -32,12 +32,15 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -10.0
-offset_top = -40.0
+offset_top = -18.0
 offset_right = 9.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
 text = "E
 "
 horizontal_alignment = 1

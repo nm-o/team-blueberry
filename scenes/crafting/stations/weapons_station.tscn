@@ -286,10 +286,12 @@ shape = SubResource("RectangleShape2D_xx52l")
 
 [node name="InteractionName" type="Label" parent="."]
 offset_left = -30.0
-offset_top = -35.0
+offset_top = -30.0
 offset_right = 100.0
-offset_bottom = 14.0
+offset_bottom = 19.0
 scale = Vector2(0.5, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Weapons station
 E"
 horizontal_alignment = 1
