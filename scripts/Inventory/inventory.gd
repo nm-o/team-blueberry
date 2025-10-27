@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var defeat_label: Label = $DefeatLabel
 @onready var super_victory_label: RichTextLabel = $SuperVictoryLabel
 @onready var inventory_back: MarginContainer = $InventoryBack
+@onready var current_status: Sprite2D = $CurrentStatus
 
 @export var max_hotbar_containers: int = 3
 
@@ -143,3 +144,15 @@ func add_item(item: Item):
 		if is_true:
 			return
 	Mouse.player.manage_drop(item.get_script().resource_path, Mouse.get_drop_id())
+	
+
+# Function to manage the status effect icon 
+func change_status(new_status: Global.States):
+	if new_status == Global.States.HEALING:
+		current_status.frame = 1
+	elif new_status == Global.States.FROZEN:
+		current_status.frame = 2
+	elif new_status == Global.States.POISONED:
+		current_status.frame = 3
+	else:
+		current_status.frame = 0
