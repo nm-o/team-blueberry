@@ -7,7 +7,7 @@ var recipes
 func super_ready() -> void:
 	var i = 0
 	for child in get_children():
-		if child.get_class() != "Button":
+		if child.get_class() != "Button" and child.get_class() != "MarginContainer":
 			child.slot_number = i
 			i += 1
 	for j in range(i):

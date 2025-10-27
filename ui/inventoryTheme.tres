@@ -1,6 +1,18 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://f2n5d6o4bwed"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://f2n5d6o4bwed"]
 
 [ext_resource type="Texture2D" uid="uid://p6kvmi5ecxlt" path="res://assets/UI/UI assets Demo (1x).png" id="1_1aqk3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t7apv"]
+texture = ExtResource("1_1aqk3")
+region_rect = Rect2(214, 129, 20, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hn1ef"]
+texture = ExtResource("1_1aqk3")
+region_rect = Rect2(150, 129, 20, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fwg7"]
+texture = ExtResource("1_1aqk3")
+region_rect = Rect2(182, 129, 20, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cs7gu"]
 content_margin_left = 20.0
@@ -22,6 +34,9 @@ texture = ExtResource("1_1aqk3")
 region_rect = Rect2(196, 163, 40, 10)
 
 [resource]
+Button/styles/hover = SubResource("StyleBoxTexture_t7apv")
+Button/styles/normal = SubResource("StyleBoxTexture_hn1ef")
+Button/styles/pressed = SubResource("StyleBoxTexture_6fwg7")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_cs7gu")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_1aqk3")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_gsbxc")

@@ -4,8 +4,5 @@ extends CraftingControl
 var accepted_player_roles = ["Alchemist"]
 
 func _ready() -> void:
-	recipes = {
-		["", "", "Iron", "Iron"]: Legs,
-		["Iron", "Iron", "Iron", "Iron"]: Chestplate
-	}
+	recipes = {}
 	super_ready()

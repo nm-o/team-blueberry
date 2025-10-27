@@ -128,7 +128,7 @@ func change_visibility():
 	inventory_containers.visible = not inventory_containers.visible
 	backpack_containers.visible = not backpack_containers.visible
 	inventory_back.visible = not inventory_back.visible
-	
+
 	Mouse.player.is_inventory_open = inventory_containers.visible
 
 # Function to add an item into the inventory

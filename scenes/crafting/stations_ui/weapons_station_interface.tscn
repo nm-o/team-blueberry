@@ -1,46 +1,86 @@
-[gd_scene load_steps=4 format=3 uid="uid://dko7flh5j18sv"]
+[gd_scene load_steps=7 format=3 uid="uid://dko7flh5j18sv"]
 
 [ext_resource type="Script" uid="uid://mkqngpa5wuyu" path="res://scripts/crafting/weapons_station_control.gd" id="1_74yhn"]
 [ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="2_52tfj"]
+[ext_resource type="Texture2D" uid="uid://8hi1o750ye6t" path="res://assets/UI/UI_TravelBook_Spritesheet01a.png" id="2_ojn2s"]
 [ext_resource type="Script" uid="uid://8hpxqrcfdfi1" path="res://scripts/Inventory/Containers/crafting_table_container.gd" id="3_ojn2s"]
+[ext_resource type="Theme" uid="uid://f2n5d6o4bwed" path="res://ui/inventoryTheme.tres" id="4_52tfj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssuci"]
+texture = ExtResource("2_ojn2s")
+texture_margin_left = 2.0060952
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(65, 449, 62, 14)
 
 [node name="WeaponsStationInterface" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -120.0
+offset_top = 70.0
+offset_right = -80.0
+offset_bottom = 110.0
+mouse_filter = 2
 script = ExtResource("1_74yhn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 820
+theme_override_constants/margin_bottom = 180
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ssuci")
 
 [node name="ItemContainer" parent="." instance=ExtResource("2_52tfj")]
 layout_mode = 1
-offset_left = 106.0
-offset_top = 82.0
-offset_right = 106.0
-offset_bottom = 82.0
+offset_left = 211.0
+offset_top = 416.0
+offset_right = 211.0
+offset_bottom = 416.0
 script = ExtResource("3_ojn2s")
 
 [node name="ItemContainer2" parent="." instance=ExtResource("2_52tfj")]
 layout_mode = 1
-offset_left = 316.0
-offset_top = 83.0
-offset_right = 316.0
-offset_bottom = 83.0
+offset_left = 340.0
+offset_top = 164.0
+offset_right = 340.0
+offset_bottom = 164.0
 script = ExtResource("3_ojn2s")
 
 [node name="ItemContainer3" parent="." instance=ExtResource("2_52tfj")]
 layout_mode = 1
 offset_left = 211.0
-offset_top = 248.0
+offset_top = 290.0
 offset_right = 211.0
-offset_bottom = 248.0
+offset_bottom = 290.0
+script = ExtResource("3_ojn2s")
+
+[node name="ItemContainer4" parent="." instance=ExtResource("2_52tfj")]
+layout_mode = 1
+offset_left = 211.0
+offset_top = 164.0
+offset_right = 211.0
+offset_bottom = 164.0
 script = ExtResource("3_ojn2s")
 
 [node name="CraftButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 502.0
-offset_top = 90.0
-offset_right = 632.0
-offset_bottom = 144.0
+offset_left = 260.0
+offset_top = 560.0
+offset_right = 390.0
+offset_bottom = 614.0
+theme = ExtResource("4_52tfj")
 text = "Craft"
 
 [connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]
