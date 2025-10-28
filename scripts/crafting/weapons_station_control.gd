@@ -5,6 +5,12 @@ var accepted_player_roles = ["Alchemist"]
 
 func _ready() -> void:
 	recipes = {
-		["Iron", "Iron", ""]: Helmet
+		["Wood", "Wood", "Wood", ""]: SwordWood,
+		["Wood", "Iron", "Iron", ""]: SwordIron,
+		["Wood", "Legendary Mineral", "Legendary Mineral", ""]: SwordLegendary,
+		["Wood", "Wood", "Iron", ""]: SpearIron,
+		["Wood", "Wood", "Legendary Mineral", ""]: SpearLegendary,
+		["Wood", "Wood", "Iron", "Iron"]: AxeIron,
+		["Wood", "Wood", "Legendary Mineral", "Legendary Mineral"]: AxeLegendary,
 	}
 	super_ready()

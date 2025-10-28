@@ -15,6 +15,7 @@ script = ExtResource("1_fmbhi")
 multiplayer_test = true
 unique_roles = false
 all_roles = false
+min_players = 1
 test_players = Array[ExtResource("2_xaonh")]([SubResource("Resource_du0e2")])
 main_scene = ExtResource("3_du0e2")
 

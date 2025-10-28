@@ -19,7 +19,7 @@ func _on_craft_button_pressed() -> void:
 		var winning_item = recipes[current_items]
 		var added = false
 		for child in get_children():
-			if child.get_class() != "Button":
+			if child.get_class() != "Button" and child.get_class() != "MarginContainer":
 				if child.item:
 					child.remove_item()
 				if not added:

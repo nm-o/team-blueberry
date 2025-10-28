@@ -52,25 +52,25 @@ script = ExtResource("3_ojn2s")
 
 [node name="ItemContainer2" parent="." instance=ExtResource("2_52tfj")]
 layout_mode = 1
-offset_left = 340.0
-offset_top = 164.0
-offset_right = 340.0
-offset_bottom = 164.0
-script = ExtResource("3_ojn2s")
-
-[node name="ItemContainer3" parent="." instance=ExtResource("2_52tfj")]
-layout_mode = 1
 offset_left = 211.0
 offset_top = 290.0
 offset_right = 211.0
 offset_bottom = 290.0
 script = ExtResource("3_ojn2s")
 
-[node name="ItemContainer4" parent="." instance=ExtResource("2_52tfj")]
+[node name="ItemContainer3" parent="." instance=ExtResource("2_52tfj")]
 layout_mode = 1
 offset_left = 211.0
 offset_top = 164.0
 offset_right = 211.0
+offset_bottom = 164.0
+script = ExtResource("3_ojn2s")
+
+[node name="ItemContainer4" parent="." instance=ExtResource("2_52tfj")]
+layout_mode = 1
+offset_left = 340.0
+offset_top = 164.0
+offset_right = 340.0
 offset_bottom = 164.0
 script = ExtResource("3_ojn2s")
 

@@ -1,4 +1,4 @@
-class_name SwordSword
+class_name SwordWood
 extends Sword
 
 # Function that acivates once the game starts
