@@ -14,6 +14,15 @@ grow_vertical = 2
 theme = ExtResource("1_bob82")
 script = ExtResource("2_hvxmk")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882354, 0.09411765, 0.1764706, 1)
+
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -93,24 +102,16 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Title1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 40
-text = "Lobby"
-horizontal_alignment = 1
-
-[node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Elías Zelada"
-
 [node name="Title2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.45017326, 0.24246103, 0.8276641, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 40
-text = "Creators"
+text = "Creators - Team Blueberry"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -127,6 +128,24 @@ layout_mode = 2
 size_flags_vertical = 1
 text = "Zamaya Toledo"
 
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(4.813075e-06, 0.67711544, 0.90598404, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "Lobby"
+horizontal_alignment = 1
+
+[node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Elías Zelada"
+
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -140,8 +159,11 @@ layout_mode = 2
 [node name="Assets" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 40
-text = "Assets"
+text = "External Assets"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
@@ -151,46 +173,57 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
+[node name="ItchIo" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.14117648, 0.28627452, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "ItchIo"
+horizontal_alignment = 1
+
 [node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Elías Zelada"
+text = "BDragon1727"
 
 [node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Fernando A. Jeria"
+text = "Anokolisa"
 
 [node name="Label3" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Juan Tobar P."
+text = "Caio Carlos of the Clockwork
+    Raven - Additional Art Assets"
 
 [node name="Label4" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Zamaya Toledo"
+text = "Franuka"
+
+[node name="Label5" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Crusenho"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
+[node name="Dafont" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.79607844, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "Dafont"
+horizontal_alignment = 1
+
 [node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Elías Zelada"
-
-[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Fernando A. Jeria"
-
-[node name="Label3" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Juan Tobar P."
-
-[node name="Label4" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Zamaya Toledo"
+text = "Nathan P"

@@ -71,6 +71,15 @@ _data = {
 [node name="JoinScreen" instance=ExtResource("1_xldsp")]
 script = ExtResource("2_0bjwb")
 
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882354, 0.09411765, 0.1764706, 1)
+
 [node name="Panel" parent="MarginContainer2/VBoxContainer" index="0"]
 theme = ExtResource("3_r5vx3")
 
@@ -137,11 +146,11 @@ theme_override_colors/font_color = Color(1, 0.647059, 0, 1)
 text = "An error occurred · o ·)>"
 horizontal_alignment = 1
 
-[node name="ErrorTimer" type="Timer" parent="." index="1"]
+[node name="ErrorTimer" type="Timer" parent="." index="2"]
 wait_time = 3.0
 one_shot = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 process_mode = 3
 layer = 64
 
@@ -180,7 +189,7 @@ text = "Joinning server..."
 horizontal_alignment = 1
 
 [node name="LoadingIcon" type="TextureRect" parent="CanvasLayer/MessageContainer/JoiningServer/VBoxContainer" index="1"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

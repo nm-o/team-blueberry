@@ -9,13 +9,19 @@
 [node name="WaitingScreen" instance=ExtResource("1_1g6tu")]
 script = ExtResource("2_a2sqk")
 
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882354, 0.09411765, 0.1764706, 1)
+
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
 offset_top = -23.0
 offset_bottom = 65.0
 text = "LOBBY"
-
-[node name="BackButton" parent="MarginContainer2/VBoxContainer/Panel" index="1"]
-theme_override_font_sizes/font_size = 48
 
 [node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" index="0"]
 clip_contents = true
@@ -156,7 +162,7 @@ theme_override_font_sizes/font_size = 25
 disabled = true
 text = "Ready"
 
-[node name="GameStartContainer" type="PanelContainer" parent="." index="1"]
+[node name="GameStartContainer" type="PanelContainer" parent="." index="2"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -191,5 +197,5 @@ layout_mode = 2
 text = "X"
 horizontal_alignment = 1
 
-[node name="StartTimer" type="Timer" parent="." index="2"]
+[node name="StartTimer" type="Timer" parent="." index="3"]
 wait_time = 3.0

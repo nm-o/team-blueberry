@@ -42,7 +42,7 @@ region_rect = Rect2(0, 0, 48, 14)
 bg_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duirp"]
-bg_color = Color(0, 0, 0, 0.0627451)
+bg_color = Color(0, 0, 0, 0.27058825)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clys6"]
 
