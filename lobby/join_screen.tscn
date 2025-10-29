@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf8ype3b0y31w"]
+[gd_scene load_steps=10 format=3 uid="uid://cf8ype3b0y31w"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_xldsp"]
 [ext_resource type="Script" uid="uid://cr2abnsynvkkq" path="res://lobby/join_screen.gd" id="2_0bjwb"]
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="3_i53lg"]
+[ext_resource type="Theme" uid="uid://d07puxhrq7vew" path="res://lobby/lobby_theme_2.tres" id="3_r5vx3"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_q5f0x"]
+[ext_resource type="Texture2D" uid="uid://chgmsc1kixswe" path="res://team_blueberry_logo_circle.png" id="4_ylfc3"]
 
 [sub_resource type="Animation" id="Animation_c2ij0"]
 length = 0.001
@@ -69,8 +71,31 @@ _data = {
 [node name="JoinScreen" instance=ExtResource("1_xldsp")]
 script = ExtResource("2_0bjwb")
 
+[node name="Panel" parent="MarginContainer2/VBoxContainer" index="0"]
+size_flags_stretch_ratio = 0.3
+theme = ExtResource("3_r5vx3")
+
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
-text = "Join"
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 65.0
+offset_bottom = 153.0
+grow_vertical = 1
+text = "JOIN"
+
+[node name="BackButton" parent="MarginContainer2/VBoxContainer/Panel" index="1"]
+custom_minimum_size = Vector2(125, 113)
+anchors_preset = 4
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -56.5
+offset_right = 155.0
+offset_bottom = 56.5
+grow_vertical = 2
 
 [node name="Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" index="0"]
 layout_mode = 2
@@ -130,6 +155,7 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
 process_mode = 3
 layer = 64
+visible = false
 
 [node name="MessageContainer" type="Panel" parent="CanvasLayer" index="0"]
 unique_name_in_owner = true
@@ -145,15 +171,15 @@ theme_type_variation = &"Darker"
 [node name="JoiningServer" type="MarginContainer" parent="CanvasLayer/MessageContainer" index="0"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.46300003
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.46300003
 offset_left = -270.5
-offset_top = -145.5
+offset_top = -118.860016
 offset_right = 270.5
-offset_bottom = 147.5
+offset_bottom = 174.13998
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -162,14 +188,17 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MessageContainer/JoiningServer/VBoxContainer" index="0"]
 layout_mode = 2
-text = "Joinning server"
+text = "Joinning server..."
 horizontal_alignment = 1
 
 [node name="LoadingIcon" type="TextureRect" parent="CanvasLayer/MessageContainer/JoiningServer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("4_q5f0x")
-stretch_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_ylfc3")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="CancelButton" type="Button" parent="CanvasLayer/MessageContainer/JoiningServer/VBoxContainer" index="2"]
 unique_name_in_owner = true
@@ -179,7 +208,7 @@ text = "Cancel"
 [node name="ConnectionFailed" type="MarginContainer" parent="CanvasLayer/MessageContainer" index="1"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = 433.5
 offset_top = 213.5
 offset_right = 846.5
