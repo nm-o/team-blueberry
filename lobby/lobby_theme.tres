@@ -1,4 +1,30 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bwgdrcgopd0s1"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bwgdrcgopd0s1"]
+
+[ext_resource type="Texture2D" uid="uid://0bsxabvtxk1h" path="res://assets/UI/buttons_main_menu.png" id="1_4vygp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cyc2x"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 35.0
+texture = ExtResource("1_4vygp")
+region_rect = Rect2(51, 0, 48, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vygp"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 35.0
+texture = ExtResource("1_4vygp")
+region_rect = Rect2(102, 0, 48, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ylbmq"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 35.0
+texture = ExtResource("1_4vygp")
+region_rect = Rect2(0, 0, 48, 14)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xflx"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -10,6 +36,10 @@ bg_color = Color(0, 0, 0, 0.0627451)
 
 [resource]
 default_font_size = 32
+Button/styles/hover = SubResource("StyleBoxTexture_cyc2x")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_4vygp")
+Button/styles/normal = SubResource("StyleBoxTexture_ylbmq")
+Button/styles/pressed = SubResource("StyleBoxTexture_4vygp")
 Darker/base_type = &"Panel"
 Darker/styles/panel = SubResource("StyleBoxFlat_3xflx")
 HBoxContainer/constants/separation = 32

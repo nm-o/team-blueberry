@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://57sil4m6nfve"]
+[gd_scene load_steps=4 format=3 uid="uid://57sil4m6nfve"]
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_bob82"]
 [ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
+[ext_resource type="Theme" uid="uid://d07puxhrq7vew" path="res://lobby/lobby_theme_2.tres" id="3_mvqlp"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -22,6 +23,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"Zero"
 
+[node name="Panel" type="Panel" parent="MarginContainer2"]
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
 theme_type_variation = &"Zero"
@@ -29,66 +33,164 @@ theme_type_variation = &"Zero"
 [node name="Panel" type="Panel" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.3
 
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/Panel"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.9
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.9
-offset_left = -104.5
-offset_top = -88.0
-offset_right = 104.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -28.0
+offset_right = 94.0
+offset_bottom = 103.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.5
 theme_type_variation = &"Title"
-text = "Credits
+text = "CREDITS
 "
-horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="MarginContainer2/VBoxContainer/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.9
-anchor_right = 0.5
-anchor_bottom = 0.9
-offset_left = -314.0
-offset_top = -68.0
-offset_right = -250.0
-offset_bottom = -4.0
-text = "く"
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -56.5
+offset_right = 155.0
+offset_bottom = 56.5
+grow_vertical = 2
+theme = ExtResource("3_mvqlp")
+theme_override_font_sizes/font_size = 48
+text = "<"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"Zero"
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="Control" type="Control" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_type_variation = &"Zero"
 
-[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" type="RichTextLabel" parent="MarginContainer2/VBoxContainer/MarginContainer/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.1
-anchor_right = 0.5
-anchor_bottom = 0.1
-offset_left = -314.5
-offset_right = 314.5
-offset_bottom = 290.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-bbcode_enabled = true
-text = "[center]
-[b]Lobby[/b]
-Elías Zelada
-[/center]"
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Title1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "Lobby"
+horizontal_alignment = 1
+
+[node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Elías Zelada"
+
+[node name="Title2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "Creators"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Fernando A. Jeria"
+
+[node name="Label3" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Juan Tobar P."
+
+[node name="Label4" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Zamaya Toledo"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Assets" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "Assets"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Elías Zelada"
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Fernando A. Jeria"
+
+[node name="Label3" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Juan Tobar P."
+
+[node name="Label4" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Zamaya Toledo"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Elías Zelada"
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Fernando A. Jeria"
+
+[node name="Label3" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Juan Tobar P."
+
+[node name="Label4" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Zamaya Toledo"
