@@ -3,9 +3,9 @@ class_name PotionProjectile
 
 var potion: Potion
 var direction: Vector2
-var speed: float = 400.0
-var lifetime: float = 2.0
-var explosion_radius: float = 150.0
+var speed: float = 80.0
+var lifetime: float = 1.0
+var explosion_radius: float = 30.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var lifetime_timer: Timer = $LifetimeTimer
@@ -16,6 +16,7 @@ func _ready() -> void:
 	
 	if potion and potion.texture:
 		sprite.texture = load(potion.texture)
+		sprite.scale = Vector2(1., 1.)
 	
 	lifetime_timer.wait_time = lifetime
 	lifetime_timer.timeout.connect(_explode)
@@ -31,7 +32,11 @@ func _on_area_entered(_area: Area2D) -> void:
 	_explode()
 
 func _explode() -> void:
-	# Crear el área de efecto
+	if is_queued_for_deletion():
+		return
+	
+	if lifetime_timer and lifetime_timer.time_left > lifetime - 0.1:
+		return  # Ignorar colisiones en los primeros 0.1 segundos
 	var effect_area = preload("res://scenes/potion_effect_area.tscn").instantiate()
 	effect_area.potion = potion
 	effect_area.radius = explosion_radius

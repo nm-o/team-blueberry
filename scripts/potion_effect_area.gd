@@ -6,7 +6,7 @@ var radius: float = 150.0
 var duration: float = 0.5  # Cuánto tiempo el área está activa detectando entidades
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var visual_effect: Node2D = $VisualEffect  # Opcional: partículas o sprite
+@onready var visual_effect: Node2D = $VisualEffect
 @onready var duration_timer: Timer = $DurationTimer
 
 func _ready() -> void:
@@ -14,6 +14,20 @@ func _ready() -> void:
 	var shape = CircleShape2D.new()
 	shape.radius = radius
 	collision_shape.shape = shape
+	
+	var circle = Line2D.new()
+	add_child(circle) 
+	circle.width = 3
+	circle.default_color = Color(0, 1, 1, 0.8)
+	
+	var points = []
+	for i in range(33):
+		var angle = (i / 32.0) * TAU
+		points.append(Vector2(cos(angle), sin(angle)) * radius)
+	circle.points = PackedVector2Array(points)
+	
+	var tween = create_tween()
+	tween.tween_property(circle, "modulate:a", 0.0, duration)
 	
 	# Aplicar efecto a todos los Beings en el área
 	body_entered.connect(_on_body_entered)
