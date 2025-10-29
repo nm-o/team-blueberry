@@ -1,6 +1,18 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d07puxhrq7vew"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d07puxhrq7vew"]
 
 [ext_resource type="Texture2D" uid="uid://0bsxabvtxk1h" path="res://assets/UI/buttons_main_menu.png" id="1_wurpa"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wurpa"]
+load_path = "res://.godot/imported/buttons_main_menu.png-7a590b474ea9737c1568ac973b275238.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eia4r"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 35.0
+texture = SubResource("CompressedTexture2D_wurpa")
+region_rect = Rect2(152, 0, 20, 14)
+modulate_color = Color(0.4083453, 0.4083453, 0.4083453, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5agd6"]
 content_margin_left = 30.0
@@ -27,6 +39,7 @@ texture = ExtResource("1_wurpa")
 region_rect = Rect2(152, 0, 20, 14)
 
 [resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_eia4r")
 Button/styles/hover = SubResource("StyleBoxTexture_5agd6")
 Button/styles/hover_pressed = SubResource("StyleBoxTexture_02xa1")
 Button/styles/normal = SubResource("StyleBoxTexture_bo6tc")

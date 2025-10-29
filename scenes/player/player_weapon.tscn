@@ -15,6 +15,7 @@ one_shot = true
 [node name="DoublePivot" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="DoublePivot"]
+z_index = 3
 position = Vector2(72, 0)
 rotation = 1.5707964
 region_rect = Rect2(33.446064, 16.1346, 13.147026, 29.686834)

@@ -81,6 +81,7 @@ offset_top = 560.0
 offset_right = 390.0
 offset_bottom = 614.0
 theme = ExtResource("4_52tfj")
+theme_override_font_sizes/font_size = 32
 text = "Craft"
 
 [connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]

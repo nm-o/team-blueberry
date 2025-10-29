@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgsspji18smle"]
+[gd_scene load_steps=3 format=3 uid="uid://cgsspji18smle"]
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_0ce57"]
+[ext_resource type="Theme" uid="uid://d07puxhrq7vew" path="res://lobby/lobby_theme_2.tres" id="2_684nl"]
 
 [node name="LobbyScreen" type="Control"]
 layout_mode = 3
@@ -27,40 +28,42 @@ theme_type_variation = &"Zero"
 [node name="Panel" type="Panel" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.3
 
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/Panel"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.9
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.9
+anchor_bottom = 0.5
 offset_left = -104.5
-offset_top = -88.0
+offset_top = -44.0
 offset_right = 104.5
+offset_bottom = 44.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.5
 theme_type_variation = &"Title"
-text = "Screen"
+text = "SCREEN"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="MarginContainer2/VBoxContainer/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.9
-anchor_right = 0.5
-anchor_bottom = 0.9
-offset_left = -314.0
-offset_top = -68.0
-offset_right = -250.0
-offset_bottom = -4.0
-text = "く"
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -56.5
+offset_right = 155.0
+offset_bottom = 56.5
+grow_vertical = 2
+theme = ExtResource("2_684nl")
+theme_override_font_sizes/font_size = 48
+text = "<"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2

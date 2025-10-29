@@ -72,7 +72,6 @@ _data = {
 script = ExtResource("2_0bjwb")
 
 [node name="Panel" parent="MarginContainer2/VBoxContainer" index="0"]
-size_flags_stretch_ratio = 0.3
 theme = ExtResource("3_r5vx3")
 
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
@@ -86,16 +85,6 @@ text = "JOIN"
 
 [node name="BackButton" parent="MarginContainer2/VBoxContainer/Panel" index="1"]
 custom_minimum_size = Vector2(125, 113)
-anchors_preset = 4
-anchor_left = 0.0
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-offset_left = 30.0
-offset_top = -56.5
-offset_right = 155.0
-offset_bottom = 56.5
-grow_vertical = 2
 
 [node name="Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" index="0"]
 layout_mode = 2
@@ -155,7 +144,6 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
 process_mode = 3
 layer = 64
-visible = false
 
 [node name="MessageContainer" type="Panel" parent="CanvasLayer" index="0"]
 unique_name_in_owner = true

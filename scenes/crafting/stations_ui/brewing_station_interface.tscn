@@ -73,6 +73,7 @@ offset_top = 530.0
 offset_right = 330.0
 offset_bottom = 584.0
 theme = ExtResource("5_62twb")
+theme_override_font_sizes/font_size = 32
 text = "Brew"
 
 [connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]
