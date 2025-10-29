@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://5gg4aie0lal2"]
+
+[ext_resource type="Script" uid="uid://bf42nygqg6ooq" path="res://scripts/potion_projectile.gd" id="1_g1tqx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g1tqx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ym0sl"]
+radius = 16.0
+
+[node name="PotionProjectile" type="Area2D"]
+collision_layer = 9
+collision_mask = 3
+script = ExtResource("1_g1tqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.536743e-07, -4.7683716e-07)
+scale = Vector2(24.5, 16.5)
+texture = SubResource("PlaceholderTexture2D_g1tqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 9
+visibility_layer = 3
+shape = SubResource("CircleShape2D_ym0sl")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

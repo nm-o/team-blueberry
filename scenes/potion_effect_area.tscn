@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://by0ikkr7r0isv"]
+
+[ext_resource type="Script" uid="uid://bb3h3vw3nbcr6" path="res://scripts/potion_effect_area.gd" id="1_0jbxx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ams70"]
+
+[node name="PotionEffectArea" type="Area2D"]
+collision_layer = 129
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_0jbxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ams70")
+
+[node name="DurationTimer" type="Timer" parent="."]

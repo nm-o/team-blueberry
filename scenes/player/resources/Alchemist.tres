@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1")
+role_name = &"Alchemist"
 hp = 90
 movement_speed = 500.0
 attack = 8

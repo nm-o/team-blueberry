@@ -54,6 +54,8 @@ var selected_item: Item = null
 @onready var hc: CollisionShape2D = $Pivot/Hurtbox/CollisionShape2D
 @onready var spectator_ghost: CharacterBody2D = $SpectatorGhost
 
+@export var potion_projectile_scene: PackedScene
+
 var old_direction: Vector2 = Vector2(1,0)
 
 
@@ -88,6 +90,7 @@ func ghost_enabled(is_enabled: bool):
 	spectator_ghost.set_spawn_position(global_position)
 
 func _ready() -> void:
+	super._ready()
 	add_to_group("players")
 	selected_container_number = 0
 	mouse_sprite.top_level = true
@@ -115,7 +118,7 @@ func _on_died() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if is_dead or not can_move():
 		return
 	if is_multiplayer_authority():
 		mouse_sprite.global_position = get_global_mouse_position()
@@ -159,9 +162,13 @@ func _physics_process(delta: float) -> void:
 		position = position.lerp(target_position, delta * 10.0)
 		player_sprite_pivot.scale.x = sprite_rotation
 
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui and selected_item is Weapon:
-		attack_primary()
-
+	if is_multiplayer_authority() and not is_inventory_open and not Mouse.on_ui:
+		if Input.is_action_just_pressed("attack"):
+			if selected_item is Weapon:
+				attack_primary()
+			elif selected_item is Potion:
+				use_potion(selected_item)
+				
 func setup(player_data: Statics.PlayerData) -> void:
 	player_id = player_data.id
 	await get_tree().process_frame
@@ -390,3 +397,31 @@ func activate_hitbox():
 func manage_update_item_sprite(sprite_path: String):
 	if is_multiplayer_authority():
 		player_weapon.update_item_sprite_server.rpc_id(1, sprite_path)
+
+func _on_state_changed(new_state: Global.States) -> void:
+	match new_state:
+		Global.States.FROZEN:
+			sprite_2d.modulate = Color(0.5, 0.7, 1.0)
+		Global.States.POISONED:
+			sprite_2d.modulate = Color(0.7, 1.0, 0.5)
+		Global.States.NORMAL:
+			sprite_2d.modulate = Color(1, 1, 1)
+
+func use_potion(potion: Potion) -> void:
+	if not is_multiplayer_authority():
+		return
+	if not potion_projectile_scene:
+		push_warning("No potion_projectile_scene")
+		return
+	var mouse_pos = get_global_mouse_position()
+	var direction = (mouse_pos - global_position).normalized()
+	throw_potion.rpc(global_position, direction, potion.get_script().resource_path)
+
+@rpc("any_peer", "call_local", "reliable")
+func throw_potion(start_pos: Vector2, direction: Vector2, potion_script_path: String) -> void:
+	var projectile = potion_projectile_scene.instantiate()
+	var script = load(potion_script_path)
+	projectile.potion = script.new()
+	projectile.global_position = start_pos
+	projectile.direction = direction
+	get_parent().add_child(projectile)

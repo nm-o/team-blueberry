@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=30 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://clak1ljsk80a5" path="res://scenes/inventory.tscn" id="2_gfjak"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="2_tpg5x"]
 [ext_resource type="PackedScene" uid="uid://bflx5pqrlws82" path="res://scenes/player/player_weapon.tscn" id="4_5stf6"]
+[ext_resource type="PackedScene" uid="uid://5gg4aie0lal2" path="res://scenes/potion_projectile.tscn" id="4_180ig"]
 [ext_resource type="Texture2D" uid="uid://djk04wpi44d73" path="res://assets/OriginalAssets/alchemist_sprites.png" id="4_pn6s4"]
 [ext_resource type="Script" uid="uid://bv8fcys2imm1p" path="res://scenes/combat/HealthComponent.gd" id="6_c3xxp"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="7_npwbq"]
@@ -143,6 +144,7 @@ item_drop_scene = ExtResource("2_tpg5x")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")
 class_config = ExtResource("2_524rm")
+potion_projectile_scene = ExtResource("4_180ig")
 
 [node name="PlayerWeapon" parent="." instance=ExtResource("4_5stf6")]
 
