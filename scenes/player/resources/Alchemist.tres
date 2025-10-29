@@ -9,5 +9,5 @@ movement_speed = 500.0
 attack = 8
 defense = 4
 label_role_text = "Alchemist"
-starting_items = Array[String](["res://scripts/Items/Materials/flower_freeze.gd", "res://scripts/Items/Materials/flower_freeze.gd", "res://scripts/Items/Materials/flower_heal.gd", "res://scripts/Items/Materials/flower_heal.gd", "res://scripts/Items/Materials/flower_poison.gd", "res://scripts/Items/Materials/flower_poison.gd", "res://scripts/Items/Materials/water.gd", "res://scripts/Items/Materials/water.gd", "res://scripts/Items/Materials/water.gd", "res://scripts/Items/Materials/water.gd", "res://scripts/Items/Materials/water.gd", "res://scripts/Items/Materials/water.gd", "res://scripts/Items/Materials/magic_crystal.gd", "res://scripts/Items/Materials/magic_crystal.gd", "res://scripts/Items/Materials/magic_crystal.gd", "res://scripts/Items/Materials/magic_crystal.gd", "res://scripts/Items/Materials/magic_crystal.gd", "res://scripts/Items/Materials/magic_crystal.gd"])
+starting_items = Array[String](["res://scripts/Items/Weapons/Sword/sword_legendary.gd"])
 metadata/_custom_type_script = "uid://jjifgdyvywmv"

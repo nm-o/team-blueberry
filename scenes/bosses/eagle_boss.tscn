@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://hxcj0pwcyq0a"]
+[gd_scene load_steps=20 format=3 uid="uid://hxcj0pwcyq0a"]
 
 [ext_resource type="Script" uid="uid://bjq3ixqidlq2g" path="res://scenes/bosses/eagle_boss.gd" id="1_vb282"]
 [ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_konh7"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="3_bnoth"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="3_konh7"]
 [ext_resource type="Texture2D" uid="uid://cbb1ulio2mtd0" path="res://assets/OriginalAssets/bird_test.png" id="4_konh7"]
+[ext_resource type="Texture2D" uid="uid://mswm320mqcoh" path="res://assets/UI/boss_hp_bar.png" id="6_bnoth"]
 
 [sub_resource type="Animation" id="Animation_konh7"]
 length = 0.001
@@ -381,6 +382,16 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnoth"]
 radius = 55.081757
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4qu6"]
+texture = ExtResource("6_bnoth")
+expand_margin_left = 25.0
+expand_margin_right = 24.0
+region_rect = Rect2(0, 0, 48, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1d2c0"]
+texture = ExtResource("6_bnoth")
+region_rect = Rect2(52, 0, 40, 10)
+
 [node name="EagleBoss" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_vb282")
@@ -429,16 +440,16 @@ disabled = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -340.0
-offset_top = -69.0
-offset_right = 344.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 20.0
+offset_right = -10.55542
+offset_bottom = 75.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
 size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxTexture_s4qu6")
+theme_override_styles/fill = SubResource("StyleBoxTexture_1d2c0")
 value = 100.0
