@@ -401,9 +401,11 @@ func manage_update_item_sprite(sprite_path: String):
 func _on_state_changed(new_state: Global.States) -> void:
 	match new_state:
 		Global.States.FROZEN:
-			sprite_2d.modulate = Color(0.5, 0.7, 1.0)
+			sprite_2d.modulate = Color(0.5, 0.7, 1.0)  # Azul
 		Global.States.POISONED:
-			sprite_2d.modulate = Color(0.7, 1.0, 0.5)
+			sprite_2d.modulate = Color(0.5, 1.0, 0.3)  # Verde
+		Global.States.HEALING:
+			sprite_2d.modulate = Color(1.0, 0.9, 0.3)  # Dorado
 		Global.States.NORMAL:
 			sprite_2d.modulate = Color(1, 1, 1)
 
@@ -425,3 +427,25 @@ func throw_potion(start_pos: Vector2, direction: Vector2, potion_script_path: St
 	projectile.global_position = start_pos
 	projectile.direction = direction
 	get_parent().add_child(projectile)
+
+func _apply_poison_damage() -> void:
+	get_attacked(poison_damage)
+	# Flash visual
+	sprite_2d.modulate = Color(0.3, 1.0, 0.3)
+	await get_tree().create_timer(0.1).timeout
+	if current_state == Global.States.POISONED:
+		sprite_2d.modulate = Color(0.5, 1.0, 0.3)
+
+func heal(amount: int) -> void:
+	hp += amount
+	if hp > max_hp:
+		hp = max_hp
+	
+	# Actualizar UI
+	if inventory and inventory.health_bar:
+		inventory.health_bar.value = hp
+	
+	# Efecto visual breve
+	sprite_2d.modulate = Color(1.0, 0.9, 0.3)
+	await get_tree().create_timer(0.3).timeout
+	sprite_2d.modulate = Color(1, 1, 1)

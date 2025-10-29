@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://5gg4aie0lal2"]
 
-[ext_resource type="Script" uid="uid://bf42nygqg6ooq" path="res://scripts/potion_projectile.gd" id="1_g1tqx"]
+[ext_resource type="Script" uid="uid://bf42nygqg6ooq" path="res://scripts/Items/Potions/potion_projectile.gd" id="1_g1tqx"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g1tqx"]
 

@@ -1,4 +1,3 @@
-class_name PotionPoison1
 extends Potion
 
 # Function that acivates once the game starts

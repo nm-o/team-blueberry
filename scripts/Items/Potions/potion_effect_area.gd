@@ -3,7 +3,7 @@ class_name PotionEffectArea
 
 var potion: Potion
 var radius: float = 150.0
-var duration: float = 0.5  # Cuánto tiempo el área está activa detectando entidades
+var duration: float = 0.5 
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var visual_effect: Node2D = $VisualEffect
@@ -50,4 +50,9 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _apply_effect_to_body(body: Node2D) -> void:
 	if body is Being:
-		body.apply_state(potion.effect, potion.time)
+		if potion.effect == Global.States.HEALING:
+			if body.has_method("heal"):
+				body.heal(potion.heal_amount)
+		else:
+			if multiplayer.is_server():
+				body.apply_state(potion.effect, potion.time)
