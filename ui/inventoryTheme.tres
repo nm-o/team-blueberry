@@ -1,18 +1,24 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://f2n5d6o4bwed"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://f2n5d6o4bwed"]
 
 [ext_resource type="Texture2D" uid="uid://p6kvmi5ecxlt" path="res://assets/UI/UI assets Demo (1x).png" id="1_1aqk3"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1aqk3"]
+load_path = "res://.godot/imported/UI assets Demo (1x).png-c5335080078b769da18ba542e1fa37b7.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t7apv"]
-texture = ExtResource("1_1aqk3")
-region_rect = Rect2(214, 129, 20, 14)
+texture = SubResource("CompressedTexture2D_1aqk3")
+region_rect = Rect2(182, 129, 20, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hn1ef"]
 texture = ExtResource("1_1aqk3")
 region_rect = Rect2(150, 129, 20, 14)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hn1ef"]
+load_path = "res://.godot/imported/UI assets Demo (1x).png-c5335080078b769da18ba542e1fa37b7.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fwg7"]
-texture = ExtResource("1_1aqk3")
-region_rect = Rect2(182, 129, 20, 14)
+texture = SubResource("CompressedTexture2D_hn1ef")
+region_rect = Rect2(214, 129, 20, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cs7gu"]
 content_margin_left = 20.0
@@ -35,6 +41,7 @@ region_rect = Rect2(196, 163, 40, 10)
 
 [resource]
 Button/styles/hover = SubResource("StyleBoxTexture_t7apv")
+Button/styles/hover_mirrored = null
 Button/styles/normal = SubResource("StyleBoxTexture_hn1ef")
 Button/styles/pressed = SubResource("StyleBoxTexture_6fwg7")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_cs7gu")
