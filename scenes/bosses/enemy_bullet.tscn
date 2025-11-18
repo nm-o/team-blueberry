@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://buekvl3jj5tdr" path="res://scenes/bosses/enemy_bullet.gd" id="1_km2td"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="2_b03ii"]
-[ext_resource type="Texture2D" uid="uid://c2aakloa2nses" path="res://placeholder_images/1-ezgif.com-resize.jpg" id="3_luwoj"]
+[ext_resource type="Texture2D" uid="uid://c71ysr1rx7niy" path="res://assets/OriginalAssets/bullet_placeholder.png" id="2_km2td"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1351u"]
 radius = 6.0827627
@@ -19,8 +19,7 @@ properties/1/replication_mode = 0
 script = ExtResource("1_km2td")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_luwoj")
+texture = ExtResource("2_km2td")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 64

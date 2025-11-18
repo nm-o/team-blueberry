@@ -292,6 +292,7 @@ offset_bottom = 590.0
 script = ExtResource("5_yyk2a")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 40.0
 offset_top = 20.0
 offset_right = 315.0
@@ -313,6 +314,7 @@ offset_bottom = 49.0
 texture = ExtResource("13_brsb2")
 
 [node name="ProtectBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 40.0
 offset_top = 80.0
 offset_right = 315.0
@@ -334,6 +336,7 @@ offset_bottom = 49.0
 texture = ExtResource("15_nq6oc")
 
 [node name="CurrentStatus" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(64, 180)
 scale = Vector2(4, 4)
 texture = ExtResource("16_nq6oc")

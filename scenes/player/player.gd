@@ -95,7 +95,6 @@ func _ready() -> void:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
 	_apply_visuals_from_config()
 	_load_starting_items() 
-	
 	if hurtbox:
 		hurtbox.health = health_component
 	if health_component:
@@ -187,6 +186,8 @@ func setup(player_data: Statics.PlayerData) -> void:
 		inventory.hotbar_containers.visible = true
 		inventory.health_bar.visible = true
 		inventory.health_bar.max_value = hp
+		inventory.protect_bar.visible = true
+		inventory.current_status.visible = true
 		personal_camera_2d = Camera2D.new()
 		personal_camera_2d.zoom = Vector2(2.5, 2.5)
 		personal_camera_2d.position = Vector2(0, 0)

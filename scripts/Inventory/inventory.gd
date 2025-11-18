@@ -14,6 +14,7 @@ extends CanvasLayer
 @onready var super_victory_label: RichTextLabel = $SuperVictoryLabel
 @onready var inventory_back: MarginContainer = $InventoryBack
 @onready var current_status: Sprite2D = $CurrentStatus
+@onready var protect_bar: ProgressBar = $ProtectBar
 
 @export var max_hotbar_containers: int = 3
 
