@@ -2,6 +2,7 @@ class_name Boss
 extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
+@export var mortar_scene: PackedScene
 @export var max_speed = 200
 @export var acceleration = 10000
 
@@ -13,11 +14,12 @@ var attacks
 var real_attack: String
 var doable_attacks: Array[String]
 var target
+var player_target
 var dashing = false
 var block_movement = false
 var players_defeated: bool = false
 
-var hp: int = 100
+@export var hp: int = 100
 var is_dead: bool = false
 
 func super_ready():
@@ -46,6 +48,7 @@ func do_damage(damage: int):
 
 func update_target():
 	var closest_target = null
+	var closest_target_player = null
 	var closest_distance = INF
 	var players = get_node("/root/Main/Players").get_children()
 	for player in players:
@@ -54,9 +57,11 @@ func update_target():
 		var player_distance = global_position.distance_to(player.global_position)
 		if player_distance < closest_distance and not player.is_dead:
 			closest_target = player.global_position
+			closest_target_player = player
 			closest_distance = player_distance
 	if closest_target:
 		target = closest_target
+		player_target = closest_target_player
 		
 func spawn_bullet(pos: Vector2, rot: float, vel: float):
 	if not bullet_scene:
@@ -66,6 +71,14 @@ func spawn_bullet(pos: Vector2, rot: float, vel: float):
 	bullet_inst.global_rotation = rot
 	bullet_inst.max_speed = vel
 	bullet_spawner.add_child(bullet_inst)
+	
+func spawn_mortar(pos: Vector2, area: float):
+	if not mortar_scene:
+		return null
+	var mortar_inst = mortar_scene.instantiate()
+	mortar_inst.global_position = pos
+	mortar_inst.mortar_area = area
+	bullet_spawner.add_child(mortar_inst)
 	
 func _physics_process(delta: float) -> void:
 	if is_dead or players_defeated:

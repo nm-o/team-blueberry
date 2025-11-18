@@ -1,0 +1,427 @@
+[gd_scene load_steps=25 format=3 uid="uid://dns2dftmx0xaj"]
+
+[ext_resource type="Script" uid="uid://b6j2o3i63gnbm" path="res://scenes/bosses/robot_boss.gd" id="1_6jxla"]
+[ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_4r4me"]
+[ext_resource type="Texture2D" uid="uid://d3jhrukwiybmm" path="res://assets/OriginalAssets/robot_boss_placeholder.png" id="2_85dyn"]
+[ext_resource type="PackedScene" uid="uid://di6m5otgqlchg" path="res://scenes/bosses/mortar_bullet.tscn" id="3_4r4me"]
+[ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="4_4r4me"]
+[ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="5_f3kec"]
+[ext_resource type="Texture2D" uid="uid://mswm320mqcoh" path="res://assets/UI/boss_hp_bar.png" id="6_576gx"]
+[ext_resource type="Texture2D" uid="uid://bpdaah5kmatuw" path="res://scenes/bosses/Solid_red.svg.png" id="8_4kcwv"]
+[ext_resource type="Script" uid="uid://cbgeltvamah7h" path="res://scenes/bosses/robot_boss_pointer.gd" id="9_f3kec"]
+[ext_resource type="Script" uid="uid://brnatqham67bj" path="res://scenes/bosses/laser_pivot.gd" id="10_6n7lf"]
+[ext_resource type="Texture2D" uid="uid://cx2s4svqfx2lp" path="res://scenes/bosses/laser.png" id="11_j1vwo"]
+[ext_resource type="Texture2D" uid="uid://2jlx427dxo3t" path="res://scenes/bosses/Red_Circle_full.png" id="12_jm125"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bnoth"]
+radius = 59.135437
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ufvkc"]
+radius = 48.010414
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4qu6"]
+texture = ExtResource("6_576gx")
+expand_margin_left = 25.0
+expand_margin_right = 24.0
+region_rect = Rect2(0, 0, 48, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1d2c0"]
+texture = ExtResource("6_576gx")
+region_rect = Rect2(52, 0, 40, 10)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4kcwv"]
+
+[sub_resource type="Animation" id="Animation_576gx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pointer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LaserPivot/LaserHitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LaserPivot/LaserCircle:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LaserPivot/Laser:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LaserPivot/Laser:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f3kec"]
+resource_name = "death_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.73333335, 0.8333334, 0.93333334, 1.0333333, 1.1333333, 1.2333333, 1.3333334, 1.4333334, 1.5333333, 1.6333333, 1.7333333, 1.8333334, 1.9333334, 2.0333333, 2.1333332, 2.2333333, 2.3333333, 2.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, 3), Vector2(5, -4), Vector2(3, -4), Vector2(-4, 1), Vector2(4, 4), Vector2(-2, -3), Vector2(-3, 3), Vector2(2, 3), Vector2(0, 0), Vector2(3, 3), Vector2(5, -4), Vector2(3, -4), Vector2(-4, 1), Vector2(4, 4), Vector2(-2, -3), Vector2(-3, 3), Vector2(2, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.73333335, 3.6933334, 3.7333333, 4.6, 4.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_6n7lf"]
+resource_name = "spawn_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.28, 0.37, 1.9333334, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j1vwo"]
+resource_name = "show_pointer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pointer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ajcbb"]
+resource_name = "activate_laser"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserPivot/LaserHitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 9.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserPivot/LaserCircle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 2.99, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LaserPivot/Laser:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.97, 2.99, 3.4666667, 3.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.47058824), Color(1, 1, 1, 0.47058824), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserPivot/Laser:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(9.75, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j1vwo"]
+_data = {
+&"RESET": SubResource("Animation_576gx"),
+&"activate_laser": SubResource("Animation_ajcbb"),
+&"death_animation": SubResource("Animation_f3kec"),
+&"show_pointer": SubResource("Animation_j1vwo"),
+&"spawn_animation": SubResource("Animation_6n7lf")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oscu3"]
+radius = 80.05623
+
+[node name="RobotBoss" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_6jxla")
+bullet_scene = ExtResource("2_4r4me")
+mortar_scene = ExtResource("3_4r4me")
+
+[node name="BulletSpawner" type="MultiplayerSpawner" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-1, 106)
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+visible = false
+texture = ExtResource("2_85dyn")
+
+[node name="Hurtbox" type="Area2D" parent="Pivot"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("5_f3kec")
+mine = true
+metadata/_custom_type_script = "uid://c3d62vx8jttio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hurtbox"]
+position = Vector2(1, 7)
+shape = SubResource("CircleShape2D_bnoth")
+disabled = true
+
+[node name="Hitbox" type="Area2D" parent="Pivot"]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("4_4r4me")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(1, 9)
+shape = SubResource("CircleShape2D_ufvkc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 20.0
+offset_right = -10.55542
+offset_bottom = 75.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxTexture_s4qu6")
+theme_override_styles/fill = SubResource("StyleBoxTexture_1d2c0")
+value = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_4kcwv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j1vwo")
+}
+
+[node name="Pointer" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1, 0.005)
+texture = ExtResource("8_4kcwv")
+offset = Vector2(1070, 0)
+script = ExtResource("9_f3kec")
+
+[node name="LaserPivot" type="Node2D" parent="."]
+script = ExtResource("10_6n7lf")
+
+[node name="Laser" type="Sprite2D" parent="LaserPivot"]
+visible = false
+position = Vector2(-2, -743.00006)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("11_j1vwo")
+
+[node name="LaserCircle" type="Sprite2D" parent="LaserPivot"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("12_jm125")
+
+[node name="LaserHitbox" type="Area2D" parent="LaserPivot"]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("4_4r4me")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserPivot/LaserHitbox"]
+shape = SubResource("CircleShape2D_oscu3")
+disabled = true

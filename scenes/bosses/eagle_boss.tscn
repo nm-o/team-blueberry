@@ -1,11 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://hxcj0pwcyq0a"]
+[gd_scene load_steps=23 format=3 uid="uid://hxcj0pwcyq0a"]
 
 [ext_resource type="Script" uid="uid://bjq3ixqidlq2g" path="res://scenes/bosses/eagle_boss.gd" id="1_vb282"]
 [ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_konh7"]
+[ext_resource type="PackedScene" uid="uid://di6m5otgqlchg" path="res://scenes/bosses/mortar_bullet.tscn" id="3_1d2c0"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="3_bnoth"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="3_konh7"]
 [ext_resource type="Texture2D" uid="uid://cbb1ulio2mtd0" path="res://assets/OriginalAssets/bird_test.png" id="4_konh7"]
 [ext_resource type="Texture2D" uid="uid://mswm320mqcoh" path="res://assets/UI/boss_hp_bar.png" id="6_bnoth"]
+[ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="6_s4qu6"]
 
 [sub_resource type="Animation" id="Animation_konh7"]
 length = 0.001
@@ -382,6 +384,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnoth"]
 radius = 55.081757
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1d2c0"]
+radius = 45.099888
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4qu6"]
 texture = ExtResource("6_bnoth")
 expand_margin_left = 25.0
@@ -396,6 +401,7 @@ region_rect = Rect2(52, 0, 40, 10)
 motion_mode = 1
 script = ExtResource("1_vb282")
 bullet_scene = ExtResource("2_konh7")
+mortar_scene = ExtResource("3_1d2c0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Marker2D")
@@ -436,6 +442,16 @@ metadata/_custom_type_script = "uid://c3d62vx8jttio"
 position = Vector2(-1, -3)
 shape = SubResource("CircleShape2D_bnoth")
 disabled = true
+
+[node name="Hitbox" type="Area2D" parent="Pivot"]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("6_s4qu6")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_1d2c0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
