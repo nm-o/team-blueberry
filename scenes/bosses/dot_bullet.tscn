@@ -1,0 +1,173 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhkcgridt52wk"]
+
+[ext_resource type="Script" uid="uid://bio1oy5qkefev" path="res://scenes/bosses/dot_bullet.gd" id="1_owdml"]
+[ext_resource type="Texture2D" uid="uid://c71ysr1rx7niy" path="res://assets/OriginalAssets/bullet_placeholder.png" id="2_72bp8"]
+[ext_resource type="Texture2D" uid="uid://2jlx427dxo3t" path="res://scenes/bosses/Red_Circle_full.png" id="2_kfqpd"]
+[ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="3_kfqpd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1351u"]
+radius = 7.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_udtew"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 0
+
+[sub_resource type="Animation" id="Animation_22077"]
+resource_name = "be_born"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.4666667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4233333, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1e-05), Vector2(0.5, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_r21dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0408729, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_72bp8"]
+resource_name = "be_dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0408729, 1), Color(2.8066084, 2.8066084, 1.0408729, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_067is"]
+_data = {
+&"RESET": SubResource("Animation_r21dy"),
+&"be_born": SubResource("Animation_22077"),
+&"be_dead": SubResource("Animation_72bp8")
+}
+
+[node name="DOTBullet" type="Node2D"]
+script = ExtResource("1_owdml")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_kfqpd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(2.8066084, 2.8066084, 1.0408729, 1)
+scale = Vector2(0.5, 1e-05)
+texture = ExtResource("2_72bp8")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("3_kfqpd")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_1351u")
+disabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_udtew")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_067is")
+}

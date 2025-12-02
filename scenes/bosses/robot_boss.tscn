@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://dns2dftmx0xaj"]
+[gd_scene load_steps=27 format=3 uid="uid://dns2dftmx0xaj"]
 
 [ext_resource type="Script" uid="uid://b6j2o3i63gnbm" path="res://scenes/bosses/robot_boss.gd" id="1_6jxla"]
 [ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_4r4me"]
 [ext_resource type="Texture2D" uid="uid://d3jhrukwiybmm" path="res://assets/OriginalAssets/robot_boss_placeholder.png" id="2_85dyn"]
 [ext_resource type="PackedScene" uid="uid://di6m5otgqlchg" path="res://scenes/bosses/mortar_bullet.tscn" id="3_4r4me"]
+[ext_resource type="PackedScene" uid="uid://vmusva6ajsbv" path="res://scenes/bosses/timed_bullet.tscn" id="3_jm125"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="4_4r4me"]
+[ext_resource type="PackedScene" uid="uid://dhkcgridt52wk" path="res://scenes/bosses/dot_bullet.tscn" id="4_j1vwo"]
 [ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="5_f3kec"]
 [ext_resource type="Texture2D" uid="uid://mswm320mqcoh" path="res://assets/UI/boss_hp_bar.png" id="6_576gx"]
 [ext_resource type="Texture2D" uid="uid://bpdaah5kmatuw" path="res://scenes/bosses/Solid_red.svg.png" id="8_4kcwv"]
@@ -142,113 +144,6 @@ tracks/8/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_f3kec"]
-resource_name = "death_animation"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.73333335, 0.8333334, 0.93333334, 1.0333333, 1.1333333, 1.2333333, 1.3333334, 1.4333334, 1.5333333, 1.6333333, 1.7333333, 1.8333334, 1.9333334, 2.0333333, 2.1333332, 2.2333333, 2.3333333, 2.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(3, 3), Vector2(5, -4), Vector2(3, -4), Vector2(-4, 1), Vector2(4, 4), Vector2(-2, -3), Vector2(-3, 3), Vector2(2, 3), Vector2(0, 0), Vector2(3, 3), Vector2(5, -4), Vector2(3, -4), Vector2(-4, 1), Vector2(4, 4), Vector2(-2, -3), Vector2(-3, 3), Vector2(2, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.73333335, 3.6933334, 3.7333333, 4.6, 4.9333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Sprite2D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3.9666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 4.01),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_6n7lf"]
-resource_name = "spawn_animation"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.62),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.62),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.28, 0.37, 1.9333334, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_j1vwo"]
-resource_name = "show_pointer"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pointer:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.17, 0.95, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ajcbb"]
 resource_name = "activate_laser"
 length = 10.0
@@ -313,6 +208,113 @@ tracks/4/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_f3kec"]
+resource_name = "death_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.73333335, 0.8333334, 0.93333334, 1.0333333, 1.1333333, 1.2333333, 1.3333334, 1.4333334, 1.5333333, 1.6333333, 1.7333333, 1.8333334, 1.9333334, 2.0333333, 2.1333332, 2.2333333, 2.3333333, 2.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, 3), Vector2(5, -4), Vector2(3, -4), Vector2(-4, 1), Vector2(4, 4), Vector2(-2, -3), Vector2(-3, 3), Vector2(2, 3), Vector2(0, 0), Vector2(3, 3), Vector2(5, -4), Vector2(3, -4), Vector2(-4, 1), Vector2(4, 4), Vector2(-2, -3), Vector2(-3, 3), Vector2(2, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.73333335, 3.6933334, 3.7333333, 4.6, 4.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_j1vwo"]
+resource_name = "show_pointer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pointer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6n7lf"]
+resource_name = "spawn_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.28, 0.37, 1.9333334, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1vwo"]
 _data = {
 &"RESET": SubResource("Animation_576gx"),
@@ -322,14 +324,17 @@ _data = {
 &"spawn_animation": SubResource("Animation_6n7lf")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oscu3"]
-radius = 80.05623
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jm125"]
+radius = 39.0
+height = 128.0
 
 [node name="RobotBoss" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_6jxla")
 bullet_scene = ExtResource("2_4r4me")
+timed_scene = ExtResource("3_jm125")
 mortar_scene = ExtResource("3_4r4me")
+dot_scene = ExtResource("4_j1vwo")
 
 [node name="BulletSpawner" type="MultiplayerSpawner" parent="."]
 
@@ -407,7 +412,7 @@ script = ExtResource("10_6n7lf")
 
 [node name="Laser" type="Sprite2D" parent="LaserPivot"]
 visible = false
-position = Vector2(-2, -743.00006)
+position = Vector2(0, -759)
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("11_j1vwo")
 
@@ -423,5 +428,6 @@ script = ExtResource("4_4r4me")
 metadata/_custom_type_script = "uid://b4dv5nl24aqe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserPivot/LaserHitbox"]
-shape = SubResource("CircleShape2D_oscu3")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jm125")
 disabled = true

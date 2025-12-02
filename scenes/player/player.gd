@@ -19,6 +19,9 @@ var selected_areas: Array = []
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var sprite_2d: Sprite2D = $PlayerSpritePivot/Sprite2D
 
+# Instakill hitbox
+@onready var instakill: Hitbox = $Instakill
+
 # Labels
 @export var label_name: Label
 @export var label_role: Label
@@ -139,6 +142,8 @@ func _physics_process(delta: float) -> void:
 				manage_animation("idle_animation")
 			else:
 				manage_animation("running_animation")
+			if Input.is_action_just_pressed("instakill"):
+				activate_instakill_area()
 			if Input.is_action_just_pressed("roll") and roll_cooldown.time_left == 0:
 				rolling = true
 				velocity = velocity.move_toward(old_direction * max_speed * 1.5, acceleration * 10 * delta)
@@ -160,6 +165,13 @@ func _physics_process(delta: float) -> void:
 
 	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui and selected_item is Weapon:
 		attack_primary()
+
+func activate_instakill_area():
+	instakill.monitoring = true
+	instakill.monitorable = true
+	await get_tree().create_timer(0.2).timeout
+	instakill.monitoring = false
+	instakill.monitorable = false
 
 func setup(player_data: Statics.PlayerData) -> void:
 	player_id = player_data.id

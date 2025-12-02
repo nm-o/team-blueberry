@@ -14,7 +14,7 @@ extends Node2D
 @onready var boss_spawn_marker: Marker2D = $BossSpawnMarker
 @onready var collision_shape_2d: CollisionShape2D = $ColiseoToBase/CollisionShape2D
 
-var current_boss = 2
+var current_boss = 1
 var bosses
 
 

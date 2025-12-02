@@ -2,7 +2,9 @@ class_name Boss
 extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
+@export var timed_scene: PackedScene
 @export var mortar_scene: PackedScene
+@export var dot_scene: PackedScene
 @export var max_speed = 200
 @export var acceleration = 10000
 
@@ -71,6 +73,15 @@ func spawn_bullet(pos: Vector2, rot: float, vel: float):
 	bullet_inst.global_rotation = rot
 	bullet_inst.max_speed = vel
 	bullet_spawner.add_child(bullet_inst)
+
+func spawn_timed(pos: Vector2, rot: float, vel: float):
+	if not bullet_scene:
+		return null
+	var timed_inst = timed_scene.instantiate()
+	timed_inst.global_position = pos
+	timed_inst.global_rotation = rot
+	timed_inst.max_speed = vel
+	bullet_spawner.add_child(timed_inst)
 	
 func spawn_mortar(pos: Vector2, area: float):
 	if not mortar_scene:
@@ -79,6 +90,14 @@ func spawn_mortar(pos: Vector2, area: float):
 	mortar_inst.global_position = pos
 	mortar_inst.mortar_area = area
 	bullet_spawner.add_child(mortar_inst)
+
+func spawn_dot(pos: Vector2, lifetime: float):
+	if not dot_scene:
+		return null
+	var dot_inst = dot_scene.instantiate()
+	dot_inst.global_position = pos
+	dot_inst.lifetime = lifetime
+	bullet_spawner.add_child(dot_inst)
 	
 func _physics_process(delta: float) -> void:
 	if is_dead or players_defeated:

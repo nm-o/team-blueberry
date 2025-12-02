@@ -1,0 +1,932 @@
+[gd_scene load_steps=35 format=3 uid="uid://t0k58au306je"]
+
+[ext_resource type="Script" uid="uid://b3anb7wo8vbyv" path="res://scenes/bosses/mage_boss.gd" id="1_m85k4"]
+[ext_resource type="Texture2D" uid="uid://yi4cqkckv6sv" path="res://assets/OriginalAssets/mage_boss_sprite.png" id="2_35a5i"]
+[ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_v6myu"]
+[ext_resource type="PackedScene" uid="uid://di6m5otgqlchg" path="res://scenes/bosses/mortar_bullet.tscn" id="3_r7ehl"]
+[ext_resource type="PackedScene" uid="uid://vmusva6ajsbv" path="res://scenes/bosses/timed_bullet.tscn" id="3_rioqv"]
+[ext_resource type="PackedScene" uid="uid://dhkcgridt52wk" path="res://scenes/bosses/dot_bullet.tscn" id="4_v6myu"]
+[ext_resource type="Script" uid="uid://c3d62vx8jttio" path="res://scenes/combat/Hurtbox.gd" id="5_2gdqw"]
+[ext_resource type="Script" uid="uid://d4b6jwopmsmdl" path="res://scenes/bosses/aura.gd" id="5_6f7cc"]
+[ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="6_6f7cc"]
+[ext_resource type="Texture2D" uid="uid://tq7itugqj62b" path="res://assets/OriginalAssets/aura.png" id="6_c8pxe"]
+[ext_resource type="Texture2D" uid="uid://mswm320mqcoh" path="res://assets/UI/boss_hp_bar.png" id="7_c8pxe"]
+[ext_resource type="Texture2D" uid="uid://bpdaah5kmatuw" path="res://scenes/bosses/Solid_red.svg.png" id="8_rioqv"]
+[ext_resource type="Texture2D" uid="uid://cdhvwbbkrhu0w" path="res://scenes/bosses/small_laser.png" id="8_w83a2"]
+[ext_resource type="Script" uid="uid://cbgeltvamah7h" path="res://scenes/bosses/robot_boss_pointer.gd" id="9_31s4n"]
+[ext_resource type="Texture2D" uid="uid://cx2s4svqfx2lp" path="res://scenes/bosses/laser.png" id="11_2cfa0"]
+[ext_resource type="Texture2D" uid="uid://2jlx427dxo3t" path="res://scenes/bosses/Red_Circle_full.png" id="12_hdcnb"]
+[ext_resource type="Script" uid="uid://cqxp1sr4egkx6" path="res://scenes/bosses/super_laser_pivot.gd" id="12_qs3b8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rioqv"]
+radius = 53.009434
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bnoth"]
+radius = 24.186773
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4qu6"]
+texture = ExtResource("7_c8pxe")
+expand_margin_left = 25.0
+expand_margin_right = 24.0
+region_rect = Rect2(0, 0, 48, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1d2c0"]
+texture = ExtResource("7_c8pxe")
+region_rect = Rect2(52, 0, 40, 10)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4kcwv"]
+
+[sub_resource type="Animation" id="Animation_qs3b8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpawnLaserSprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.1046946, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LaserStarPivot/LaserStarMarker:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LaserStarPivot/LaserStarSprite:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.9083786, 2.9083786, 1.145938, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LaserStarPivot/Hitbox:monitorable")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LaserStarPivot:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D2:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D3:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D4:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D5:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D6:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("SuperLaserPivot/SuperLaserSprite:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SuperLaserPivot/SuperLaserSprite:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.1153316, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SuperLaserPivot/Hitbox/CollisionShape2D:disabled")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("SuperLaserPivot/SuperLaserMarker:modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AuraPivot/Sprite2D:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("AuraPivot/Aura:modulate")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0621468, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v6myu"]
+resource_name = "spawn_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.58431375), Color(1, 1, 1, 0.58431375), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpawnLaserSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.6333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.1046946, 0), Color(2.8066084, 2.8066084, 1.1046946, 1), Color(2.8066084, 2.8066084, 1.1046946, 1), Color(2.8066084, 2.8066084, 1.1046946, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_r7ehl"]
+resource_name = "death_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 0.5), Vector2(2, 0.5), Vector2(1e-05, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_x2rw2"]
+resource_name = "teleport_entry"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0), Vector2(0.5, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2gdqw"]
+resource_name = "teleport_exit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6f7cc"]
+resource_name = "laser_star"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserStarPivot/LaserStarMarker:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 0.27450982), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserStarPivot/LaserStarSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5566667, 0.56666666, 0.7566666, 0.9566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(2.9083786, 2.9083786, 1.145938, 0), Color(2.9083786, 2.9083786, 1.145938, 0), Color(2.9083786, 2.9083786, 1.145938, 1), Color(2.9083786, 2.9083786, 1.145938, 1), Color(2.9083786, 2.9083786, 1.145938, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LaserStarPivot/Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LaserStarPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(0.31651935, 1.148699),
+"update": 0,
+"values": [0.0, 3.490658503988659]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D3:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D4:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D5:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LaserStarPivot/Hitbox/CollisionShape2D6:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_c8pxe"]
+resource_name = "super_laser"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SuperLaserPivot/SuperLaserSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.2333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SuperLaserPivot/SuperLaserSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.7333333, 9.5, 9.766666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.1153316, 1), Color(2.8066084, 2.8066084, 1.1153316, 1), Color(2.8066084, 2.8066084, 1.1153316, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2233334, 2.2333333, 3.0666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.81960785), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SuperLaserPivot/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.2333333, 9.66),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SuperLaserPivot/SuperLaserMarker:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 2.2, 2.2333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2784314), Color(1, 1, 1, 0.2784314), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_31s4n"]
+resource_name = "aura_enter"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AuraPivot/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.9, 0.92),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.92),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AuraPivot/Aura:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.89, 1.1666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0621468, 0), Color(2.8066084, 2.8066084, 1.0621468, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rioqv"]
+resource_name = "aura_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AuraPivot/Aura:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0621468, 1), Color(2.8066084, 2.8066084, 1.0621468, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.27),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8pxe"]
+_data = {
+&"RESET": SubResource("Animation_qs3b8"),
+&"aura_enter": SubResource("Animation_31s4n"),
+&"aura_exit": SubResource("Animation_rioqv"),
+&"death_animation": SubResource("Animation_r7ehl"),
+&"laser_star": SubResource("Animation_6f7cc"),
+&"spawn_animation": SubResource("Animation_v6myu"),
+&"super_laser": SubResource("Animation_c8pxe"),
+&"teleport_entry": SubResource("Animation_x2rw2"),
+&"teleport_exit": SubResource("Animation_2gdqw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rioqv"]
+size = Vector2(14, 513)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6myu"]
+radius = 104.0
+height = 2400.0
+
+[node name="MageBoss" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_m85k4")
+bullet_scene = ExtResource("2_v6myu")
+timed_scene = ExtResource("3_rioqv")
+mortar_scene = ExtResource("3_r7ehl")
+dot_scene = ExtResource("4_v6myu")
+
+[node name="AuraPivot" type="Node2D" parent="."]
+script = ExtResource("5_6f7cc")
+
+[node name="Aura" type="Sprite2D" parent="AuraPivot"]
+modulate = Color(2.8066084, 2.8066084, 1.0621468, 0)
+texture = ExtResource("6_c8pxe")
+
+[node name="Sprite2D" type="Sprite2D" parent="AuraPivot"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("12_hdcnb")
+
+[node name="Hitbox" type="Area2D" parent="AuraPivot"]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("6_6f7cc")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AuraPivot/Hitbox"]
+shape = SubResource("CircleShape2D_rioqv")
+disabled = true
+
+[node name="BulletSpawner" type="MultiplayerSpawner" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-1, 106)
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+visible = false
+texture = ExtResource("2_35a5i")
+
+[node name="Hurtbox" type="Area2D" parent="Pivot"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("5_2gdqw")
+mine = true
+metadata/_custom_type_script = "uid://c3d62vx8jttio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hurtbox"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_bnoth")
+disabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -365.0
+offset_top = 20.0
+offset_right = -10.55542
+offset_bottom = 75.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxTexture_s4qu6")
+theme_override_styles/fill = SubResource("StyleBoxTexture_1d2c0")
+value = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_4kcwv")
+
+[node name="Pointer" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1, 0.005)
+texture = ExtResource("8_rioqv")
+offset = Vector2(1070, 0)
+script = ExtResource("9_31s4n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c8pxe")
+}
+
+[node name="SpawnLaserSprite" type="Sprite2D" parent="."]
+modulate = Color(2.8066084, 2.8066084, 1.1046946, 0)
+position = Vector2(0, -1200)
+texture = ExtResource("11_2cfa0")
+
+[node name="LaserStarPivot" type="Node2D" parent="."]
+position = Vector2(0, -3)
+
+[node name="LaserStarMarker" type="Sprite2D" parent="LaserStarPivot"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -284)
+scale = Vector2(0.01, 0.25)
+texture = ExtResource("8_rioqv")
+
+[node name="LaserStarMarker2" type="Sprite2D" parent="LaserStarPivot/LaserStarMarker"]
+position = Vector2(0, 2232)
+texture = ExtResource("8_rioqv")
+
+[node name="LaserStarMarker3" type="Sprite2D" parent="LaserStarPivot/LaserStarMarker/LaserStarMarker2"]
+position = Vector2(24300.002, -1664)
+rotation = 0.06917151
+scale = Vector2(0.5011985, 21.656408)
+skew = 1.4785365
+texture = ExtResource("8_rioqv")
+
+[node name="LaserStarMarker4" type="Sprite2D" parent="LaserStarPivot/LaserStarMarker/LaserStarMarker2/LaserStarMarker3"]
+position = Vector2(24062.11, 564.9282)
+rotation = 0.06917148
+scale = Vector2(0.5011986, 21.656408)
+skew = 1.4785353
+texture = ExtResource("8_rioqv")
+
+[node name="LaserStarMarker5" type="Sprite2D" parent="LaserStarPivot/LaserStarMarker/LaserStarMarker2/LaserStarMarker3/LaserStarMarker4"]
+position = Vector2(24186.61, 1667.6973)
+rotation = 3.072421
+scale = Vector2(0.50119865, 21.656412)
+skew = -1.4785353
+texture = ExtResource("8_rioqv")
+
+[node name="LaserStarMarker6" type="Sprite2D" parent="LaserStarPivot/LaserStarMarker/LaserStarMarker2/LaserStarMarker3/LaserStarMarker4/LaserStarMarker5"]
+position = Vector2(24348.71, 553.07184)
+rotation = 0.069171466
+scale = Vector2(0.50119865, 21.656404)
+skew = 1.4785353
+texture = ExtResource("8_rioqv")
+
+[node name="LaserStarSprite" type="Sprite2D" parent="LaserStarPivot"]
+modulate = Color(2.9083786, 2.9083786, 1.145938, 0)
+position = Vector2(0, -279)
+texture = ExtResource("8_w83a2")
+
+[node name="LaserStarSprite2" type="Sprite2D" parent="LaserStarPivot/LaserStarSprite"]
+position = Vector2(0, 549)
+rotation = -3.1415925
+texture = ExtResource("8_w83a2")
+
+[node name="LaserStarSprite3" type="Sprite2D" parent="LaserStarPivot/LaserStarSprite/LaserStarSprite2"]
+position = Vector2(-238.99997, 410)
+rotation = -2.0943952
+texture = ExtResource("8_w83a2")
+
+[node name="LaserStarSprite5" type="Sprite2D" parent="LaserStarPivot/LaserStarSprite/LaserStarSprite2/LaserStarSprite3"]
+position = Vector2(1.0230179, 550.2281)
+rotation = -3.1415925
+texture = ExtResource("8_w83a2")
+
+[node name="LaserStarSprite4" type="Sprite2D" parent="LaserStarPivot/LaserStarSprite/LaserStarSprite2/LaserStarSprite3/LaserStarSprite5"]
+position = Vector2(-235.63394, 410.13007)
+rotation = -2.0943952
+texture = ExtResource("8_w83a2")
+
+[node name="LaserStarSprite6" type="Sprite2D" parent="LaserStarPivot/LaserStarSprite/LaserStarSprite2/LaserStarSprite3/LaserStarSprite5/LaserStarSprite4"]
+position = Vector2(0.20909882, 548.3621)
+rotation = 3.1415925
+texture = ExtResource("8_w83a2")
+
+[node name="Hitbox" type="Area2D" parent="LaserStarPivot"]
+collision_layer = 64
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("6_6f7cc")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserStarPivot/Hitbox"]
+position = Vector2(0, -277.5)
+shape = SubResource("RectangleShape2D_rioqv")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LaserStarPivot/Hitbox"]
+position = Vector2(237, -139)
+rotation = 1.0471976
+shape = SubResource("RectangleShape2D_rioqv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LaserStarPivot/Hitbox"]
+position = Vector2(236.00002, 135)
+rotation = 2.0943952
+shape = SubResource("RectangleShape2D_rioqv")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="LaserStarPivot/Hitbox"]
+position = Vector2(0, 271)
+rotation = 3.1415927
+shape = SubResource("RectangleShape2D_rioqv")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="LaserStarPivot/Hitbox"]
+position = Vector2(-234, 134)
+rotation = 4.1887903
+shape = SubResource("RectangleShape2D_rioqv")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="LaserStarPivot/Hitbox"]
+position = Vector2(-236.99998, -137.99998)
+rotation = 5.2359877
+shape = SubResource("RectangleShape2D_rioqv")
+
+[node name="SuperLaserPivot" type="Node2D" parent="."]
+script = ExtResource("12_qs3b8")
+
+[node name="SuperLaserSprite" type="Sprite2D" parent="SuperLaserPivot"]
+visible = false
+modulate = Color(2.8066084, 2.8066084, 1.1153316, 1)
+position = Vector2(0, -1328)
+texture = ExtResource("11_2cfa0")
+
+[node name="Hitbox" type="Area2D" parent="SuperLaserPivot"]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("6_6f7cc")
+metadata/_custom_type_script = "uid://b4dv5nl24aqe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SuperLaserPivot/Hitbox"]
+position = Vector2(0, -1257)
+shape = SubResource("CapsuleShape2D_v6myu")
+disabled = true
+
+[node name="SuperLaserMarker" type="Sprite2D" parent="SuperLaserPivot"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -1245)
+scale = Vector2(0.12, 1.1726073)
+texture = ExtResource("8_rioqv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=16 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://buxla4a3c3k2" path="res://ui/main_menu.tscn" id="4_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://ql7wgu71kbrj" path="res://scenes/crafting/stations/weapons_station.tscn" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://dns2dftmx0xaj" path="res://scenes/bosses/robot_boss.tscn" id="4_wp0k4"]
+[ext_resource type="PackedScene" uid="uid://t0k58au306je" path="res://scenes/bosses/mage_boss.tscn" id="5_bjd11"]
 [ext_resource type="PackedScene" uid="uid://bryws7w371ha0" path="res://scenes/crafting/stations/brewing_station.tscn" id="5_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://dkm2k2s7kku77" path="res://scenes/Tilemaps/Tilemap_ph2.tscn" id="6_c01mt"]
 [ext_resource type="Script" uid="uid://dnwafjt81mbgi" path="res://scripts/teleport_area.gd" id="8_jlsqs"]
@@ -26,7 +27,7 @@ script = ExtResource("1_elqb8")
 player_scene = ExtResource("2_0bbpv")
 boss_1_scene = ExtResource("3_jlsqs")
 boss_2_scene = ExtResource("4_wp0k4")
-boss_3_scene = ExtResource("3_jlsqs")
+boss_3_scene = ExtResource("5_bjd11")
 menu_scene = ExtResource("4_q8u5g")
 
 [node name="ColiseoToBase" type="Area2D" parent="." node_paths=PackedStringArray("teleport_marker")]
