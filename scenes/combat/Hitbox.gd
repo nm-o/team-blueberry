@@ -9,3 +9,7 @@ class_name Hitbox
 
 func get_attacker_id() -> int:
 	return owner_id
+
+func attack(target):
+	if owner.has_method("after_attack"):
+		owner.after_attack(target)

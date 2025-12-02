@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq1y0gfdadi83"]
+
+[ext_resource type="Script" uid="uid://dxfas5613irvn" path="res://scenes/crafting/stations_ui/armor_station_interface.gd" id="1_reuw2"]
+[ext_resource type="Texture2D" uid="uid://8hi1o750ye6t" path="res://assets/UI/UI_TravelBook_Spritesheet01a.png" id="2_70qyo"]
+[ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="3_a0b2g"]
+[ext_resource type="Script" uid="uid://8hpxqrcfdfi1" path="res://scripts/Inventory/Containers/crafting_table_container.gd" id="4_xgcu0"]
+[ext_resource type="Theme" uid="uid://f2n5d6o4bwed" path="res://ui/inventoryTheme.tres" id="5_2eif6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62twb"]
+texture = ExtResource("2_70qyo")
+texture_margin_left = 2.0060952
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(65, 449, 62, 14)
+
+[node name="ArmorStationInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 100.0
+offset_right = 10.0
+offset_bottom = 140.0
+mouse_filter = 2
+script = ExtResource("1_reuw2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 105
+theme_override_constants/margin_top = 250
+theme_override_constants/margin_right = 850
+theme_override_constants/margin_bottom = 210
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_62twb")
+
+[node name="ItemContainer" parent="." instance=ExtResource("3_a0b2g")]
+layout_mode = 1
+offset_left = 211.0
+offset_top = 386.0
+offset_right = 211.0
+offset_bottom = 386.0
+script = ExtResource("4_xgcu0")
+
+[node name="ItemContainer2" parent="." instance=ExtResource("3_a0b2g")]
+layout_mode = 1
+offset_left = 116.0
+offset_top = 270.0
+offset_right = 116.0
+offset_bottom = 270.0
+script = ExtResource("4_xgcu0")
+
+[node name="ItemContainer3" parent="." instance=ExtResource("3_a0b2g")]
+layout_mode = 1
+offset_left = 313.0
+offset_top = 270.0
+offset_right = 313.0
+offset_bottom = 270.0
+script = ExtResource("4_xgcu0")
+
+[node name="CraftButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 530.0
+offset_right = 330.0
+offset_bottom = 584.0
+theme = ExtResource("5_2eif6")
+theme_override_font_sizes/font_size = 32
+text = "Craft"
+
+[connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]
