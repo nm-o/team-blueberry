@@ -1,12 +1,10 @@
 extends StaticBody2D
 
-@onready var failed_interaction: Label = $FailedInteraction
 @onready var interaction_name_label: Label = $InteractionName
 @onready var interface: CanvasLayer = $interface
 
 func _ready() -> void:
 	interaction_name_label.visible = false
-	failed_interaction.visible = false
 
 func interact():
 	for role in interface.get_child(0).accepted_player_roles:

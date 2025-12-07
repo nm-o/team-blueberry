@@ -296,24 +296,6 @@ text = "Weapons station
 E"
 horizontal_alignment = 1
 
-[node name="FailedInteraction" type="Label" parent="."]
-visible = false
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -68.0
-offset_top = -120.0
-offset_right = 67.0
-offset_bottom = -19.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "This station can
- only be used by
- a weapons
-master!!!"
-horizontal_alignment = 1
-
 [node name="interface" type="CanvasLayer" parent="."]
 
 [node name="WeaponsStationInterface" parent="interface" instance=ExtResource("3_xx52l")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=17 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkm2k2s7kku77" path="res://scenes/Tilemaps/Tilemap_ph2.tscn" id="6_c01mt"]
 [ext_resource type="Script" uid="uid://dnwafjt81mbgi" path="res://scripts/teleport_area.gd" id="8_jlsqs"]
 [ext_resource type="Texture2D" uid="uid://bwvn0mon31cne" path="res://assets/OriginalAssets/bush.png" id="10_lhr70"]
+[ext_resource type="PackedScene" uid="uid://doxnc0hmbtcxs" path="res://scenes/crafting/stations/armor_station.tscn" id="12_qmy6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -64,11 +65,14 @@ position = Vector2(8513, 221)
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(155, 258)
 
-[node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
-position = Vector2(57, -136)
-
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
-position = Vector2(125, -156)
+position = Vector2(57, -156)
+
+[node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
+position = Vector2(140, -136)
+
+[node name="ArmorStation" parent="." instance=ExtResource("12_qmy6f")]
+position = Vector2(220, -137)
 
 [node name="BossSpawnMarker" type="Marker2D" parent="."]
 position = Vector2(8622, 135)
