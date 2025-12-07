@@ -8,4 +8,4 @@ func _init() -> void:
 	max_number = 10
 	name = "Advanced Poison Potion"
 	time = 10
-	effect = Global.States.POISONED
+	effect = Global.States.POISONED_2

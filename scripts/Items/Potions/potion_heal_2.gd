@@ -8,4 +8,4 @@ func _init() -> void:
 	max_number = 10
 	name = "Advanced Heal Potion"
 	time = 10
-	effect = Global.States.HEALING
+	effect = Global.States.HEALING_2
