@@ -242,6 +242,11 @@ sprite_frames = SubResource("SpriteFrames_rn7t0")
 autoplay = "default"
 frame_progress = 0.05440998
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpectatorGhost"]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pn6s4")
+
 [node name="Instakill" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 16
