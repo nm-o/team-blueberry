@@ -219,6 +219,8 @@ func _physics_process(delta: float) -> void:
 			selected_item.use(self)
 			if inventory:
 				inventory.consume_hotbar_slot(selected_container_number)
+				inventory.select_container(selected_container_number)
+
 
 
 func activate_instakill_area():
