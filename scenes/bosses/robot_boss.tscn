@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dns2dftmx0xaj"]
+[gd_scene load_steps=28 format=3 uid="uid://dns2dftmx0xaj"]
 
 [ext_resource type="Script" uid="uid://b6j2o3i63gnbm" path="res://scenes/bosses/robot_boss.gd" id="1_6jxla"]
 [ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_4r4me"]
@@ -328,6 +328,9 @@ _data = {
 radius = 39.0
 height = 128.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jm125"]
+radius = 48.010414
+
 [node name="RobotBoss" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_6jxla")
@@ -431,3 +434,7 @@ metadata/_custom_type_script = "uid://b4dv5nl24aqe"
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jm125")
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_jm125")

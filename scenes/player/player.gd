@@ -26,6 +26,7 @@ var selected_areas: Array = []
 @export var label_name: Label
 @export var label_role: Label
 @export var player_id: int = -1
+
 # Movimiento
 @export var max_speed: int = 200
 @export var acceleration: int = 20000
@@ -44,9 +45,12 @@ var is_dead: bool = false
 var rolling: bool = false
 @onready var roll_cooldown: Timer = $RollCooldown
 
+@export var potion_max_range: float = 300.0
 @export var max_hp = 100
 @export var hp = 100
 @export var invulneravility_time: float = 0.1
+@export var potion_projectile_scene: PackedScene
+
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/playback")
@@ -54,10 +58,66 @@ var rolling: bool = false
 @onready var player_weapon: Node2D = $PlayerWeapon
 
 var selected_item: Item = null
-@onready var hc: CollisionShape2D = $Pivot/Hurtbox/CollisionShape2D
+#@onready var hc: CollisionShape2D = $Pivot/Hurtbox/CollisionShape2D
 @onready var spectator_ghost: CharacterBody2D = $SpectatorGhost
 
 var old_direction: Vector2 = Vector2(1,0)
+
+var current_state: Global.States = Global.States.NORMAL
+var state_timer: Timer
+
+func _init_state_system():
+	state_timer = Timer.new()
+	add_child(state_timer)
+	state_timer.timeout.connect(_on_state_timeout)
+	state_timer.one_shot = true
+
+func apply_status_effect(state: Global.States, duration: int):
+	if current_state != Global.States.NORMAL:
+		return
+	
+	current_state = state
+	if inventory:
+		inventory.change_status(state)
+	
+	if duration > 0:
+		state_timer.start(duration)
+	
+	match state:
+		Global.States.HEALING:
+			hp = min(hp + 50, max_hp)
+			if inventory:
+				inventory.health_bar.value = hp
+
+		Global.States.HEALING_2:
+			hp = min(hp + 100, max_hp) 
+			if inventory:
+				inventory.health_bar.value = hp
+
+		Global.States.FROZEN:
+			max_speed = 0
+
+		Global.States.POISONED:
+			_apply_poison_damage(duration, 5)
+
+		Global.States.POISONED_2:
+			_apply_poison_damage(duration, 10)
+
+
+func _apply_poison_damage(duration: int, dmg_per_tick: int):
+	for i in duration:
+		if current_state != Global.States.POISONED and current_state != Global.States.POISONED_2:
+			break
+		manage_do_damage(dmg_per_tick)
+		await get_tree().create_timer(1.0).timeout
+
+
+func _on_state_timeout():
+	current_state = Global.States.NORMAL
+	if inventory:
+		inventory.change_status(Global.States.NORMAL)
+	if max_speed == 0:
+		max_speed = 200
 
 
 func get_attacked(damage: int):
@@ -91,6 +151,7 @@ func ghost_enabled(is_enabled: bool):
 	spectator_ghost.set_spawn_position(global_position)
 
 func _ready() -> void:
+	_init_state_system()
 	add_to_group("players")
 	selected_container_number = 0
 	mouse_sprite.top_level = true
@@ -163,8 +224,16 @@ func _physics_process(delta: float) -> void:
 		position = position.lerp(target_position, delta * 10.0)
 		player_sprite_pivot.scale.x = sprite_rotation
 
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui and selected_item is Weapon:
-		attack_primary()
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui:
+		if selected_item is Weapon:
+			attack_primary()
+		elif selected_item is Potion:
+			selected_item.use(self)
+			if inventory:
+				inventory.consume_hotbar_slot(selected_container_number)
+				inventory.select_container(selected_container_number)
+
+
 
 func activate_instakill_area():
 	instakill.monitoring = true
@@ -403,3 +472,30 @@ func activate_hitbox():
 func manage_update_item_sprite(sprite_path: String):
 	if is_multiplayer_authority():
 		player_weapon.update_item_sprite_server.rpc_id(1, sprite_path)
+
+func throw_potion(potion: Potion):
+	if not potion_projectile_scene:
+		return
+	
+	var target_pos = get_global_mouse_position()
+	var distance = global_position.distance_to(target_pos)
+	
+	
+	if distance > potion_max_range:
+		var direction = global_position.direction_to(target_pos)
+		target_pos = global_position + direction * potion_max_range
+	
+	manage_throw_potion.rpc_id(1, potion.effect, potion.time, target_pos)
+
+@rpc("any_peer", "call_local", "reliable")
+func manage_throw_potion(effect: Global.States, time: int, target_pos: Vector2):
+	spawn_potion.rpc(effect, time, target_pos)
+
+@rpc("authority", "call_local", "reliable")
+func spawn_potion(effect: Global.States, time: int, target_pos: Vector2):
+	var projectile = potion_projectile_scene.instantiate()
+	get_tree().root.add_child(projectile)
+	projectile.global_position = target_pos
+	projectile.effect = effect
+	projectile.effect_time = time
+	projectile.sprite.texture = load("res://assets/Items/Craftables/potion_frost_small.png")
