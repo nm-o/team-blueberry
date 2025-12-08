@@ -44,6 +44,7 @@ var is_dead: bool = false
 var rolling: bool = false
 @onready var roll_cooldown: Timer = $RollCooldown
 
+@export var potion_max_range: float = 300.0
 @export var max_hp = 100
 @export var hp = 100
 @export var invulneravility_time: float = 0.1
@@ -457,18 +458,26 @@ func manage_update_item_sprite(sprite_path: String):
 func throw_potion(potion: Potion):
 	if not potion_projectile_scene:
 		return
-	manage_throw_potion.rpc_id(1, potion.effect, potion.time, get_global_mouse_position())
+	
+	var target_pos = get_global_mouse_position()
+	var distance = global_position.distance_to(target_pos)
+	
+	
+	if distance > potion_max_range:
+		var direction = global_position.direction_to(target_pos)
+		target_pos = global_position + direction * potion_max_range
+	
+	manage_throw_potion.rpc_id(1, potion.effect, potion.time, target_pos)
 
 @rpc("any_peer", "call_local", "reliable")
 func manage_throw_potion(effect: Global.States, time: int, target_pos: Vector2):
-	spawn_potion.rpc(effect, time, global_position, target_pos)
+	spawn_potion.rpc(effect, time, target_pos)
 
 @rpc("authority", "call_local", "reliable")
-func spawn_potion(effect: Global.States, time: int, start_pos: Vector2, target_pos: Vector2):
+func spawn_potion(effect: Global.States, time: int, target_pos: Vector2):
 	var projectile = potion_projectile_scene.instantiate()
 	get_tree().root.add_child(projectile)
-	projectile.global_position = start_pos
-	projectile.velocity = start_pos.direction_to(target_pos) * projectile.speed
+	projectile.global_position = target_pos
 	projectile.effect = effect
 	projectile.effect_time = time
 	projectile.sprite.texture = load("res://assets/Items/Craftables/potion_frost_small.png")
