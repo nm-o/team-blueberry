@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://t0k58au306je"]
+[gd_scene load_steps=36 format=3 uid="uid://t0k58au306je"]
 
 [ext_resource type="Script" uid="uid://b3anb7wo8vbyv" path="res://scenes/bosses/mage_boss.gd" id="1_m85k4"]
 [ext_resource type="Texture2D" uid="uid://yi4cqkckv6sv" path="res://assets/OriginalAssets/mage_boss_sprite.png" id="2_35a5i"]
@@ -303,56 +303,71 @@ tracks/21/keys = {
 "values": [Color(2.8066084, 2.8066084, 1.0621468, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_v6myu"]
-resource_name = "spawn_animation"
-length = 3.0
+[sub_resource type="Animation" id="Animation_31s4n"]
+resource_name = "aura_enter"
+length = 1.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/path = NodePath("AuraPivot/Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.6333333),
+"times": PackedFloat32Array(0, 0.16666667, 0.9, 0.92),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.58431375), Color(1, 1, 1, 0.58431375), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpawnLaserSprite:modulate")
+tracks/1/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.6333333, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(2.8066084, 2.8066084, 1.1046946, 0), Color(2.8066084, 2.8066084, 1.1046946, 1), Color(2.8066084, 2.8066084, 1.1046946, 1), Color(2.8066084, 2.8066084, 1.1046946, 0)]
+"times": PackedFloat32Array(0, 0.92),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Sprite2D:visible")
+tracks/2/path = NodePath("AuraPivot/Aura:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0.89, 1.1666666),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0621468, 0), Color(2.8066084, 2.8066084, 1.0621468, 1)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
+
+[sub_resource type="Animation" id="Animation_rioqv"]
+resource_name = "aura_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AuraPivot/Aura:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.0621468, 1), Color(2.8066084, 2.8066084, 1.0621468, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.27),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_r7ehl"]
@@ -368,62 +383,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(2, 0.5), Vector2(2, 0.5), Vector2(1e-05, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_x2rw2"]
-resource_name = "teleport_entry"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.5, 0), Vector2(0.5, 0), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_2gdqw"]
-resource_name = "teleport_exit"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.5, 1e-05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.04),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_6f7cc"]
@@ -549,6 +508,58 @@ tracks/9/keys = {
 "values": [true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_v6myu"]
+resource_name = "spawn_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.58431375), Color(1, 1, 1, 0.58431375), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpawnLaserSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.6333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(2.8066084, 2.8066084, 1.1046946, 0), Color(2.8066084, 2.8066084, 1.1046946, 1), Color(2.8066084, 2.8066084, 1.1046946, 1), Color(2.8066084, 2.8066084, 1.1046946, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_c8pxe"]
 resource_name = "super_laser"
 length = 10.0
@@ -613,71 +624,60 @@ tracks/4/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2784314), Color(1, 1, 1, 0.2784314), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_31s4n"]
-resource_name = "aura_enter"
-length = 1.3
+[sub_resource type="Animation" id="Animation_x2rw2"]
+resource_name = "teleport_entry"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AuraPivot/Sprite2D:modulate")
+tracks/0/path = NodePath("Pivot/Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.9, 0.92),
+"times": PackedFloat32Array(0, 0.07, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 0)]
+"values": [Vector2(1, 1), Vector2(0.5, 0), Vector2(0.5, 0), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.92),
+"times": PackedFloat32Array(0, 0.07, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2gdqw"]
+resource_name = "teleport_exit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AuraPivot/Aura:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.89, 1.1666666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(2.8066084, 2.8066084, 1.0621468, 0), Color(2.8066084, 2.8066084, 1.0621468, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_rioqv"]
-resource_name = "aura_exit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AuraPivot/Aura:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(2.8066084, 2.8066084, 1.0621468, 1), Color(2.8066084, 2.8066084, 1.0621468, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AuraPivot/Hitbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.27),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c8pxe"]
@@ -699,6 +699,9 @@ size = Vector2(14, 513)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6myu"]
 radius = 104.0
 height = 2400.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6f7cc"]
+radius = 24.020824
 
 [node name="MageBoss" type="CharacterBody2D"]
 motion_mode = 1
@@ -930,3 +933,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -1245)
 scale = Vector2(0.12, 1.1726073)
 texture = ExtResource("8_rioqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_6f7cc")

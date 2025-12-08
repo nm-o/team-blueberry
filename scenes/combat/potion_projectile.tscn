@@ -15,6 +15,7 @@ script = ExtResource("1_ihdii")
 shape = SubResource("CircleShape2D_uhiac")
 
 [node name="EffectArea" type="Area2D" parent="."]
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EffectArea"]
 shape = SubResource("CircleShape2D_uhiac")

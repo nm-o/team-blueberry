@@ -34,6 +34,8 @@ func _set_color_from_effect():
 			circle_color = Color(0.5, 1, 0.3, 0.35)
 		Global.States.HEALING:
 			circle_color = Color(1, 1, 0.3, 0.35)
+		Global.States.HEALING_2:
+			circle_color = Color(1, 0.6, 0.9, 0.4)
 		_:
 			circle_color = Color(1, 0.5, 0, 0.35)
 
@@ -73,6 +75,24 @@ func _explode():
 
 func _apply_effect_to_area():
 	var bodies = effect_area.get_overlapping_bodies()
+	print("POCION: cuerpos en el área:", bodies)  # debug
+
 	for body in bodies:
-		if body.has_method("apply_status_effect"):
+		print(" - body:", body, " type:", body.get_class(), " effect:", effect) # debug
+		if body is Boss and effect == Global.States.POISONED:
+			print("Aplicando multi-hit veneno al boss")  # debug
+			_poison_multi_hit_boss(body)
+		elif body.has_method("apply_status_effect"):
+			print("Aplicando estado normal a:", body)   # debug
 			body.apply_status_effect(effect, effect_time)
+
+
+func _poison_multi_hit_boss(boss: Boss) -> void:
+	var hits := 5         
+	var dmg_per_hit := 10
+
+	for i in hits:
+		if not is_instance_valid(boss):
+			return
+		boss.get_attacked(dmg_per_hit)
+		await get_tree().create_timer(0.3).timeout  # intervalo entre golpes

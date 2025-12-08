@@ -20,6 +20,7 @@ var player_target
 var dashing = false
 var block_movement = false
 var players_defeated: bool = false
+var current_state: Global.States = Global.States.NORMAL
 
 @export var hp: int = 100
 var is_dead: bool = false
@@ -173,4 +174,32 @@ func do_attack(attack: String):
 		await get_tree().create_timer(3).timeout
 		attack_workflow()
 			
-			
+
+func apply_status_effect(state: Global.States, duration: int):
+	if current_state != Global.States.NORMAL:
+		return
+	
+	current_state = state
+	
+	match state:
+		Global.States.FROZEN:
+			max_speed = 0
+			await get_tree().create_timer(duration).timeout
+			max_speed = 200
+			current_state = Global.States.NORMAL
+
+		Global.States.POISONED:
+			for i in duration:
+				if current_state != Global.States.POISONED:
+					break
+				manage_do_damage(10)
+				await get_tree().create_timer(1.0).timeout
+			current_state = Global.States.NORMAL
+
+		Global.States.POISONED_2:
+			for i in duration:
+				if current_state != Global.States.POISONED_2:
+					break
+				manage_do_damage(20)  # veneno fuerte
+				await get_tree().create_timer(1.0).timeout
+			current_state = Global.States.NORMAL

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://hxcj0pwcyq0a"]
+[gd_scene load_steps=27 format=3 uid="uid://hxcj0pwcyq0a"]
 
 [ext_resource type="Script" uid="uid://bjq3ixqidlq2g" path="res://scenes/bosses/eagle_boss.gd" id="1_vb282"]
 [ext_resource type="PackedScene" uid="uid://btopgynxkb2w3" path="res://scenes/bosses/enemy_bullet.tscn" id="2_konh7"]
@@ -448,6 +448,8 @@ region_rect = Rect2(0, 0, 48, 10)
 texture = ExtResource("6_bnoth")
 region_rect = Rect2(52, 0, 40, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gypjg"]
+
 [node name="EagleBoss" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_vb282")
@@ -488,7 +490,7 @@ texture = ExtResource("4_konh7")
 
 [node name="Hurtbox" type="Area2D" parent="Pivot"]
 collision_layer = 16
-collision_mask = 32
+collision_mask = 33
 script = ExtResource("3_konh7")
 mine = true
 metadata/_custom_type_script = "uid://c3d62vx8jttio"
@@ -525,3 +527,7 @@ size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxTexture_s4qu6")
 theme_override_styles/fill = SubResource("StyleBoxTexture_1d2c0")
 value = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_gypjg")

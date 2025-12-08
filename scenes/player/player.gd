@@ -74,7 +74,7 @@ func _init_state_system():
 
 func apply_status_effect(state: Global.States, duration: int):
 	if current_state != Global.States.NORMAL:
-		return  # Ya tiene un efecto activo
+		return
 	
 	current_state = state
 	if inventory:
@@ -88,17 +88,29 @@ func apply_status_effect(state: Global.States, duration: int):
 			hp = min(hp + 50, max_hp)
 			if inventory:
 				inventory.health_bar.value = hp
+
+		Global.States.HEALING_2:
+			hp = min(hp + 100, max_hp) 
+			if inventory:
+				inventory.health_bar.value = hp
+
 		Global.States.FROZEN:
 			max_speed = 0
-		Global.States.POISONED:
-			_apply_poison_damage(duration)
 
-func _apply_poison_damage(duration: int):
+		Global.States.POISONED:
+			_apply_poison_damage(duration, 5)
+
+		Global.States.POISONED_2:
+			_apply_poison_damage(duration, 10)
+
+
+func _apply_poison_damage(duration: int, dmg_per_tick: int):
 	for i in duration:
-		if current_state != Global.States.POISONED:
+		if current_state != Global.States.POISONED and current_state != Global.States.POISONED_2:
 			break
-		manage_do_damage(5)
+		manage_do_damage(dmg_per_tick)
 		await get_tree().create_timer(1.0).timeout
+
 
 func _on_state_timeout():
 	current_state = Global.States.NORMAL
