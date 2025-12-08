@@ -73,3 +73,14 @@ func _process(_delta: float) -> void:
 		Mouse.item = null
 		Mouse.old_container = null
 		Mouse.player.inventory.select_container(Mouse.player.selected_container_number)
+
+func consume_one() -> void:
+	if not item_container.item:
+		return
+	number_of_items -= 1
+	if number_of_items <= 0:
+		number_of_items = 0
+		item_container.remove_item()
+		number_label.text = ""
+	else:
+		number_label.text = str(number_of_items)

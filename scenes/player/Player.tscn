@@ -148,6 +148,7 @@ item_drop_scene = ExtResource("2_tpg5x")
 label_name = NodePath("label_name")
 label_role = NodePath("label_role")
 class_config = ExtResource("2_524rm")
+potion_max_range = 92.0
 potion_projectile_scene = ExtResource("4_180ig")
 
 [node name="PlayerWeapon" parent="." instance=ExtResource("4_5stf6")]

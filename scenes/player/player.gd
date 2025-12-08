@@ -26,6 +26,7 @@ var selected_areas: Array = []
 @export var label_name: Label
 @export var label_role: Label
 @export var player_id: int = -1
+
 # Movimiento
 @export var max_speed: int = 200
 @export var acceleration: int = 20000
@@ -216,6 +217,9 @@ func _physics_process(delta: float) -> void:
 			attack_primary()
 		elif selected_item is Potion:
 			selected_item.use(self)
+			if inventory:
+				inventory.consume_hotbar_slot(selected_container_number)
+
 
 func activate_instakill_area():
 	instakill.monitoring = true

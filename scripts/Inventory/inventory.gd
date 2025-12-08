@@ -157,3 +157,15 @@ func change_status(new_status: Global.States):
 		current_status.frame = 3
 	else:
 		current_status.frame = 0
+
+func consume_hotbar_slot(index: int) -> void:
+	var containers = hotbar_containers.get_children()
+	if index < 0 or index >= containers.size():
+		return
+
+	var slot = containers[index]  # hotbar_container
+	if not slot.item:
+		return
+
+	var panel: PanelContainer = slot.get_node("Container")
+	panel.consume_one()
