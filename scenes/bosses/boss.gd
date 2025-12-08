@@ -24,29 +24,6 @@ var players_defeated: bool = false
 @export var hp: int = 100
 var is_dead: bool = false
 
-var current_state: Global.States = Global.States.NORMAL
-
-func apply_status_effect(state: Global.States, duration: int):
-	if current_state != Global.States.NORMAL:
-		return
-	
-	current_state = state
-	
-	match state:
-		Global.States.FROZEN:
-			max_speed = 0
-			await get_tree().create_timer(duration).timeout
-			max_speed = 200
-			current_state = Global.States.NORMAL
-		Global.States.POISONED:
-			for i in duration:
-				if current_state != Global.States.POISONED:
-					break
-				manage_do_damage(10)
-				await get_tree().create_timer(1.0).timeout
-			current_state = Global.States.NORMAL
-
-
 func super_ready():
 	Mouse.players_lost.connect(_defeat)
 	await call("spawn_boss")
