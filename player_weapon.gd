@@ -11,20 +11,20 @@ var attack_cooldown: float = 0.2
 var attack_starting_cooldown: float = 0.2
 var tween: Tween
 
-func activate(item: Item):
+func activate(type: String, damage: int):
 	if tween and tween.is_valid() or cooldown_timer.time_left != 0:
 		return
 	
 	# Ahora manejamos el tipo de arma para configurar la animación y el daño
 	var anim_speed: float = 1.0
-	if item is Spear:
+	if type=="spear":
 		anim_speed = 0.6
-	elif item is Sword:
+	elif type=="sword":
 		anim_speed = 1.0
-	elif item is Axe:
+	elif type=="axe":
 		anim_speed = 1.4
 
-	hitbox.damage = item.base_damage
+	hitbox.damage = damage
 	do_attack_anim(anim_speed)
 
 func do_attack_anim(speed_factor: float = 1.0):

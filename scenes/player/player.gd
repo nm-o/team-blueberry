@@ -177,9 +177,9 @@ func _ready() -> void:
 		health_component.died.connect(_on_died)
 	ghost_collision_shape_2d.disabled = true
 
-func attack_primary(item: Item) -> void:
+func attack_primary(type: String, damage: int) -> void:
 	if is_multiplayer_authority():
-		activate_hitbox.rpc(item)
+		activate_hitbox.rpc(type, damage)
 
 func _on_damaged(_amount: int) -> void:
 	sprite_2d.modulate = Color(1, 0.6, 0.6)
@@ -238,7 +238,19 @@ func _physics_process(delta: float) -> void:
 
 	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui:
 		if selected_item is Weapon:
-				attack_primary(selected_item)
+			var type: String = "sword"
+			var damage: int = 0
+			
+			if selected_item is Spear:
+				type = "spear"
+			elif selected_item is Sword:
+				type = "sword"
+			elif selected_item is Axe:
+				type = "axe"
+			damage = selected_item.base_damage
+			
+			attack_primary(type, damage)
+			
 		elif selected_item is Potion:
 			selected_item.use(self)
 			if inventory:
@@ -478,8 +490,8 @@ func rotate_selected_obj(mouse_pos):
 	player_weapon.look_at(mouse_pos)
 
 @rpc("authority", "call_local", "reliable")
-func activate_hitbox(item: Item):
-	player_weapon.activate(item)
+func activate_hitbox(type: String, damage: int):
+	player_weapon.activate(type, damage)
 
 func manage_update_item_sprite(sprite_path: String):
 	if is_multiplayer_authority():
