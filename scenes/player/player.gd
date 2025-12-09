@@ -395,18 +395,36 @@ func drop_item(_pos, item_to_drop, drop_id):
 	item_drop.global_position = global_position
 
 func _interaction_area_entered(area: Area2D):
+	var owner_node = area.owner
+	if owner_node == null or not is_instance_valid(owner_node):
+		return
+
+	# Si el owner no tiene interaction_name_label, ignoramos
+	if not owner_node.get("interaction_name_label"):
+		return
+
 	if not selected_areas.is_empty():
-		selected_areas.back().interaction_name_label.visible = false
-	selected_areas.append(area.owner)
-	selected_areas.back().interaction_name_label.visible = true
+		var last = selected_areas.back()
+		if is_instance_valid(last) and last.get("interaction_name_label"):
+			last.interaction_name_label.visible = false
+
+	selected_areas.append(owner_node)
+	owner_node.interaction_name_label.visible = true
+
 
 func _interaction_area_exited(area: Area2D):
-	if area.owner:
-		area.owner.interaction_name_label.visible = false
-	selected_areas.erase(area.owner)
+	var owner_node = area.owner
+	if owner_node and is_instance_valid(owner_node) and owner_node.get("interaction_name_label"):
+		owner_node.interaction_name_label.visible = false
+
+	selected_areas.erase(owner_node)
+
 	if not selected_areas.is_empty():
-		if selected_areas.back() != null:
-			selected_areas.back().interaction_name_label.visible = true
+		var last = selected_areas.back()
+		if last != null and is_instance_valid(last) and last.get("interaction_name_label"):
+			last.interaction_name_label.visible = true
+
+
 
 # Cliente -> servidor
 @rpc("any_peer","reliable","call_local")
