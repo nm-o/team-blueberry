@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=20 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bwvn0mon31cne" path="res://assets/OriginalAssets/bush.png" id="10_lhr70"]
 [ext_resource type="PackedScene" uid="uid://doxnc0hmbtcxs" path="res://scenes/crafting/stations/armor_station.tscn" id="12_qmy6f"]
 [ext_resource type="PackedScene" uid="uid://s0gjbcdlvf7p" path="res://scenes/material/Trees.tscn" id="14_mwfav"]
+[ext_resource type="PackedScene" uid="uid://jvdl1hfup0ga" path="res://scenes/material/RockIronNormal.tscn" id="15_3p2gp"]
+[ext_resource type="PackedScene" uid="uid://b435p1ib6kw3y" path="res://scenes/material/RockIronSmall.tscn" id="16_cvmbd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -135,3 +137,18 @@ position = Vector2(53, 279)
 
 [node name="WoodNode3" parent="." instance=ExtResource("14_mwfav")]
 position = Vector2(439, 293)
+
+[node name="RockIronNormal" parent="." instance=ExtResource("15_3p2gp")]
+position = Vector2(225, 229)
+
+[node name="RockIronNormal2" parent="." instance=ExtResource("15_3p2gp")]
+position = Vector2(165, 272)
+
+[node name="RockIronNormal3" parent="." instance=ExtResource("15_3p2gp")]
+position = Vector2(332, 271)
+
+[node name="RockIronNormal4" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(108, 277)
+
+[node name="RockIronNormal5" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(253, 291)
