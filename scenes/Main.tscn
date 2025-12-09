@@ -69,7 +69,7 @@ position = Vector2(155, 258)
 position = Vector2(57, -156)
 
 [node name="ArmorStation" parent="." instance=ExtResource("12_qmy6f")]
-position = Vector2(347, 121)
+position = Vector2(224, -136)
 
 [node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
 position = Vector2(140, -136)
