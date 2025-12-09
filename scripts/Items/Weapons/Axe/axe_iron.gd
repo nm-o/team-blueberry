@@ -7,4 +7,4 @@ func _init() -> void:
 	texture = "res://assets/Items/Craftables/axe_iron.png"
 	max_number = 1
 	name = "Iron Axe"
-	base_damage = 10
+	base_damage = 13
