@@ -419,7 +419,7 @@ func drop_item(_pos, item_to_drop, drop_id):
 	item_drop.global_position = global_position
 
 func _interaction_area_entered(area: Area2D):
-	if not selected_areas.is_empty():
+	if selected_areas.back() and not selected_areas.is_empty():
 		selected_areas.back().interaction_name_label.visible = false
 	selected_areas.append(area.owner)
 	selected_areas.back().interaction_name_label.visible = true
