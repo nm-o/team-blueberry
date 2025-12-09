@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=22 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://s0gjbcdlvf7p" path="res://scenes/material/Trees.tscn" id="14_mwfav"]
 [ext_resource type="PackedScene" uid="uid://jvdl1hfup0ga" path="res://scenes/material/RockIronNormal.tscn" id="15_3p2gp"]
 [ext_resource type="PackedScene" uid="uid://b435p1ib6kw3y" path="res://scenes/material/RockIronSmall.tscn" id="16_cvmbd"]
+[ext_resource type="PackedScene" uid="uid://i0ibh6a8o0w8" path="res://scenes/material/RockLegendaryNormal.tscn" id="17_bb450"]
+[ext_resource type="PackedScene" uid="uid://txpgiyxiilg2" path="res://scenes/material/RockLegendarySmall.tscn" id="18_nfivy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -152,3 +154,9 @@ position = Vector2(108, 277)
 
 [node name="RockIronNormal5" parent="." instance=ExtResource("16_cvmbd")]
 position = Vector2(253, 291)
+
+[node name="RockIronNormal6" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(93, 336)
+
+[node name="RockIronSmall" parent="." instance=ExtResource("18_nfivy")]
+position = Vector2(189, 331)

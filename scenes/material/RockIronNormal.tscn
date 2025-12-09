@@ -23,10 +23,9 @@ item_drop_scene = ExtResource("3_s1vcl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(23, 91)
+position = Vector2(-2, 41)
 texture = SubResource("AtlasTexture_cudmk")
 offset = Vector2(0, -43)
-region_enabled = true
 region_rect = Rect2(0, 0, 75.732574, 129.03705)
 
 [node name="InteractionArea" type="Area2D" parent="."]
