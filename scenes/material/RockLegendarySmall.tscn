@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://txpgiyxiilg2"]
 
 [ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_rdi6p"]
-[ext_resource type="Script" uid="uid://wxuareie4px1" path="res://scripts/Items/Materials/iron.gd" id="2_bep1p"]
+[ext_resource type="Script" uid="uid://ce6dy1myxbcf0" path="res://scripts/Items/Materials/legendary_mineral.gd" id="2_rdi6p"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_mnt7f"]
 [ext_resource type="Texture2D" uid="uid://cmuggbkeyecq" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Rocks.png" id="4_lumuy"]
 
@@ -33,7 +33,7 @@ color = Color(0.5411765, 0.16862746, 0.8862745, 1)
 [node name="RockLegendarySmall" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_rdi6p")
-item_script = ExtResource("2_bep1p")
+item_script = ExtResource("2_rdi6p")
 item_drop_scene = ExtResource("3_mnt7f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
