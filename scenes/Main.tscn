@@ -68,11 +68,11 @@ position = Vector2(155, 258)
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
 position = Vector2(57, -156)
 
+[node name="ArmorStation" parent="." instance=ExtResource("12_qmy6f")]
+position = Vector2(347, 121)
+
 [node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
 position = Vector2(140, -136)
-
-[node name="ArmorStation" parent="." instance=ExtResource("12_qmy6f")]
-position = Vector2(220, -137)
 
 [node name="BossSpawnMarker" type="Marker2D" parent="."]
 position = Vector2(8622, 135)

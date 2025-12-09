@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dq1y0gfdadi83"]
 
-[ext_resource type="Script" uid="uid://dxfas5613irvn" path="res://scripts/crafting/armor_station_control.gd" id="1_reuw2"]
+[ext_resource type="Script" uid="uid://cgb8cgv6tq0tp" path="res://scripts/crafting/armor_station_control.gd" id="1_reuw2"]
 [ext_resource type="Texture2D" uid="uid://8hi1o750ye6t" path="res://assets/UI/UI_TravelBook_Spritesheet01a.png" id="2_70qyo"]
 [ext_resource type="PackedScene" uid="uid://cgfgnqu8fva07" path="res://scenes/Container.tscn" id="3_a0b2g"]
 [ext_resource type="Script" uid="uid://8hpxqrcfdfi1" path="res://scripts/Inventory/Containers/crafting_table_container.gd" id="4_xgcu0"]
@@ -74,6 +74,6 @@ offset_right = 330.0
 offset_bottom = 584.0
 theme = ExtResource("5_2eif6")
 theme_override_font_sizes/font_size = 32
-text = "Craft"
+text = "Brew"
 
 [connection signal="pressed" from="CraftButton" to="." method="_on_craft_button_pressed"]

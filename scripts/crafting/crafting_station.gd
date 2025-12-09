@@ -15,7 +15,7 @@ func interact():
 			return
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("inventory"):
+	if event.is_action_pressed("inventory") and interface.get_child(0).visible==true:
 		Mouse.player.inventory.change_visibility()
 		interface.get_child(0).visible = false
 		
