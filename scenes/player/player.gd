@@ -498,4 +498,13 @@ func spawn_potion(effect: Global.States, time: int, target_pos: Vector2):
 	projectile.global_position = target_pos
 	projectile.effect = effect
 	projectile.effect_time = time
-	projectile.sprite.texture = load("res://assets/Items/Craftables/potion_frost_small.png")
+	
+	if effect == Global.States.HEALING:
+		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_heal_small.png")
+	elif effect == Global.States.HEALING_2:
+		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_heal_big.png")
+	
+	elif effect == Global.States.POISONED:
+		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_poison_small.png")
+	else:
+		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_poison_big.png")
