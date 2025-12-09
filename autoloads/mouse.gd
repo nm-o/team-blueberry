@@ -22,6 +22,13 @@ signal teleport_started(to_coliseum)
 signal defeat_ui()
 signal super_victory
 
+func update_modifier(index: int, modifier: float):
+	if index in [0,1,2]:
+		player.class_config.defense_modifier_array[index] = modifier
+		var updated_full_modifier: float = player.class_config.defense_modifier_array.reduce(func(acc, num): return acc+num)
+		player.class_config.defense_modifier = updated_full_modifier
+		print("updated_modifier ", player.class_config.defense_modifier)
+		
 func get_drop_id():
 	drop_id_first += 1
 	if drop_id_first > 100000:

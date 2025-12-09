@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1")
+role_name = &"WeaponMaster"
 movement_speed = 500.0
+label_role_text = "Weapon Master"
 sprite_texture = ExtResource("2_iw5tq")
 metadata/_custom_type_script = "uid://jjifgdyvywmv"

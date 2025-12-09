@@ -303,6 +303,7 @@ theme = ExtResource("12_ylenm")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8392157)
 theme_override_constants/outline_size = 10
 value = 100.0
+show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="HealthBar"]
 self_modulate = Color(0.6784314, 1, 0.56078434, 1)
@@ -312,6 +313,16 @@ offset_top = 6.0
 offset_right = 353.0
 offset_bottom = 49.0
 texture = ExtResource("13_brsb2")
+
+[node name="Label" type="Label" parent="HealthBar"]
+layout_mode = 0
+offset_top = 21.111113
+offset_right = 275.55554
+offset_bottom = 37.111115
+theme = ExtResource("12_ylenm")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+horizontal_alignment = 1
 
 [node name="ProtectBar" type="ProgressBar" parent="."]
 visible = false

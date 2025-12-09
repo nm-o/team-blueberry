@@ -5,7 +5,8 @@ class_name PlayerClassConfig
 @export var hp: int = 100
 @export var movement_speed: float = 300.0
 @export var attack: int = 10
-@export var defense: int = 10
+@export var defense_modifier: float = 0
+@export var defense_modifier_array: Array[float] = [0,0,0]
 
 @export var label_role_text: String = ""
 @export var starting_items: Array[String] = [] # rutas a scripts de ítems
