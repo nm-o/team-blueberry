@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="PlayerClassConfig" load_steps=2 format=3 uid="uid://b5oooqtegddn3"]
+[gd_resource type="Resource" script_class="PlayerClassConfig" load_steps=3 format=3 uid="uid://b5oooqtegddn3"]
 
 [ext_resource type="Script" uid="uid://jjifgdyvywmv" path="res://scenes/player/resources/PlayerClassConfig.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://djk04wpi44d73" path="res://assets/OriginalAssets/alchemist_sprites.png" id="2_lchug"]
 
 [resource]
 script = ExtResource("1")
-hp = 90
+role_name = &"Alchemist"
 movement_speed = 500.0
-attack = 8
-defense = 4
 label_role_text = "Alchemist"
 starting_items = Array[String](["res://scripts/Items/Weapons/Sword/sword_legendary.gd", "res://scripts/Items/Potions/potion_freeze_2.gd", "res://scripts/Items/Potions/potion_heal_2.gd", "res://scripts/Items/Potions/potion_poison_1.gd"])
+sprite_texture = ExtResource("2_lchug")
 metadata/_custom_type_script = "uid://jjifgdyvywmv"
