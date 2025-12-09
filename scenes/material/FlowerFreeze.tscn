@@ -14,7 +14,7 @@ size = Vector2(14, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tw41j"]
 size = Vector2(15, 17)
 
-[node name="FlowerPoison" type="Node2D"]
+[node name="FlowerFreeze" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u1xxc")
 item_script = ExtResource("2_u1xxc")

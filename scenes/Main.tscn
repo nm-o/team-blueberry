@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=24 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://b435p1ib6kw3y" path="res://scenes/material/RockIronSmall.tscn" id="16_cvmbd"]
 [ext_resource type="PackedScene" uid="uid://i0ibh6a8o0w8" path="res://scenes/material/RockLegendaryNormal.tscn" id="17_bb450"]
 [ext_resource type="PackedScene" uid="uid://txpgiyxiilg2" path="res://scenes/material/RockLegendarySmall.tscn" id="18_nfivy"]
+[ext_resource type="PackedScene" uid="uid://suckk7u7yjhf" path="res://scenes/material/FlowerPoison.tscn" id="19_nfivy"]
+[ext_resource type="PackedScene" uid="uid://7q8v2l6yq4k4" path="res://scenes/material/Water.tscn" id="20_1nqs0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -160,3 +162,105 @@ position = Vector2(93, 336)
 
 [node name="RockIronSmall" parent="." instance=ExtResource("18_nfivy")]
 position = Vector2(189, 331)
+
+[node name="FlowerPoison" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(49, 329)
+
+[node name="Water" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 1
+
+[node name="Water2" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 2
+
+[node name="Water3" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+
+[node name="Water4" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 4
+
+[node name="Water5" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 5
+
+[node name="Water6" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 6
+
+[node name="Water7" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 7
+
+[node name="Water8" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 8
+
+[node name="Water9" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 9
+
+[node name="Water10" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 10
+
+[node name="Water11" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 11
+
+[node name="Water12" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 12
+
+[node name="Water13" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 13
+
+[node name="Water14" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 14
+
+[node name="Water15" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 15
+
+[node name="Water16" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 16
+
+[node name="Water17" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 17
+
+[node name="Water18" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 18
+
+[node name="Water19" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 19
+
+[node name="Water20" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 20
