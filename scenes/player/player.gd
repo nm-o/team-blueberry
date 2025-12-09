@@ -47,7 +47,7 @@ var rolling: bool = false
 
 @export var potion_max_range: float = 300.0
 @export var max_hp = 100
-@export var hp = 100
+@export var hp:float = 100
 @export var invulneravility_time: float = 0.1
 @export var potion_projectile_scene: PackedScene
 
@@ -136,7 +136,9 @@ func do_damage_server(damage: int):
 
 @rpc("any_peer", "call_local", "reliable")
 func do_damage(damage: int):
-	hp -= damage
+	var real_damage: float = float(damage) - float(damage)*class_config.defense_modifier
+	
+	hp -= real_damage
 	inventory.health_bar.value = hp
 	if hp <= 0 and not is_dead:
 		is_dead = true
