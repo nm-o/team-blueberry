@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://bnqpng0o60r43"
 
 [node name="Game" type="Node"]
 script = ExtResource("1_fmbhi")
+multiplayer_test = true
 unique_roles = false
 all_roles = false
 min_players = 1
