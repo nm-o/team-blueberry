@@ -7,4 +7,4 @@ func _init() -> void:
 	texture = "res://assets/Items/Craftables/spear_legendary.png"
 	max_number = 1
 	name = "Legendary Spear"
-	base_damage = 20
+	base_damage = 10

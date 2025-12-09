@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="PlayerClassConfig" load_steps=2 format=3 uid="uid://0o8u14ypf3ms"]
+[gd_resource type="Resource" script_class="PlayerClassConfig" load_steps=3 format=3 uid="uid://0o8u14ypf3ms"]
 
 [ext_resource type="Script" uid="uid://jjifgdyvywmv" path="res://scenes/player/resources/PlayerClassConfig.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwva5n3g6uhft" path="res://assets/OriginalAssets/weapon_master_sprites.png" id="2_iw5tq"]
 
 [resource]
 script = ExtResource("1")
+role_name = &"WeaponMaster"
 movement_speed = 500.0
-attack = 12
-defense = 6
+label_role_text = "Weapon Master"
+sprite_texture = ExtResource("2_iw5tq")
 metadata/_custom_type_script = "uid://jjifgdyvywmv"
