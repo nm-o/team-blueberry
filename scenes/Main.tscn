@@ -127,4 +127,10 @@ position = Vector2(247.5, 376)
 shape = SubResource("RectangleShape2D_wp0k4")
 
 [node name="WoodNode" parent="." instance=ExtResource("14_mwfav")]
-position = Vector2(47, 86)
+position = Vector2(37, 125)
+
+[node name="WoodNode2" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(453, 85)
+
+[node name="WoodNode3" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(462, 226)
