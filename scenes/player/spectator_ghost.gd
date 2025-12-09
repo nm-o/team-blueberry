@@ -4,11 +4,9 @@ var player_is_dead: bool = false
 @export var max_speed = 400
 @export var acceleration = 1000
 @onready var ghost_sprite: AnimatedSprite2D = $Node2D/GhostSprite
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	set_physics_process(false)
-	collision_shape_2d.set_deferred("disabled", true)
 
 func _physics_process(delta: float) -> void:
 	var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()
@@ -20,6 +18,5 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func set_spawn_position(givenPosition):
-	collision_shape_2d.set_deferred("disabled", false)
 	set_physics_process(true)
 	global_position = givenPosition

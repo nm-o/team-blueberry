@@ -8,6 +8,7 @@ class_name Player
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var collision_shape_2d: CollisionShape2D = $Hurtbox/CollisionShape2D
+@onready var ghost_collision_shape_2d: CollisionShape2D = $SpectatorGhost/CollisionShape2D
 
 # Inventario e interacción
 var is_inventory_open: bool = false
@@ -151,6 +152,14 @@ func ghost_enabled(is_enabled: bool):
 	spectator_ghost.top_level = is_enabled
 	spectator_ghost.set_physics_process(is_enabled)
 	spectator_ghost.set_spawn_position(global_position)
+	if is_enabled:
+		ghost_collision_shape_2d.disabled = false
+		self.remove_child(personal_camera_2d)
+		spectator_ghost.add_child(personal_camera_2d)
+	else:
+		ghost_collision_shape_2d.disabled = true
+		spectator_ghost.remove_child(personal_camera_2d)
+		self.add_child(personal_camera_2d)
 
 func _ready() -> void:
 	_init_state_system()
@@ -166,6 +175,7 @@ func _ready() -> void:
 	if health_component:
 		health_component.damaged.connect(_on_damaged)
 		health_component.died.connect(_on_died)
+	ghost_collision_shape_2d.disabled = true
 
 func attack_primary(item: Item) -> void:
 	if is_multiplayer_authority():
@@ -274,7 +284,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 		personal_camera_2d = Camera2D.new()
 		personal_camera_2d.zoom = Vector2(2.5, 2.5)
 		personal_camera_2d.position = Vector2(0, 0)
-		spectator_ghost.add_child(personal_camera_2d)
+		self.add_child(personal_camera_2d)
 		personal_camera_2d.make_current()
 		inventory.select_container(0)
 
