@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csby21otrqwhi"]
+
+[ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_drhh5"]
+
+[node name="WoodNode" type="Node2D"]
+script = ExtResource("1_drhh5")
