@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=18 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dnwafjt81mbgi" path="res://scripts/teleport_area.gd" id="8_jlsqs"]
 [ext_resource type="Texture2D" uid="uid://bwvn0mon31cne" path="res://assets/OriginalAssets/bush.png" id="10_lhr70"]
 [ext_resource type="PackedScene" uid="uid://doxnc0hmbtcxs" path="res://scenes/crafting/stations/armor_station.tscn" id="12_qmy6f"]
+[ext_resource type="PackedScene" uid="uid://s0gjbcdlvf7p" path="res://scenes/material/WoodNode.tscn" id="14_mwfav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -124,3 +125,6 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreasObstacle/Area2/Area2D"]
 position = Vector2(247.5, 376)
 shape = SubResource("RectangleShape2D_wp0k4")
+
+[node name="WoodNode" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(47, 86)
