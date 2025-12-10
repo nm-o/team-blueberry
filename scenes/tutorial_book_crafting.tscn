@@ -1,0 +1,125 @@
+[gd_scene load_steps=8 format=3 uid="uid://chgm2uotlss2p"]
+
+[ext_resource type="Texture2D" uid="uid://8hi1o750ye6t" path="res://assets/UI/UI_TravelBook_Spritesheet01a.png" id="1_ejmpy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ejmpy"]
+load_path = "res://.godot/imported/UI_TravelBook_Spritesheet01a.png-9bec2e396cc5f9a7414787b7c832f599.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5ytn"]
+texture = SubResource("CompressedTexture2D_ejmpy")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(64, 32, 224, 160)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p5ytn"]
+load_path = "res://.godot/imported/UI_TravelBook_Spritesheet01a.png-9bec2e396cc5f9a7414787b7c832f599.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c3af2"]
+texture = SubResource("CompressedTexture2D_p5ytn")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(304, 32, 104, 147)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ialms"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1ypt"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+texture = ExtResource("1_ejmpy")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 3.3691866
+region_rect = Rect2(65, 433, 62, 14)
+modulate_color = Color(1, 1, 1, 0.4117647)
+
+[node name="tutorial_book_crafting" type="CanvasLayer"]
+
+[node name="BackCover" type="MarginContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="BackCover"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_p5ytn")
+
+[node name="Page" type="MarginContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 110
+
+[node name="PanelContainer" type="PanelContainer" parent="Page"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_c3af2")
+
+[node name="Contents" type="MarginContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 125
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_right = 125
+theme_override_constants/margin_bottom = 115
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Contents"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ialms")
+
+[node name="MarginContainer" type="MarginContainer" parent="Contents/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "Crafting"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.85
+theme_override_constants/separation = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_n1ypt")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_n1ypt")
+
+[node name="PanelContainer3" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_n1ypt")
