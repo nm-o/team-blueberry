@@ -76,7 +76,7 @@ shape = SubResource("RectangleShape2D_jlsqs")
 position = Vector2(8513, 221)
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
-position = Vector2(238, 817)
+position = Vector2(112, -53)
 
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
 position = Vector2(57, -156)
