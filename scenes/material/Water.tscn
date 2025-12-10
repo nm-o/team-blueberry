@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://7q8v2l6yq4k4"]
+
+[ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_fb6hq"]
+[ext_resource type="Script" uid="uid://c1t5gmbr3fh0a" path="res://scripts/Items/Materials/water.gd" id="2_fb6hq"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_qidc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evfd0"]
+size = Vector2(14, 15)
+
+[node name="Water" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_fb6hq")
+item_script = ExtResource("2_fb6hq")
+item_drop_scene = ExtResource("3_qidc8")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-2, -1.5)
+shape = SubResource("RectangleShape2D_evfd0")
+
+[node name="InteractionName" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://d32higtxc8ghf"]
+
+[ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_n4wks"]
+[ext_resource type="Script" uid="uid://b15ccvffay5my" path="res://scripts/Items/Materials/magic_crystal.gd" id="2_n4wks"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_uny8f"]
+[ext_resource type="Texture2D" uid="uid://cmuggbkeyecq" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Rocks.png" id="4_sgyii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cudmk"]
+atlas = ExtResource("4_sgyii")
+region = Rect2(131, 19, 26, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evfd0"]
+size = Vector2(25, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tw41j"]
+size = Vector2(24, 24)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dp1ee"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.72
+gravity = Vector3(0, -15, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 11.719997
+color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
+[node name="RockLegendaryNormal" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_n4wks")
+item_script = ExtResource("2_n4wks")
+amount = 3
+item_drop_scene = ExtResource("3_uny8f")
+max_clicks = 14
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-2, 41)
+texture = SubResource("AtlasTexture_cudmk")
+offset = Vector2(0, -43)
+region_rect = Rect2(0, 0, 75.732574, 129.03705)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-2, -4)
+shape = SubResource("RectangleShape2D_evfd0")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 43
+collision_mask = 43
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 14)
+shape = SubResource("RectangleShape2D_tw41j")
+
+[node name="InteractionName" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(-2, 0)
+amount = 6
+amount_ratio = 0.8425
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_dp1ee")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://kq8v4tvjrapx"]
+
+[ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_howcw"]
+[ext_resource type="Script" uid="uid://dpsypcxlkauws" path="res://scripts/Items/Materials/wood.gd" id="2_li8wq"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_jwrjs"]
+[ext_resource type="Texture2D" uid="uid://bywuehd7jdtr0" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Trees/Model_01/Size_04.png" id="4_tgycr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na1ff"]
+atlas = ExtResource("4_tgycr")
+region = Rect2(3, 130, 73, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na1ff"]
+size = Vector2(25, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al3ru"]
+size = Vector2(31, 26)
+
+[node name="TreeNode" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_howcw")
+item_script = ExtResource("2_li8wq")
+amount = 3
+item_drop_scene = ExtResource("3_jwrjs")
+max_clicks = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(1, -5)
+texture = SubResource("AtlasTexture_na1ff")
+offset = Vector2(0, -43)
+region_enabled = true
+region_rect = Rect2(0, 0, 75.732574, 129.03705)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-2, -4)
+shape = SubResource("RectangleShape2D_na1ff")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 43
+collision_mask = 43
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, 16)
+shape = SubResource("RectangleShape2D_al3ru")
+
+[node name="InteractionName" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
