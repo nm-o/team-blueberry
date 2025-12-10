@@ -75,21 +75,32 @@ func _explode():
 
 func _apply_effect_to_area():
 	var bodies = effect_area.get_overlapping_bodies()
+	var small = true
 	print("POCION: cuerpos en el área:", bodies)  # debug
 
 	for body in bodies:
 		print(" - body:", body, " type:", body.get_class(), " effect:", effect) # debug
 		if body is Boss and effect == Global.States.POISONED:
 			print("Aplicando multi-hit veneno al boss")  # debug
-			_poison_multi_hit_boss(body)
+			_poison_multi_hit_boss(body, small)
+		elif body is Boss and effect == Global.States.POISONED_2:
+			print("Aplicando multi-hit veneno al boss") 
+			small = false
+			_poison_multi_hit_boss(body, small)
 		elif body.has_method("apply_status_effect"):
 			print("Aplicando estado normal a:", body)   # debug
 			body.apply_status_effect(effect, effect_time)
 
 
-func _poison_multi_hit_boss(boss: Boss) -> void:
-	var hits := 5         
-	var dmg_per_hit := 10
+func _poison_multi_hit_boss(boss: Boss, small: bool) -> void:
+	var hits := 1
+	
+	var dmg_per_hit: int
+
+	if small:
+		dmg_per_hit = 40
+	else:
+		dmg_per_hit = 60
 
 	for i in hits:
 		if not is_instance_valid(boss):

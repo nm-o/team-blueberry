@@ -96,7 +96,10 @@ func apply_status_effect(state: Global.States, duration: int):
 				inventory.health_bar.value = hp
 
 		Global.States.FROZEN:
-			max_speed = 0
+			max_speed = 100
+
+		Global.States.FROZEN_2:
+			max_speed = 500
 
 		Global.States.POISONED:
 			_apply_poison_damage(duration, 5)
@@ -548,5 +551,10 @@ func spawn_potion(effect: Global.States, time: int, target_pos: Vector2):
 	
 	elif effect == Global.States.POISONED:
 		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_poison_small.png")
-	else:
+	elif effect == Global.States.POISONED_2:
 		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_poison_big.png")
+
+	elif effect == Global.States.FROZEN:
+		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_frost_small.png")
+	elif effect == Global.States.FROZEN_2:
+		projectile.sprite.texture = load("res://assets/Items/Craftables/potion_frost_big.png")
