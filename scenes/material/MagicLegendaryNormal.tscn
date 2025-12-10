@@ -25,6 +25,7 @@ radial_accel_max = 11.719997
 color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
 [node name="RockLegendaryNormal" type="Node2D"]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_n4wks")
 item_script = ExtResource("2_n4wks")

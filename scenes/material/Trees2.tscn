@@ -24,6 +24,7 @@ item_drop_scene = ExtResource("3_nxueu")
 max_clicks = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(1, -5)
 texture = SubResource("AtlasTexture_na1ff")

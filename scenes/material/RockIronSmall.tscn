@@ -16,6 +16,7 @@ size = Vector2(19, 16)
 size = Vector2(16, 19)
 
 [node name="RockIronSmall" type="Node2D"]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_i8usq")
 item_script = ExtResource("2_x07by")
