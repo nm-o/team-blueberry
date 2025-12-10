@@ -99,9 +99,9 @@ func _poison_multi_hit_boss(boss: Boss, small: bool) -> void:
 	var dmg_per_hit: int
 
 	if small:
-		dmg_per_hit = 40
+		dmg_per_hit = 15
 	else:
-		dmg_per_hit = 60
+		dmg_per_hit = 25
 
 	for i in hits:
 		if not is_instance_valid(boss):
