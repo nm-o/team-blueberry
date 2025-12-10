@@ -82,6 +82,7 @@ func _handle_server_disconnected() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func go_to_lobby() -> void:
+	AudioController.play_music_main_menu()
 	get_tree().change_scene_to_file("res://lobby/waiting_screen.tscn")
 
 
@@ -117,6 +118,7 @@ func send_data(data: Dictionary) -> void:
 
 
 func reset() -> void:
+	AudioController.play_music_main_menu()
 	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	Game.players = []

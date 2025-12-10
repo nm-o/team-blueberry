@@ -1,0 +1,70 @@
+[gd_scene load_steps=15 format=3 uid="uid://4evvtg8tnlxh"]
+
+[ext_resource type="Script" uid="uid://ds4c4ipfpuskh" path="res://autoloads/audio_controller.gd" id="1_qgp0m"]
+[ext_resource type="AudioStream" uid="uid://du53ff56ft6xv" path="res://audio/music/musica_juego_1_version_2_2.mp3" id="2_bx32u"]
+[ext_resource type="AudioStream" uid="uid://da162c4cuela4" path="res://audio/music/musica_juego_2_version_1.mp3" id="3_yjedv"]
+[ext_resource type="AudioStream" uid="uid://6kkhtqvfw0e7" path="res://audio/music/music_boss_bird.mp3" id="4_yjedv"]
+[ext_resource type="AudioStream" uid="uid://d14a2i0yx8s8d" path="res://audio/music/music_boss_robot.wav" id="5_rfsbp"]
+[ext_resource type="AudioStream" uid="uid://bqg143tnpeqrr" path="res://audio/music/music_boss_final.wav" id="6_kpqlf"]
+[ext_resource type="AudioStream" uid="uid://dolwx6m3agylo" path="res://audio/sfx/sfx_bird_cry.wav" id="7_flni4"]
+[ext_resource type="AudioStream" uid="uid://daow7ila6wkw3" path="res://audio/sfx/sfx_failure.mp3" id="8_6ibiu"]
+[ext_resource type="AudioStream" uid="uid://ca2cael1rvbbl" path="res://audio/sfx/sfx_final_boss_appear.wav" id="9_w4mvm"]
+[ext_resource type="AudioStream" uid="uid://cbmkmvextelk2" path="res://audio/sfx/sfx_robot_appear.wav" id="10_5ykd7"]
+[ext_resource type="AudioStream" uid="uid://5pae174vshrc" path="res://audio/sfx/sfx_super_victory.wav" id="11_wv3nc"]
+[ext_resource type="AudioStream" uid="uid://dkuwtokatahic" path="res://audio/sfx/sfx_use_potion.wav" id="12_eqjyc"]
+[ext_resource type="AudioStream" uid="uid://dthcddiqma0mo" path="res://audio/sfx/sfx_victory.wav" id="13_lnr07"]
+[ext_resource type="AudioStream" uid="uid://dinw1vc8psa0" path="res://audio/sfx/sfx_woosh.wav" id="14_s817g"]
+
+[node name="AudioController" type="Node2D"]
+script = ExtResource("1_qgp0m")
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="main_menu" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_bx32u")
+volume_db = -40.0
+
+[node name="phase1" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_yjedv")
+volume_db = -40.0
+
+[node name="bird_boss" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_yjedv")
+volume_db = -40.0
+
+[node name="robot_boss" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("5_rfsbp")
+volume_db = -40.0
+
+[node name="final_boss" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("6_kpqlf")
+volume_db = -40.0
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="bird_cry" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_flni4")
+
+[node name="failure" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_6ibiu")
+volume_db = -30.0
+
+[node name="final_boss_bells" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_w4mvm")
+
+[node name="robot_appear" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_5ykd7")
+
+[node name="super_victory" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_wv3nc")
+volume_db = -30.0
+
+[node name="use_potion" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("12_eqjyc")
+
+[node name="victory" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("13_lnr07")
+volume_db = -30.0
+
+[node name="attack_woosh" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_s817g")

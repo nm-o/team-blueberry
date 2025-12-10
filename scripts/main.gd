@@ -50,8 +50,13 @@ func _spawn_boss(to_coliseum):
 	Mouse.boss_number = current_boss
 	add_child(boss)
 	boss.global_position = boss_spawn_marker.global_position
+	
+	# Music of the boss
+	AudioController.play_music_boss(current_boss-1)
 
 func _victory():
+	#Music
+	AudioController.fade_out_victory()
 	await get_tree().create_timer(6.0).timeout
 	collision_shape_2d.disabled = false
 	await get_tree().create_timer(3.5).timeout
@@ -62,6 +67,8 @@ func _victory():
 		player.hp = player.max_hp
 		player.ghost_enabled(false)
 		player.inventory.health_bar.value = player.hp
+	
+	AudioController.play_music_phase1()
 	await get_tree().create_timer(5.0).timeout
 	collision_shape_2d.disabled = true
 	
@@ -69,14 +76,19 @@ func _victory():
 	update_collecting_areas(current_boss-1)
 
 func _defeat():
+	AudioController.fade_out_defeat()
 	await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_packed(menu_scene)
 
 func _super_victory():
+	AudioController.fade_out_super_victory()
 	await get_tree().create_timer(7.0).timeout
 	get_tree().change_scene_to_packed(menu_scene)
 
 func _ready() -> void:
+	#Music
+	AudioController.play_music_phase1()
+	
 	Mouse.defeat_ui.connect(_defeat)
 	Mouse.boss_dead.connect(_victory)
 	Mouse.super_victory.connect(_super_victory)

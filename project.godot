@@ -23,6 +23,7 @@ Lobby="*res://autoloads/lobby.tscn"
 Global="*res://autoloads/global.gd"
 Mouse="*res://autoloads/mouse.gd"
 Combat="*res://autoloads/Combat.gd"
+AudioController="*res://autoloads/audio_controller.tscn"
 
 [display]
 

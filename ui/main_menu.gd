@@ -19,3 +19,6 @@ func _ready() -> void:
 	credits.pressed.connect(func(): get_tree().change_scene_to_file("res://lobby/credits.tscn"))
 	
 	host.grab_focus()
+	
+	#Music
+	AudioController.play_music_main_menu()
