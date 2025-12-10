@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=30 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://co2a80vch6u8q" path="res://scenes/material/MagicLegendarySmall.tscn" id="23_36rkl"]
 [ext_resource type="PackedScene" uid="uid://dcph2suudtlcq" path="res://scenes/material/FlowerFreeze.tscn" id="24_fs0b5"]
 [ext_resource type="PackedScene" uid="uid://kq8v4tvjrapx" path="res://scenes/material/Trees3.tscn" id="25_xa025"]
+[ext_resource type="PackedScene" uid="uid://doxnc0hmbtcxs" path="res://scenes/crafting/stations/armor_station.tscn" id="26_36rkl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -502,3 +503,6 @@ position = Vector2(280, 755)
 
 [node name="FlowerHeal4" parent="." instance=ExtResource("21_2ofn6")]
 position = Vector2(482, 895)
+
+[node name="ArmorStation" parent="." instance=ExtResource("26_36rkl")]
+position = Vector2(223, -136)
