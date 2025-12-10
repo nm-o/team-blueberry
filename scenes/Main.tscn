@@ -284,15 +284,6 @@ position = Vector2(451, 22)
 [node name="FlowerPoison" parent="." instance=ExtResource("19_nfivy")]
 position = Vector2(466, 161)
 
-[node name="FlowerPoison2" parent="." instance=ExtResource("19_nfivy")]
-position = Vector2(481, 138)
-
-[node name="FlowerPoison3" parent="." instance=ExtResource("19_nfivy")]
-position = Vector2(79, 337)
-
-[node name="FlowerPoison4" parent="." instance=ExtResource("19_nfivy")]
-position = Vector2(47, 211)
-
 [node name="TreeNode" parent="." instance=ExtResource("14_mwfav")]
 position = Vector2(452, 140)
 
@@ -369,9 +360,6 @@ position = Vector2(276, 655)
 
 [node name="FlowerFreeze9" parent="." instance=ExtResource("24_fs0b5")]
 position = Vector2(19, 795)
-
-[node name="FlowerHeal3" parent="." instance=ExtResource("21_2ofn6")]
-position = Vector2(212, 399)
 
 [node name="RockLegendaryNormal5" parent="." instance=ExtResource("22_xa025")]
 position = Vector2(388, 431)
@@ -489,14 +477,8 @@ position = Vector2(257, 828)
 [node name="FlowerHeal7" parent="." instance=ExtResource("21_2ofn6")]
 position = Vector2(36, 932)
 
-[node name="FlowerPoison9" parent="." instance=ExtResource("19_nfivy")]
-position = Vector2(17, 917)
-
 [node name="FlowerFreeze8" parent="." instance=ExtResource("24_fs0b5")]
 position = Vector2(12, 938)
-
-[node name="FlowerPoison5" parent="." instance=ExtResource("19_nfivy")]
-position = Vector2(211, 755)
 
 [node name="FlowerPoison6" parent="." instance=ExtResource("19_nfivy")]
 position = Vector2(280, 755)
