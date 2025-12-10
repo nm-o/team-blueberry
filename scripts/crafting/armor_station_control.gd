@@ -1,7 +1,7 @@
 extends CraftingControl
 
 # Must initiate this and recipes
-var accepted_player_roles = ["Alchemist"]
+var accepted_player_roles = ["ArmorMaster"]
 
 func _ready() -> void:
 	recipes = {
