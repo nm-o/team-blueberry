@@ -89,12 +89,12 @@ func apply_status_effect(state: Global.States, duration: int):
 	
 	match state:
 		Global.States.HEALING:
-			hp = min(hp + 50, max_hp)
+			hp = min(hp + 30, max_hp)
 			if inventory:
 				inventory.health_bar.value = hp
 
 		Global.States.HEALING_2:
-			hp = min(hp + 100, max_hp) 
+			hp = min(hp + 60, max_hp) 
 			if inventory:
 				inventory.health_bar.value = hp
 
