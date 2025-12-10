@@ -18,6 +18,11 @@ var current_bgm_stream: AudioStreamPlayer
 @onready var use_potion: AudioStreamPlayer = $SFX/use_potion
 @onready var victory: AudioStreamPlayer = $SFX/victory
 @onready var attack_woosh: AudioStreamPlayer = $SFX/attack_woosh
+@onready var craft_button: AudioStreamPlayer = $SFX/craft_button
+
+
+func play_button_pressed():
+	craft_button.play(0.2)
 
 func play_potion_glass_breaking():
 	use_potion.volume_db = -5.0

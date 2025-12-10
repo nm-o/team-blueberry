@@ -16,6 +16,7 @@ func super_ready() -> void:
 
 func _on_craft_button_pressed() -> void:
 	if recipes.has(current_items):
+		AudioController.play_button_pressed()
 		var winning_item = recipes[current_items]
 		var added = false
 		for child in get_children():
