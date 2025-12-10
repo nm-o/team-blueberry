@@ -29,7 +29,7 @@ var selected_areas: Array = []
 @export var player_id: int = -1
 
 # Movimiento
-@export var max_speed: int = 200
+@export var max_speed: float = 200.0
 @export var acceleration: int = 20000
 var target_position: Vector2
 var sprite_rotation: int = 1
@@ -66,6 +66,7 @@ var old_direction: Vector2 = Vector2(1,0)
 
 var current_state: Global.States = Global.States.NORMAL
 var state_timer: Timer
+var base_max_speed: float = 200.0
 
 func _init_state_system():
 	state_timer = Timer.new()
@@ -96,10 +97,10 @@ func apply_status_effect(state: Global.States, duration: int):
 				inventory.health_bar.value = hp
 
 		Global.States.FROZEN:
-			max_speed = 100
+			max_speed = base_max_speed * 1.5
 
 		Global.States.FROZEN_2:
-			max_speed = 500
+			max_speed = base_max_speed * 2.0
 
 		Global.States.POISONED:
 			_apply_poison_damage(duration, 5)
@@ -120,8 +121,7 @@ func _on_state_timeout():
 	current_state = Global.States.NORMAL
 	if inventory:
 		inventory.change_status(Global.States.NORMAL)
-	if max_speed == 0:
-		max_speed = 200
+	max_speed = base_max_speed
 
 
 func get_attacked(damage: int):
@@ -166,6 +166,7 @@ func ghost_enabled(is_enabled: bool):
 
 func _ready() -> void:
 	_init_state_system()
+	base_max_speed = max_speed
 	add_to_group("players")
 	selected_container_number = 0
 	mouse_sprite.top_level = true

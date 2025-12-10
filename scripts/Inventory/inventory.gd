@@ -161,6 +161,8 @@ func change_status(new_status: Global.States):
 #		current_status.frame = 1
 	if new_status == Global.States.FROZEN:
 		current_status.frame = 2
+	elif new_status == Global.States.FROZEN_2:
+		current_status.frame = 2
 	elif new_status == Global.States.POISONED:
 		current_status.frame = 3
 #	elif new_status == Global.States.HEALING_2:
