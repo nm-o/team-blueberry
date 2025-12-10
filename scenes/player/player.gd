@@ -52,6 +52,8 @@ var rolling: bool = false
 @export var invulneravility_time: float = 0.1
 @export var potion_projectile_scene: PackedScene
 
+@onready var potion_range_circle: Node2D = $PotionRangeCircle
+
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/playback")
@@ -170,6 +172,9 @@ func _ready() -> void:
 	add_to_group("players")
 	selected_container_number = 0
 	mouse_sprite.top_level = true
+	potion_range_circle.visible = false
+	potion_range_circle.set_radius(potion_max_range)
+
 	if item_drop_scene:
 		multiplayer_spawner.add_spawnable_scene(item_drop_scene.resource_path)
 	_apply_visuals_from_config()
@@ -206,6 +211,13 @@ func _physics_process(delta: float) -> void:
 		if not is_inventory_open:
 			# Selected object marker rotation
 			rotate_selected_obj.rpc(get_global_mouse_position())
+			
+			# Mostrar rango de las pociones si corresponde
+			if selected_item is Potion:
+				potion_range_circle.visible = true
+				potion_range_circle.global_position = global_position
+			else:
+				potion_range_circle.visible = false
 
 			# Movement
 			var move_input_vector := Input.get_vector("move_left","move_right","move_up","move_down").normalized()

@@ -15,20 +15,29 @@ func activate(type: String, damage: int):
 	if tween and tween.is_valid() or cooldown_timer.time_left != 0:
 		return
 	
+	var pitch_factor = 1.0
+	
 	# Ahora manejamos el tipo de arma para configurar la animación y el daño
 	var anim_speed: float = 1.0
 	if type=="spear":
 		anim_speed = 0.6
+		pitch_factor = 1.5
 	elif type=="sword":
 		anim_speed = 1.0
+		pitch_factor = 1.0
 	elif type=="axe":
 		anim_speed = 1.4
+		pitch_factor = 0.5
 
 	hitbox.damage = damage
-	do_attack_anim(anim_speed)
+	do_attack_anim(anim_speed, pitch_factor)
 
-func do_attack_anim(speed_factor: float = 1.0):
+func do_attack_anim(speed_factor: float = 1.0, pitch_factor: float = 1.0):
 	tween = create_tween()
+	
+	#AUDIO
+	AudioController.play_attack_woosh(pitch_factor)
+	
 	tween.tween_property(
 		double_pivot, "rotation",
 		double_pivot.rotation - deg_to_rad(35),
@@ -37,7 +46,7 @@ func do_attack_anim(speed_factor: float = 1.0):
 	await tween.finished
 
 	weapon_collision.disabled = false
-
+	
 	tween = create_tween()
 	tween.tween_property(
 		double_pivot, "rotation",

@@ -18,6 +18,7 @@ func _ready():
 	_set_collision_shape()
 	_set_color_from_effect()
 	_start_circle_animation()
+	AudioController.play_potion_glass_breaking()
 	await get_tree().create_timer(0.5).timeout
 	_explode()
 

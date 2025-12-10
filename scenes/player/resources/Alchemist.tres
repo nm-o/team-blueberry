@@ -8,6 +8,6 @@ script = ExtResource("1")
 role_name = &"Alchemist"
 movement_speed = 500.0
 label_role_text = "Alchemist"
-starting_items = Array[String](["res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_2.gd", "res://scripts/Items/Potions/potion_freeze_2.gd"])
+starting_items = Array[String](["res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_1.gd", "res://scripts/Items/Potions/potion_freeze_2.gd", "res://scripts/Items/Potions/potion_freeze_2.gd", "res://scripts/Items/Weapons/Sword/sword_iron.gd", "res://scripts/Items/Weapons/Spear/spear_iron.gd", "res://scripts/Items/Weapons/Axe/axe_iron.gd"])
 sprite_texture = ExtResource("2_lchug")
 metadata/_custom_type_script = "uid://jjifgdyvywmv"

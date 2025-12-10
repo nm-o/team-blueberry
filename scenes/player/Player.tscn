@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=34 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b3jj3snioasel" path="res://scenes/player/spectator_ghost.gd" id="9_pn6s4"]
 [ext_resource type="Texture2D" uid="uid://6ygf2upi4mgl" path="res://assets/OriginalAssets/ghost_anim.png" id="10_7oing"]
 [ext_resource type="Script" uid="uid://b4dv5nl24aqe" path="res://scenes/combat/Hitbox.gd" id="11_5stf6"]
+[ext_resource type="Script" uid="uid://dqt370dhya4t6" path="res://scripts/potion_range_circle.gd" id="13_20koh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn6s4"]
 radius = 5.0
@@ -268,3 +269,7 @@ metadata/_custom_type_script = "uid://b4dv5nl24aqe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Instakill"]
 shape = SubResource("CircleShape2D_180ig")
+
+[node name="PotionRangeCircle" type="Node2D" parent="."]
+z_index = 5
+script = ExtResource("13_20koh")
