@@ -71,3 +71,4 @@ volume_db = -30.0
 
 [node name="attack_woosh" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("14_s817g")
+pitch_scale = 1.5

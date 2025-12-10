@@ -19,6 +19,14 @@ var current_bgm_stream: AudioStreamPlayer
 @onready var victory: AudioStreamPlayer = $SFX/victory
 @onready var attack_woosh: AudioStreamPlayer = $SFX/attack_woosh
 
+func play_potion_glass_breaking():
+	use_potion.volume_db = -5.0
+	use_potion.play()
+
+func play_attack_woosh(pitch_factor: float):
+	attack_woosh.volume_db = -5.0
+	attack_woosh.pitch_scale = pitch_factor
+	attack_woosh.play()
 
 func play_boss_appear(type: String):
 	if type=="bird":
