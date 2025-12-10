@@ -704,6 +704,8 @@ height = 2400.0
 radius = 24.020824
 
 [node name="MageBoss" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 128
 motion_mode = 1
 script = ExtResource("1_m85k4")
 bullet_scene = ExtResource("2_v6myu")
@@ -935,5 +937,7 @@ scale = Vector2(0.12, 1.1726073)
 texture = ExtResource("8_rioqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_6f7cc")
