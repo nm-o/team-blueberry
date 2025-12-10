@@ -22,6 +22,7 @@ func _ready() -> void:
 	attack_workflow()
 
 func spawn_boss():
+	AudioController.play_boss_appear("bird")
 	animation_player.play("spawn_animation")
 	await animation_player.animation_finished
 

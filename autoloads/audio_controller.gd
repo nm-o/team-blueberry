@@ -20,6 +20,17 @@ var current_bgm_stream: AudioStreamPlayer
 @onready var attack_woosh: AudioStreamPlayer = $SFX/attack_woosh
 
 
+func play_boss_appear(type: String):
+	if type=="bird":
+		bird_cry.volume_db = -30.0
+		bird_cry.play(2)
+	elif type=="robot":
+		robot_appear.volume_db = -35.0
+		robot_appear.play()
+	elif type=="final":
+		final_boss_bells.volume_db = -15.0
+		final_boss_bells.play(1.15)
+
 func change_music(new_music: AudioStreamPlayer):
 	if current_bgm_stream!=new_music:
 		if current_bgm_stream:
@@ -49,7 +60,7 @@ func fade_out_victory():
 
 func fade_out_defeat():
 	fade_audio(current_bgm_stream, 5, false)
-	failure.volume_db = -35.0
+	failure.volume_db = -30.0
 	failure.play()
 
 func fade_out_super_victory():
@@ -59,7 +70,7 @@ func fade_out_super_victory():
 
 func fade_audio(stream: AudioStreamPlayer, time: float, fade_in: bool):
 	var start_db = -80.0 if fade_in else stream.volume_db
-	var end_db = -40.0 if fade_in else -80.0
+	var end_db = -30.0 if fade_in else -80.0
 
 	if fade_in:
 		stream.volume_db = start_db

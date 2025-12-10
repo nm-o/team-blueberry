@@ -27,6 +27,7 @@ func after_attack(target_2):
 	super_laser_pivot.after_attack(target_2)
 
 func spawn_boss():
+	AudioController.play_boss_appear("final")
 	block_movement = true
 	animation_player.play("spawn_animation")
 	await animation_player.animation_finished
