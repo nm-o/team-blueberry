@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://clk1rpavw7sdw"]
+[gd_scene load_steps=33 format=3 uid="uid://clk1rpavw7sdw"]
 
 [ext_resource type="Script" uid="uid://bttblhc7kpuef" path="res://scenes/player/player.gd" id="1_4kuee"]
 [ext_resource type="Resource" uid="uid://b5oooqtegddn3" path="res://scenes/player/resources/Alchemist.tres" id="2_524rm"]
@@ -138,6 +138,10 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_180ig"]
+radius = 4.0
+height = 12.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_180ig"]
 radius = 1207.6626
 
@@ -251,7 +255,7 @@ frame_progress = 0.05440998
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpectatorGhost"]
 position = Vector2(0, 3)
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_pn6s4")
+shape = SubResource("CapsuleShape2D_180ig")
 
 [node name="Instakill" type="Area2D" parent="."]
 collision_layer = 32

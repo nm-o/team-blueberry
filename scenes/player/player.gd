@@ -8,6 +8,7 @@ class_name Player
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var collision_shape_2d: CollisionShape2D = $Hurtbox/CollisionShape2D
+@onready var ghost_collision_shape_2d: CollisionShape2D = $SpectatorGhost/CollisionShape2D
 
 # Inventario e interacción
 var is_inventory_open: bool = false
@@ -47,7 +48,7 @@ var rolling: bool = false
 
 @export var potion_max_range: float = 300.0
 @export var max_hp = 100
-@export var hp = 100
+@export var hp:float = 100
 @export var invulneravility_time: float = 0.1
 @export var potion_projectile_scene: PackedScene
 
@@ -136,7 +137,9 @@ func do_damage_server(damage: int):
 
 @rpc("any_peer", "call_local", "reliable")
 func do_damage(damage: int):
-	hp -= damage
+	var real_damage: float = float(damage) - float(damage)*class_config.defense_modifier
+	
+	hp -= real_damage
 	inventory.health_bar.value = hp
 	if hp <= 0 and not is_dead:
 		is_dead = true
@@ -149,6 +152,14 @@ func ghost_enabled(is_enabled: bool):
 	spectator_ghost.top_level = is_enabled
 	spectator_ghost.set_physics_process(is_enabled)
 	spectator_ghost.set_spawn_position(global_position)
+	if is_enabled:
+		ghost_collision_shape_2d.disabled = false
+		self.remove_child(personal_camera_2d)
+		spectator_ghost.add_child(personal_camera_2d)
+	else:
+		ghost_collision_shape_2d.disabled = true
+		spectator_ghost.remove_child(personal_camera_2d)
+		self.add_child(personal_camera_2d)
 
 func _ready() -> void:
 	_init_state_system()
@@ -164,10 +175,11 @@ func _ready() -> void:
 	if health_component:
 		health_component.damaged.connect(_on_damaged)
 		health_component.died.connect(_on_died)
+	ghost_collision_shape_2d.disabled = true
 
-func attack_primary() -> void:
+func attack_primary(type: String, damage: int) -> void:
 	if is_multiplayer_authority():
-		activate_hitbox.rpc()
+		activate_hitbox.rpc(type, damage)
 
 func _on_damaged(_amount: int) -> void:
 	sprite_2d.modulate = Color(1, 0.6, 0.6)
@@ -226,7 +238,19 @@ func _physics_process(delta: float) -> void:
 
 	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui:
 		if selected_item is Weapon:
-			attack_primary()
+			var type: String = "sword"
+			var damage: int = 0
+			
+			if selected_item is Spear:
+				type = "spear"
+			elif selected_item is Sword:
+				type = "sword"
+			elif selected_item is Axe:
+				type = "axe"
+			damage = selected_item.base_damage
+			
+			attack_primary(type, damage)
+			
 		elif selected_item is Potion:
 			selected_item.use(self)
 			if inventory:
@@ -272,7 +296,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 		personal_camera_2d = Camera2D.new()
 		personal_camera_2d.zoom = Vector2(2.5, 2.5)
 		personal_camera_2d.position = Vector2(0, 0)
-		spectator_ghost.add_child(personal_camera_2d)
+		self.add_child(personal_camera_2d)
 		personal_camera_2d.make_current()
 		inventory.select_container(0)
 
@@ -484,8 +508,8 @@ func rotate_selected_obj(mouse_pos):
 	player_weapon.look_at(mouse_pos)
 
 @rpc("authority", "call_local", "reliable")
-func activate_hitbox():
-	player_weapon.activate()
+func activate_hitbox(type: String, damage: int):
+	player_weapon.activate(type, damage)
 
 func manage_update_item_sprite(sprite_path: String):
 	if is_multiplayer_authority():

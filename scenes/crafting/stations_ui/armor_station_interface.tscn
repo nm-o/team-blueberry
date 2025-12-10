@@ -33,9 +33,9 @@ offset_right = 1240.0
 offset_bottom = 680.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 105
-theme_override_constants/margin_top = 250
-theme_override_constants/margin_right = 850
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 140
+theme_override_constants/margin_right = 840
 theme_override_constants/margin_bottom = 210
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
@@ -44,21 +44,29 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_62twb")
 
 [node name="ItemContainer" parent="." instance=ExtResource("3_a0b2g")]
 layout_mode = 1
-offset_left = 211.0
-offset_top = 386.0
-offset_right = 211.0
-offset_bottom = 386.0
+offset_left = 197.0
+offset_top = 154.0
+offset_right = 197.0
+offset_bottom = 154.0
 script = ExtResource("4_xgcu0")
 
 [node name="ItemContainer2" parent="." instance=ExtResource("3_a0b2g")]
 layout_mode = 1
-offset_left = 116.0
+offset_left = 80.0
 offset_top = 270.0
-offset_right = 116.0
+offset_right = 80.0
 offset_bottom = 270.0
 script = ExtResource("4_xgcu0")
 
 [node name="ItemContainer3" parent="." instance=ExtResource("3_a0b2g")]
+layout_mode = 1
+offset_left = 197.0
+offset_top = 270.0
+offset_right = 197.0
+offset_bottom = 270.0
+script = ExtResource("4_xgcu0")
+
+[node name="ItemContainer4" parent="." instance=ExtResource("3_a0b2g")]
 layout_mode = 1
 offset_left = 313.0
 offset_top = 270.0
@@ -66,11 +74,19 @@ offset_right = 313.0
 offset_bottom = 270.0
 script = ExtResource("4_xgcu0")
 
+[node name="ItemContainer5" parent="." instance=ExtResource("3_a0b2g")]
+layout_mode = 1
+offset_left = 197.0
+offset_top = 386.0
+offset_right = 197.0
+offset_bottom = 386.0
+script = ExtResource("4_xgcu0")
+
 [node name="CraftButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 200.0
+offset_left = 186.0
 offset_top = 530.0
-offset_right = 330.0
+offset_right = 316.0
 offset_bottom = 584.0
 theme = ExtResource("5_2eif6")
 theme_override_font_sizes/font_size = 32

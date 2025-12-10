@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var hotbar_containers: Control = $HotbarContainers
 @onready var player: Player = $".."
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var hp_label: Label = $HealthBar/Label
 @onready var players_ready: VBoxContainer = $PlayersReady
 @onready var teleport_timer_label: Label = $TeleportTimerLabel
 @onready var teleport_timer: Timer = $TeleportTimer
@@ -36,6 +37,13 @@ func _ready() -> void:
 		players_ready.add_child(label)
 		label.MOUSE_FILTER_IGNORE
 	
+	protect_bar.max_value = 1
+	protect_bar.value = 0
+
+func _physics_process(delta: float) -> void:
+	hp_label.text = str(int(health_bar.value*100))
+	protect_bar.value = player.class_config.defense_modifier
+
 func _super_victory_ui():
 	var tween: Tween = create_tween()
 	tween.tween_property(super_victory_label, "modulate", Color(1,1,1,1), 1).set_ease(Tween.EASE_IN)
