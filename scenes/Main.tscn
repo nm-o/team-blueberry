@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=29 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -12,14 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://dkm2k2s7kku77" path="res://scenes/Tilemaps/Tilemap_ph2.tscn" id="6_c01mt"]
 [ext_resource type="Script" uid="uid://dnwafjt81mbgi" path="res://scripts/teleport_area.gd" id="8_jlsqs"]
 [ext_resource type="Texture2D" uid="uid://bwvn0mon31cne" path="res://assets/OriginalAssets/bush.png" id="10_lhr70"]
-[ext_resource type="PackedScene" uid="uid://doxnc0hmbtcxs" path="res://scenes/crafting/stations/armor_station.tscn" id="12_qmy6f"]
 [ext_resource type="PackedScene" uid="uid://s0gjbcdlvf7p" path="res://scenes/material/Trees.tscn" id="14_mwfav"]
 [ext_resource type="PackedScene" uid="uid://jvdl1hfup0ga" path="res://scenes/material/RockIronNormal.tscn" id="15_3p2gp"]
 [ext_resource type="PackedScene" uid="uid://b435p1ib6kw3y" path="res://scenes/material/RockIronSmall.tscn" id="16_cvmbd"]
 [ext_resource type="PackedScene" uid="uid://i0ibh6a8o0w8" path="res://scenes/material/RockLegendaryNormal.tscn" id="17_bb450"]
+[ext_resource type="PackedScene" uid="uid://blvvsj8bnq3dk" path="res://scenes/material/Trees2.tscn" id="18_bb450"]
 [ext_resource type="PackedScene" uid="uid://txpgiyxiilg2" path="res://scenes/material/RockLegendarySmall.tscn" id="18_nfivy"]
 [ext_resource type="PackedScene" uid="uid://suckk7u7yjhf" path="res://scenes/material/FlowerPoison.tscn" id="19_nfivy"]
 [ext_resource type="PackedScene" uid="uid://7q8v2l6yq4k4" path="res://scenes/material/Water.tscn" id="20_1nqs0"]
+[ext_resource type="PackedScene" uid="uid://cdh7o78hg7cqd" path="res://scenes/material/FlowerHeal.tscn" id="21_2ofn6"]
+[ext_resource type="PackedScene" uid="uid://d32higtxc8ghf" path="res://scenes/material/MagicLegendaryNormal.tscn" id="22_xa025"]
+[ext_resource type="PackedScene" uid="uid://co2a80vch6u8q" path="res://scenes/material/MagicLegendarySmall.tscn" id="23_36rkl"]
+[ext_resource type="PackedScene" uid="uid://dcph2suudtlcq" path="res://scenes/material/FlowerFreeze.tscn" id="24_fs0b5"]
+[ext_resource type="PackedScene" uid="uid://kq8v4tvjrapx" path="res://scenes/material/Trees3.tscn" id="25_xa025"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -71,13 +76,10 @@ shape = SubResource("RectangleShape2D_jlsqs")
 position = Vector2(8513, 221)
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
-position = Vector2(155, 258)
+position = Vector2(238, 817)
 
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
 position = Vector2(57, -156)
-
-[node name="ArmorStation" parent="." instance=ExtResource("12_qmy6f")]
-position = Vector2(347, 121)
 
 [node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
 position = Vector2(140, -136)
@@ -132,39 +134,6 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreasObstacle/Area2/Area2D"]
 position = Vector2(247.5, 376)
 shape = SubResource("RectangleShape2D_wp0k4")
-
-[node name="WoodNode" parent="." instance=ExtResource("14_mwfav")]
-position = Vector2(55, 161)
-
-[node name="WoodNode2" parent="." instance=ExtResource("14_mwfav")]
-position = Vector2(53, 279)
-
-[node name="WoodNode3" parent="." instance=ExtResource("14_mwfav")]
-position = Vector2(439, 293)
-
-[node name="RockIronNormal" parent="." instance=ExtResource("15_3p2gp")]
-position = Vector2(225, 229)
-
-[node name="RockIronNormal2" parent="." instance=ExtResource("15_3p2gp")]
-position = Vector2(165, 272)
-
-[node name="RockIronNormal3" parent="." instance=ExtResource("15_3p2gp")]
-position = Vector2(332, 271)
-
-[node name="RockIronNormal4" parent="." instance=ExtResource("16_cvmbd")]
-position = Vector2(108, 277)
-
-[node name="RockIronNormal5" parent="." instance=ExtResource("16_cvmbd")]
-position = Vector2(253, 291)
-
-[node name="RockIronNormal6" parent="." instance=ExtResource("17_bb450")]
-position = Vector2(93, 336)
-
-[node name="RockIronSmall" parent="." instance=ExtResource("18_nfivy")]
-position = Vector2(189, 331)
-
-[node name="FlowerPoison" parent="." instance=ExtResource("19_nfivy")]
-position = Vector2(49, 329)
 
 [node name="Water" parent="." instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
@@ -264,3 +233,257 @@ max_clicks = 19
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 20
+
+[node name="Water21" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 21
+
+[node name="Water22" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 22
+
+[node name="Water23" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 23
+
+[node name="Water24" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 24
+
+[node name="Water25" parent="." instance=ExtResource("20_1nqs0")]
+position = Vector2(163, 145)
+scale = Vector2(4, 4)
+max_clicks = 25
+
+[node name="RockIronNormal" parent="." instance=ExtResource("15_3p2gp")]
+position = Vector2(34, 333)
+
+[node name="RockIronSmall" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(219, 143)
+
+[node name="RockIronNormal2" parent="." instance=ExtResource("15_3p2gp")]
+position = Vector2(26, 55)
+
+[node name="RockIronSmall2" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(409, 319)
+amount = 1
+
+[node name="RockIronSmall3" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(437, 275)
+
+[node name="RockIronSmall4" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(201, 174)
+
+[node name="RockIronSmall5" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(451, 22)
+
+[node name="FlowerPoison" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(466, 161)
+
+[node name="FlowerPoison2" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(481, 138)
+
+[node name="FlowerPoison3" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(79, 337)
+
+[node name="FlowerPoison4" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(47, 211)
+
+[node name="TreeNode" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(452, 140)
+
+[node name="TreeNode2" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(76, 180)
+
+[node name="TreeNode3" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(374, 320)
+
+[node name="TreeNode4" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(140, 654)
+
+[node name="TreeNode6" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(142, 543)
+
+[node name="TreeNode7" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(144, 482)
+
+[node name="TreeNode8" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(146, 432)
+
+[node name="TreeNode9" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(326, 656)
+
+[node name="TreeNode10" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(328, 603)
+
+[node name="TreeNode11" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(324, 545)
+
+[node name="TreeNode12" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(325, 484)
+
+[node name="RockIronNormal3" parent="." instance=ExtResource("15_3p2gp")]
+position = Vector2(21, 657)
+
+[node name="RockIronSmall6" parent="." instance=ExtResource("16_cvmbd")]
+position = Vector2(484, 553)
+
+[node name="RockLegendaryNormal" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(48, 648)
+
+[node name="RockLegendaryNormal2" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(25, 620)
+
+[node name="RockLegendaryNormal3" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(378, 406)
+
+[node name="RockLegendarySmall" parent="." instance=ExtResource("18_nfivy")]
+position = Vector2(196, 584)
+
+[node name="RockLegendarySmall2" parent="." instance=ExtResource("18_nfivy")]
+position = Vector2(272, 619)
+
+[node name="RockLegendarySmall3" parent="." instance=ExtResource("18_nfivy")]
+position = Vector2(185, 557)
+
+[node name="RockLegendaryNormal4" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(113, 402)
+
+[node name="FlowerHeal" parent="." instance=ExtResource("21_2ofn6")]
+position = Vector2(212, 657)
+
+[node name="FlowerHeal2" parent="." instance=ExtResource("21_2ofn6")]
+position = Vector2(276, 655)
+
+[node name="FlowerFreeze9" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(19, 795)
+
+[node name="FlowerHeal3" parent="." instance=ExtResource("21_2ofn6")]
+position = Vector2(212, 399)
+
+[node name="RockLegendaryNormal5" parent="." instance=ExtResource("22_xa025")]
+position = Vector2(388, 431)
+
+[node name="RockLegendarySmall4" parent="." instance=ExtResource("23_36rkl")]
+position = Vector2(54, 627)
+
+[node name="FlowerFreeze" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(278, 406)
+
+[node name="FlowerFreeze2" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(89, 542)
+
+[node name="FlowerFreeze3" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(472, 534)
+
+[node name="FlowerFreeze4" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(132, 95)
+
+[node name="FlowerFreeze5" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(472, 335)
+
+[node name="FlowerFreeze6" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(320, 18)
+
+[node name="TreeNode14" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(79, 893)
+
+[node name="TreeNode16" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(157, 891)
+
+[node name="TreeNode18" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(144, 778)
+
+[node name="TreeNode19" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(111, 779)
+
+[node name="TreeNode17" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(375, 893)
+
+[node name="TreeNode22" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(445, 892)
+
+[node name="TreeNode24" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(399, 780)
+
+[node name="TreeNode25" parent="." instance=ExtResource("25_xa025")]
+position = Vector2(365, 778)
+
+[node name="TreeNode15" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(118, 892)
+
+[node name="TreeNode20" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(78, 776)
+
+[node name="TreeNode21" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(411, 891)
+
+[node name="TreeNode23" parent="." instance=ExtResource("18_bb450")]
+position = Vector2(425, 779)
+
+[node name="TreeNode13" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(324, 441)
+
+[node name="TreeNode5" parent="." instance=ExtResource("14_mwfav")]
+position = Vector2(140, 596)
+
+[node name="RockLegendaryNormal6" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(28, 881)
+
+[node name="RockLegendaryNormal7" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(42, 908)
+
+[node name="RockLegendaryNormal8" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(209, 709)
+
+[node name="RockLegendaryNormal9" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(210, 731)
+
+[node name="RockLegendaryNormal10" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(279, 714)
+
+[node name="RockLegendaryNormal11" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(279, 733)
+
+[node name="RockLegendaryNormal12" parent="." instance=ExtResource("17_bb450")]
+position = Vector2(482, 947)
+
+[node name="RockLegendaryNormal13" parent="." instance=ExtResource("22_xa025")]
+position = Vector2(18, 771)
+
+[node name="RockLegendaryNormal14" parent="." instance=ExtResource("22_xa025")]
+position = Vector2(463, 935)
+
+[node name="RockLegendarySmall5" parent="." instance=ExtResource("23_36rkl")]
+position = Vector2(458, 722)
+
+[node name="FlowerPoison8" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(244, 844)
+
+[node name="FlowerHeal6" parent="." instance=ExtResource("21_2ofn6")]
+position = Vector2(233, 828)
+
+[node name="FlowerFreeze7" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(257, 828)
+
+[node name="FlowerHeal7" parent="." instance=ExtResource("21_2ofn6")]
+position = Vector2(36, 932)
+
+[node name="FlowerPoison9" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(17, 917)
+
+[node name="FlowerFreeze8" parent="." instance=ExtResource("24_fs0b5")]
+position = Vector2(12, 938)
+
+[node name="FlowerPoison5" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(211, 755)
+
+[node name="FlowerPoison6" parent="." instance=ExtResource("19_nfivy")]
+position = Vector2(280, 755)
+
+[node name="FlowerHeal4" parent="." instance=ExtResource("21_2ofn6")]
+position = Vector2(482, 895)

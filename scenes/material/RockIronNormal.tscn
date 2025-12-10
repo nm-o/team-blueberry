@@ -19,7 +19,9 @@ size = Vector2(24, 24)
 y_sort_enabled = true
 script = ExtResource("1_dkqay")
 item_script = ExtResource("2_dkqay")
+amount = 3
 item_drop_scene = ExtResource("3_s1vcl")
+max_clicks = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

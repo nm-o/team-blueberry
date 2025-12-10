@@ -35,6 +35,7 @@ y_sort_enabled = true
 script = ExtResource("1_jxojk")
 item_script = ExtResource("2_jxojk")
 item_drop_scene = ExtResource("3_rkoph")
+max_clicks = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

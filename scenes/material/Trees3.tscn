@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://s0gjbcdlvf7p"]
+[gd_scene load_steps=8 format=3 uid="uid://kq8v4tvjrapx"]
 
-[ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_1i0de"]
-[ext_resource type="Script" uid="uid://dpsypcxlkauws" path="res://scripts/Items/Materials/wood.gd" id="2_kcnxr"]
-[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_na1ff"]
-[ext_resource type="Texture2D" uid="uid://bywuehd7jdtr0" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Trees/Model_01/Size_04.png" id="4_na1ff"]
+[ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_howcw"]
+[ext_resource type="Script" uid="uid://dpsypcxlkauws" path="res://scripts/Items/Materials/wood.gd" id="2_li8wq"]
+[ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_jwrjs"]
+[ext_resource type="Texture2D" uid="uid://bywuehd7jdtr0" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Trees/Model_01/Size_04.png" id="4_tgycr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_na1ff"]
-atlas = ExtResource("4_na1ff")
-region = Rect2(3, 2, 73, 126)
+atlas = ExtResource("4_tgycr")
+region = Rect2(3, 130, 73, 126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na1ff"]
 size = Vector2(25, 33)
@@ -17,10 +17,10 @@ size = Vector2(31, 26)
 
 [node name="TreeNode" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_1i0de")
-item_script = ExtResource("2_kcnxr")
+script = ExtResource("1_howcw")
+item_script = ExtResource("2_li8wq")
 amount = 3
-item_drop_scene = ExtResource("3_na1ff")
+item_drop_scene = ExtResource("3_jwrjs")
 max_clicks = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

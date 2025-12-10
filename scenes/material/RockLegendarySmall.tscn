@@ -34,7 +34,9 @@ color = Color(0.5411765, 0.16862746, 0.8862745, 1)
 y_sort_enabled = true
 script = ExtResource("1_rdi6p")
 item_script = ExtResource("2_rdi6p")
+amount = 2
 item_drop_scene = ExtResource("3_mnt7f")
+max_clicks = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
