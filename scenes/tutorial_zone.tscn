@@ -21,16 +21,15 @@ interaction_name_label = NodePath("../InteractionName")
 book_interface = NodePath("../TutorialBookRecipes")
 
 [node name="InteractionName" type="Label" parent="Node2D"]
-offset_left = -15.0
-offset_top = -51.0
-offset_right = 47.0
-offset_bottom = 22.0
+offset_left = -24.0
+offset_top = -38.0
+offset_right = 71.0
+offset_bottom = 16.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Crafting
-Recipes
-Book
+Recipes Book
 E"
 horizontal_alignment = 1
 
@@ -46,9 +45,9 @@ book_interface = NodePath("../TutorialBookControls")
 
 [node name="InteractionName" type="Label" parent="Node2D2"]
 offset_left = -14.0
-offset_top = -42.0
+offset_top = -38.0
 offset_right = 44.0
-offset_bottom = 12.0
+offset_bottom = 16.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
