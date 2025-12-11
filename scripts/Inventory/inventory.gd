@@ -39,9 +39,12 @@ func _ready() -> void:
 	
 	protect_bar.max_value = 1
 	protect_bar.value = 0
+	
+	health_bar.max_value = player.class_config.hp
+	health_bar.value = player.class_config.hp
 
 func _physics_process(delta: float) -> void:
-	hp_label.text = str(int(health_bar.value*100))
+	hp_label.text = str(int(health_bar.value))
 	protect_bar.value = player.class_config.defense_modifier
 
 func _super_victory_ui():

@@ -22,7 +22,7 @@ var block_movement = false
 var players_defeated: bool = false
 var current_state: Global.States = Global.States.NORMAL
 
-@export var hp: int = 100
+@export var hp: int = 200
 var is_dead: bool = false
 
 func super_ready():

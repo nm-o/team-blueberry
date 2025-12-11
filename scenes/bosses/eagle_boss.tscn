@@ -528,7 +528,8 @@ scale = Vector2(0.9, 0.9)
 size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxTexture_s4qu6")
 theme_override_styles/fill = SubResource("StyleBoxTexture_1d2c0")
-value = 100.0
+max_value = 200.0
+value = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 0

@@ -69,11 +69,12 @@ func _victory():
 		player.inventory.health_bar.value = player.hp
 	
 	AudioController.play_music_phase1()
-	await get_tree().create_timer(5.0).timeout
-	collision_shape_2d.disabled = true
 	
 	# Manages obstacles in first phase to unlock new areas
 	update_collecting_areas(current_boss-1)
+	
+	await get_tree().create_timer(5.0).timeout
+	collision_shape_2d.disabled = true
 
 func _defeat():
 	AudioController.fade_out_defeat()
