@@ -208,7 +208,7 @@ func _physics_process(delta: float) -> void:
 			inventory.select_container(selected_container_number)
 		if Input.is_action_just_pressed("inventory") and inventory:
 			inventory.change_visibility()
-		if not is_inventory_open:
+		if not is_inventory_open and not Mouse.is_tutorial_open:
 			# Selected object marker rotation
 			rotate_selected_obj.rpc(get_global_mouse_position())
 			
@@ -252,7 +252,7 @@ func _physics_process(delta: float) -> void:
 		position = position.lerp(target_position, delta * 10.0)
 		player_sprite_pivot.scale.x = sprite_rotation
 
-	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not is_inventory_open and not Mouse.on_ui:
+	if is_multiplayer_authority() and Input.is_action_just_pressed("attack") and not Mouse.is_tutorial_open and not is_inventory_open and not Mouse.on_ui:
 		if selected_item is Weapon:
 			var type: String = "sword"
 			var damage: int = 0

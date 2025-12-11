@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://rmsvp6txmu1u"]
+[gd_scene load_steps=31 format=3 uid="uid://rmsvp6txmu1u"]
 
 [ext_resource type="Script" uid="uid://s1x5nox6r3mc" path="res://scripts/main.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://clk1rpavw7sdw" path="res://scenes/player/Player.tscn" id="2_0bbpv"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dcph2suudtlcq" path="res://scenes/material/FlowerFreeze.tscn" id="24_fs0b5"]
 [ext_resource type="PackedScene" uid="uid://kq8v4tvjrapx" path="res://scenes/material/Trees3.tscn" id="25_xa025"]
 [ext_resource type="PackedScene" uid="uid://doxnc0hmbtcxs" path="res://scenes/crafting/stations/armor_station.tscn" id="26_36rkl"]
+[ext_resource type="PackedScene" uid="uid://curi8g82s47ik" path="res://scenes/tutorial_zone.tscn" id="27_fs0b5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8u5g"]
 size = Vector2(785, 794)
@@ -79,10 +80,16 @@ position = Vector2(8513, 221)
 position = Vector2(112, -53)
 
 [node name="WeaponsStation" parent="." instance=ExtResource("4_rarhs")]
-position = Vector2(57, -156)
+position = Vector2(40, -156)
 
 [node name="BrewingStation" parent="." instance=ExtResource("5_vcsgt")]
-position = Vector2(140, -136)
+position = Vector2(120, -136)
+
+[node name="ArmorStation" parent="." instance=ExtResource("26_36rkl")]
+position = Vector2(200, -136)
+
+[node name="TutorialZone" parent="." instance=ExtResource("27_fs0b5")]
+position = Vector2(284, -141)
 
 [node name="BossSpawnMarker" type="Marker2D" parent="."]
 position = Vector2(8622, 135)
@@ -135,356 +142,355 @@ collision_mask = 3
 position = Vector2(247.5, 376)
 shape = SubResource("RectangleShape2D_wp0k4")
 
-[node name="Water" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Materials" type="Node2D" parent="."]
+
+[node name="Water" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 1
 
-[node name="Water2" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water2" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 2
 
-[node name="Water3" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water3" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 
-[node name="Water4" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water4" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 4
 
-[node name="Water5" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water5" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 5
 
-[node name="Water6" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water6" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 6
 
-[node name="Water7" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water7" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 7
 
-[node name="Water8" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water8" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 8
 
-[node name="Water9" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water9" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 9
 
-[node name="Water10" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water10" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 10
 
-[node name="Water11" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water11" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 11
 
-[node name="Water12" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water12" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 12
 
-[node name="Water13" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water13" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 13
 
-[node name="Water14" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water14" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 14
 
-[node name="Water15" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water15" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 15
 
-[node name="Water16" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water16" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 16
 
-[node name="Water17" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water17" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 17
 
-[node name="Water18" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water18" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 18
 
-[node name="Water19" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water19" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 19
 
-[node name="Water20" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water20" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 20
 
-[node name="Water21" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water21" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 21
 
-[node name="Water22" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water22" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 22
 
-[node name="Water23" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water23" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 23
 
-[node name="Water24" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water24" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 24
 
-[node name="Water25" parent="." instance=ExtResource("20_1nqs0")]
+[node name="Water25" parent="Materials" instance=ExtResource("20_1nqs0")]
 position = Vector2(163, 145)
 scale = Vector2(4, 4)
 max_clicks = 25
 
-[node name="RockIronNormal" parent="." instance=ExtResource("15_3p2gp")]
+[node name="RockIronNormal" parent="Materials" instance=ExtResource("15_3p2gp")]
 position = Vector2(34, 333)
 
-[node name="RockIronSmall" parent="." instance=ExtResource("16_cvmbd")]
+[node name="RockIronSmall" parent="Materials" instance=ExtResource("16_cvmbd")]
 position = Vector2(219, 143)
 
-[node name="RockIronNormal2" parent="." instance=ExtResource("15_3p2gp")]
+[node name="RockIronNormal2" parent="Materials" instance=ExtResource("15_3p2gp")]
 position = Vector2(26, 55)
 
-[node name="RockIronSmall2" parent="." instance=ExtResource("16_cvmbd")]
+[node name="RockIronSmall2" parent="Materials" instance=ExtResource("16_cvmbd")]
 position = Vector2(409, 319)
 amount = 1
 
-[node name="RockIronSmall3" parent="." instance=ExtResource("16_cvmbd")]
+[node name="RockIronSmall3" parent="Materials" instance=ExtResource("16_cvmbd")]
 position = Vector2(437, 275)
 
-[node name="RockIronSmall4" parent="." instance=ExtResource("16_cvmbd")]
+[node name="RockIronSmall4" parent="Materials" instance=ExtResource("16_cvmbd")]
 position = Vector2(201, 174)
 
-[node name="RockIronSmall5" parent="." instance=ExtResource("16_cvmbd")]
+[node name="RockIronSmall5" parent="Materials" instance=ExtResource("16_cvmbd")]
 position = Vector2(451, 22)
 
-[node name="FlowerPoison" parent="." instance=ExtResource("19_nfivy")]
+[node name="FlowerPoison" parent="Materials" instance=ExtResource("19_nfivy")]
 position = Vector2(466, 161)
 
-[node name="TreeNode" parent="." instance=ExtResource("14_mwfav")]
+[node name="TreeNode" parent="Materials" instance=ExtResource("14_mwfav")]
 position = Vector2(452, 140)
 
-[node name="TreeNode2" parent="." instance=ExtResource("14_mwfav")]
+[node name="TreeNode2" parent="Materials" instance=ExtResource("14_mwfav")]
 position = Vector2(76, 180)
 
-[node name="TreeNode3" parent="." instance=ExtResource("14_mwfav")]
+[node name="TreeNode3" parent="Materials" instance=ExtResource("14_mwfav")]
 position = Vector2(374, 320)
 
-[node name="TreeNode4" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode4" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 5
 position = Vector2(140, 654)
 
-[node name="TreeNode6" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode6" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 3
 position = Vector2(142, 543)
 
-[node name="TreeNode7" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode7" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 2
 position = Vector2(144, 482)
 
-[node name="TreeNode8" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode8" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 1
 position = Vector2(146, 432)
 
-[node name="TreeNode9" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode9" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 5
 position = Vector2(326, 656)
 
-[node name="TreeNode10" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode10" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 4
 position = Vector2(328, 603)
 
-[node name="TreeNode11" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode11" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 3
 position = Vector2(324, 545)
 
-[node name="TreeNode12" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode12" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 2
 position = Vector2(325, 484)
 
-[node name="RockIronNormal3" parent="." instance=ExtResource("15_3p2gp")]
+[node name="RockIronNormal3" parent="Materials" instance=ExtResource("15_3p2gp")]
 position = Vector2(21, 657)
 
-[node name="RockIronSmall6" parent="." instance=ExtResource("16_cvmbd")]
+[node name="RockIronSmall6" parent="Materials" instance=ExtResource("16_cvmbd")]
 position = Vector2(484, 553)
 
-[node name="RockLegendaryNormal" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(48, 648)
 
-[node name="RockLegendaryNormal2" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal2" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(25, 620)
 
-[node name="RockLegendaryNormal3" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal3" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(378, 406)
 
-[node name="RockLegendarySmall" parent="." instance=ExtResource("18_nfivy")]
+[node name="RockLegendarySmall" parent="Materials" instance=ExtResource("18_nfivy")]
 position = Vector2(196, 584)
 
-[node name="RockLegendarySmall2" parent="." instance=ExtResource("18_nfivy")]
+[node name="RockLegendarySmall2" parent="Materials" instance=ExtResource("18_nfivy")]
 position = Vector2(272, 619)
 
-[node name="RockLegendarySmall3" parent="." instance=ExtResource("18_nfivy")]
+[node name="RockLegendarySmall3" parent="Materials" instance=ExtResource("18_nfivy")]
 position = Vector2(185, 557)
 
-[node name="RockLegendaryNormal4" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal4" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(113, 402)
 
-[node name="FlowerHeal" parent="." instance=ExtResource("21_2ofn6")]
+[node name="FlowerHeal" parent="Materials" instance=ExtResource("21_2ofn6")]
 position = Vector2(212, 657)
 
-[node name="FlowerHeal2" parent="." instance=ExtResource("21_2ofn6")]
+[node name="FlowerHeal2" parent="Materials" instance=ExtResource("21_2ofn6")]
 position = Vector2(276, 655)
 
-[node name="FlowerFreeze9" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze9" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(19, 795)
 
-[node name="RockLegendaryNormal5" parent="." instance=ExtResource("22_xa025")]
+[node name="RockLegendaryNormal5" parent="Materials" instance=ExtResource("22_xa025")]
 position = Vector2(388, 431)
 
-[node name="RockLegendarySmall4" parent="." instance=ExtResource("23_36rkl")]
+[node name="RockLegendarySmall4" parent="Materials" instance=ExtResource("23_36rkl")]
 position = Vector2(54, 627)
 
-[node name="FlowerFreeze" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(278, 406)
 
-[node name="FlowerFreeze2" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze2" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(89, 542)
 
-[node name="FlowerFreeze3" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze3" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(472, 534)
 
-[node name="FlowerFreeze4" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze4" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(132, 95)
 
-[node name="FlowerFreeze5" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze5" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(472, 335)
 
-[node name="FlowerFreeze6" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze6" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(320, 18)
 
-[node name="TreeNode14" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode14" parent="Materials" instance=ExtResource("25_xa025")]
 z_index = 1
 position = Vector2(79, 893)
 
-[node name="TreeNode16" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode16" parent="Materials" instance=ExtResource("25_xa025")]
 z_index = 1
 position = Vector2(157, 891)
 
-[node name="TreeNode18" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode18" parent="Materials" instance=ExtResource("25_xa025")]
 position = Vector2(144, 778)
 
-[node name="TreeNode19" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode19" parent="Materials" instance=ExtResource("25_xa025")]
 position = Vector2(111, 779)
 
-[node name="TreeNode17" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode17" parent="Materials" instance=ExtResource("25_xa025")]
 z_index = 1
 position = Vector2(375, 893)
 
-[node name="TreeNode22" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode22" parent="Materials" instance=ExtResource("25_xa025")]
 z_index = 2
 position = Vector2(445, 892)
 
-[node name="TreeNode24" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode24" parent="Materials" instance=ExtResource("25_xa025")]
 position = Vector2(399, 780)
 
-[node name="TreeNode25" parent="." instance=ExtResource("25_xa025")]
+[node name="TreeNode25" parent="Materials" instance=ExtResource("25_xa025")]
 position = Vector2(365, 778)
 
-[node name="TreeNode15" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode15" parent="Materials" instance=ExtResource("18_bb450")]
 position = Vector2(118, 892)
 
-[node name="TreeNode20" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode20" parent="Materials" instance=ExtResource("18_bb450")]
 position = Vector2(78, 776)
 
-[node name="TreeNode21" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode21" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 2
 position = Vector2(411, 891)
 
-[node name="TreeNode23" parent="." instance=ExtResource("18_bb450")]
+[node name="TreeNode23" parent="Materials" instance=ExtResource("18_bb450")]
 z_index = 1
 position = Vector2(425, 779)
 
-[node name="TreeNode13" parent="." instance=ExtResource("14_mwfav")]
+[node name="TreeNode13" parent="Materials" instance=ExtResource("14_mwfav")]
 position = Vector2(324, 441)
 
-[node name="TreeNode5" parent="." instance=ExtResource("14_mwfav")]
+[node name="TreeNode5" parent="Materials" instance=ExtResource("14_mwfav")]
 z_index = 4
 position = Vector2(140, 596)
 
-[node name="RockLegendaryNormal6" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal6" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(28, 881)
 
-[node name="RockLegendaryNormal7" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal7" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(42, 908)
 
-[node name="RockLegendaryNormal8" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal8" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(209, 709)
 
-[node name="RockLegendaryNormal9" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal9" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(210, 731)
 
-[node name="RockLegendaryNormal10" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal10" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(279, 714)
 
-[node name="RockLegendaryNormal11" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal11" parent="Materials" instance=ExtResource("17_bb450")]
 position = Vector2(279, 733)
 
-[node name="RockLegendaryNormal12" parent="." instance=ExtResource("17_bb450")]
+[node name="RockLegendaryNormal12" parent="Materials" instance=ExtResource("17_bb450")]
 z_index = 2
 position = Vector2(482, 947)
 
-[node name="RockLegendaryNormal13" parent="." instance=ExtResource("22_xa025")]
+[node name="RockLegendaryNormal13" parent="Materials" instance=ExtResource("22_xa025")]
 position = Vector2(18, 771)
 
-[node name="RockLegendaryNormal14" parent="." instance=ExtResource("22_xa025")]
+[node name="RockLegendaryNormal14" parent="Materials" instance=ExtResource("22_xa025")]
 position = Vector2(463, 935)
 
-[node name="RockLegendarySmall5" parent="." instance=ExtResource("23_36rkl")]
+[node name="RockLegendarySmall5" parent="Materials" instance=ExtResource("23_36rkl")]
 position = Vector2(458, 722)
 
-[node name="FlowerPoison8" parent="." instance=ExtResource("19_nfivy")]
+[node name="FlowerPoison8" parent="Materials" instance=ExtResource("19_nfivy")]
 position = Vector2(244, 844)
 
-[node name="FlowerHeal6" parent="." instance=ExtResource("21_2ofn6")]
+[node name="FlowerHeal6" parent="Materials" instance=ExtResource("21_2ofn6")]
 position = Vector2(233, 828)
 
-[node name="FlowerFreeze7" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze7" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(257, 828)
 
-[node name="FlowerHeal7" parent="." instance=ExtResource("21_2ofn6")]
+[node name="FlowerHeal7" parent="Materials" instance=ExtResource("21_2ofn6")]
 position = Vector2(36, 932)
 
-[node name="FlowerFreeze8" parent="." instance=ExtResource("24_fs0b5")]
+[node name="FlowerFreeze8" parent="Materials" instance=ExtResource("24_fs0b5")]
 position = Vector2(12, 938)
 
-[node name="FlowerPoison6" parent="." instance=ExtResource("19_nfivy")]
+[node name="FlowerPoison6" parent="Materials" instance=ExtResource("19_nfivy")]
 position = Vector2(280, 755)
 
-[node name="FlowerHeal4" parent="." instance=ExtResource("21_2ofn6")]
+[node name="FlowerHeal4" parent="Materials" instance=ExtResource("21_2ofn6")]
 position = Vector2(482, 895)
-
-[node name="ArmorStation" parent="." instance=ExtResource("26_36rkl")]
-position = Vector2(223, -136)

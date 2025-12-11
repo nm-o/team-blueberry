@@ -5,22 +5,22 @@
 [ext_resource type="Texture2D" uid="uid://s1wurijehhkg" path="res://assets/UI/control_icon_other_keys.png" id="2_v3lw7"]
 [ext_resource type="Texture2D" uid="uid://cucf3kylf1iw7" path="res://assets/UI/control_icon_mouse.png" id="3_774h1"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j7ei3"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v3lw7"]
 load_path = "res://.godot/imported/UI_TravelBook_Spritesheet01a.png-9bec2e396cc5f9a7414787b7c832f599.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yb2s7"]
-texture = SubResource("CompressedTexture2D_j7ei3")
+texture = SubResource("CompressedTexture2D_v3lw7")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 region_rect = Rect2(64, 32, 224, 160)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s4d2c"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_774h1"]
 load_path = "res://.godot/imported/UI_TravelBook_Spritesheet01a.png-9bec2e396cc5f9a7414787b7c832f599.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oeaph"]
-texture = SubResource("CompressedTexture2D_s4d2c")
+texture = SubResource("CompressedTexture2D_774h1")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
@@ -59,59 +59,76 @@ region_rect = Rect2(65, 433, 62, 14)
 modulate_color = Color(1, 1, 1, 0.4117647)
 
 [node name="TutorialBookControls" type="CanvasLayer"]
+layer = 2
 
-[node name="BackCover" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackCover" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="PanelContainer" type="PanelContainer" parent="BackCover"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/BackCover"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_yb2s7")
 
-[node name="Page" type="MarginContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
+[node name="Page" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 110
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 110
 
-[node name="PanelContainer" type="PanelContainer" parent="Page"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Page"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_oeaph")
 
-[node name="Contents" type="MarginContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
+[node name="Contents" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 125
 theme_override_constants/margin_top = 115
 theme_override_constants/margin_right = 125
 theme_override_constants/margin_bottom = 115
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Contents"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents"]
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_18ses")
 
-[node name="MarginContainer" type="MarginContainer" parent="Contents/HBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -122,26 +139,26 @@ theme_override_font_sizes/font_size = 50
 text = "Controls"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.85
 theme_override_constants/separation = 30
 
-[node name="PanelContainer" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_774h1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="TextureRect" type="TextureRect" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -149,7 +166,7 @@ size_flags_vertical = 3
 texture = ExtResource("1_r58uq")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -159,11 +176,11 @@ text = "Movement"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="TextureRect" type="TextureRect" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -171,11 +188,11 @@ size_flags_vertical = 6
 texture = ExtResource("2_v3lw7")
 stretch_mode = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -185,7 +202,7 @@ text = "Interactions"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -195,7 +212,7 @@ text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -205,26 +222,26 @@ text = "Dash"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_4oyuy")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 30
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 39
 
-[node name="TextureRect" type="TextureRect" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -232,7 +249,7 @@ size_flags_vertical = 6
 texture = ExtResource("3_774h1")
 stretch_mode = 4
 
-[node name="Label2" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="Label2" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -243,12 +260,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 25
 
-[node name="Label3" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -259,7 +276,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Label" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6

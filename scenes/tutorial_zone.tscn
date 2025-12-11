@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://curi8g82s47ik"]
+
+[ext_resource type="Texture2D" uid="uid://dib7ahiv5kbl1" path="res://assets/UI/table.png" id="1_8nyq3"]
+[ext_resource type="PackedScene" uid="uid://ctte1h1f4aruj" path="res://scenes/book.tscn" id="1_adhd8"]
+[ext_resource type="PackedScene" uid="uid://bcfkx4phcn7ja" path="res://scenes/tutorial_book_recipes.tscn" id="2_8nyq3"]
+[ext_resource type="PackedScene" uid="uid://dqdl7m8c2d2en" path="res://scenes/tutorial_book_controls.tscn" id="3_4bxok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nyq3"]
+size = Vector2(60, 24)
+
+[node name="TutorialZone" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8nyq3")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-16, -4)
+
+[node name="Book" parent="Node2D" node_paths=PackedStringArray("interaction_name_label", "book_interface") instance=ExtResource("1_adhd8")]
+interaction_name_label = NodePath("../InteractionName")
+book_interface = NodePath("../TutorialBookRecipes")
+
+[node name="InteractionName" type="Label" parent="Node2D"]
+offset_left = -15.0
+offset_top = -51.0
+offset_right = 47.0
+offset_bottom = 22.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Crafting
+Recipes
+Book
+E"
+horizontal_alignment = 1
+
+[node name="TutorialBookRecipes" parent="Node2D" instance=ExtResource("2_8nyq3")]
+visible = false
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(16, -4)
+
+[node name="Book2" parent="Node2D2" node_paths=PackedStringArray("interaction_name_label", "book_interface") instance=ExtResource("1_adhd8")]
+interaction_name_label = NodePath("../InteractionName")
+book_interface = NodePath("../TutorialBookControls")
+
+[node name="InteractionName" type="Label" parent="Node2D2"]
+offset_left = -14.0
+offset_top = -42.0
+offset_right = 44.0
+offset_bottom = 12.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Controls
+Book
+E"
+horizontal_alignment = 1
+
+[node name="TutorialBookControls" parent="Node2D2" instance=ExtResource("3_4bxok")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_8nyq3")

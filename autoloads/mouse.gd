@@ -12,6 +12,8 @@ var drop_id_first: int = 0
 var drop_id_second: int = 0
 var boss_number: int = 1
 
+var is_tutorial_open: bool = false
+
 signal players_lost
 signal boss_dead
 signal on_teleport(id)

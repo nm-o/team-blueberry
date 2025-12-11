@@ -1,6 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcfkx4phcn7ja"]
+[gd_scene load_steps=16 format=3 uid="uid://bcfkx4phcn7ja"]
 
 [ext_resource type="Texture2D" uid="uid://8hi1o750ye6t" path="res://assets/UI/UI_TravelBook_Spritesheet01a.png" id="1_w050w"]
+[ext_resource type="Texture2D" uid="uid://dc8c5x0kmo2fm" path="res://ui/recipes/basic_potion_craft.png" id="2_ekxl5"]
+[ext_resource type="Texture2D" uid="uid://bewjqpw3k644k" path="res://ui/recipes/advanced_potion_craft.png" id="3_ee1jf"]
+[ext_resource type="Texture2D" uid="uid://tvtdvjdmkmcl" path="res://ui/recipes/helmet_craft.png" id="4_ppniy"]
+[ext_resource type="Texture2D" uid="uid://qqit0vg6ms4a" path="res://ui/recipes/chest_craft.png" id="5_eeaql"]
+[ext_resource type="Texture2D" uid="uid://c20r4qdvj2y77" path="res://ui/recipes/legs_craft.png" id="6_wxhdj"]
+[ext_resource type="Texture2D" uid="uid://18onuhetihq1" path="res://ui/recipes/spear_craft.png" id="7_eeaql"]
+[ext_resource type="Texture2D" uid="uid://dsfm50xt143py" path="res://ui/recipes/sword_craft.png" id="8_wxhdj"]
+[ext_resource type="Texture2D" uid="uid://bbqbfn8uk3l47" path="res://ui/recipes/axe_craft.png" id="9_voctv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w050w"]
 load_path = "res://.godot/imported/UI_TravelBook_Spritesheet01a.png-9bec2e396cc5f9a7414787b7c832f599.ctex"
@@ -40,59 +48,76 @@ region_rect = Rect2(65, 433, 62, 14)
 modulate_color = Color(1, 1, 1, 0.4117647)
 
 [node name="TutorialBookRecipes" type="CanvasLayer"]
+layer = 2
 
-[node name="BackCover" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.5
+offset_top = -366.5
+offset_right = 639.5
+offset_bottom = 366.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackCover" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="PanelContainer" type="PanelContainer" parent="BackCover"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/BackCover"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ssh6k")
 
-[node name="Page" type="MarginContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
+[node name="Page" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 110
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 110
 
-[node name="PanelContainer" type="PanelContainer" parent="Page"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Page"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_gxo68")
 
-[node name="Contents" type="MarginContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
-theme_override_constants/margin_left = 125
-theme_override_constants/margin_top = 115
-theme_override_constants/margin_right = 125
-theme_override_constants/margin_bottom = 115
+[node name="Contents" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 115
+theme_override_constants/margin_top = 105
+theme_override_constants/margin_right = 115
+theme_override_constants/margin_bottom = 105
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Contents"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents"]
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_paiam")
 
-[node name="MarginContainer" type="MarginContainer" parent="Contents/HBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -100,71 +125,263 @@ theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
 theme_override_colors/font_outline_color = Color(0.28627452, 0.2, 0.2, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 50
-text = "Recipes"
+text = "Crafting Recipes"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.3254902, 0.42745098, 0.09019608, 1)
+theme_override_font_sizes/font_size = 40
+text = "Alchemist"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.19835547, 0.18930379, 0.55791634, 1)
+theme_override_font_sizes/font_size = 40
+text = "Armor Master"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.5176471, 0.09019608, 0.10980392, 1)
+theme_override_font_sizes/font_size = 40
+text = "Weapon Master"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.85
 theme_override_constants/separation = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Basic Potion"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_ekxl5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Advanced Potion"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_ee1jf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_ppniy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Helmet"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="PanelContainer3" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_eeaql")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Chestplate"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_wxhdj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/PanelContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Leg Armor"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="PanelContainer2" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("7_eeaql")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Spear"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
 
-[node name="PanelContainer3" type="PanelContainer" parent="Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_wxhdj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Sword"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_p3y8e")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_voctv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Contents/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer3/PanelContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.28627452, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "Axe"
+horizontal_alignment = 1
