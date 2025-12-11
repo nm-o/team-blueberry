@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_1i0de"]
 [ext_resource type="Script" uid="uid://dpsypcxlkauws" path="res://scripts/Items/Materials/wood.gd" id="2_kcnxr"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_na1ff"]
-[ext_resource type="Texture2D" uid="uid://bywuehd7jdtr0" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Trees/Model_01/Size_04.png" id="4_na1ff"]
+[ext_resource type="Texture2D" uid="uid://c7ih2ivo2cu7k" path="res://assets/InWorldMaterials/trees.png" id="4_al3ru"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_na1ff"]
-atlas = ExtResource("4_na1ff")
-region = Rect2(3, 2, 73, 126)
+atlas = ExtResource("4_al3ru")
+region = Rect2(1, 1, 33, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na1ff"]
 size = Vector2(25, 33)
@@ -26,11 +26,10 @@ max_clicks = 6
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(1, -5)
+position = Vector2(-1, -12)
 texture = SubResource("AtlasTexture_na1ff")
-offset = Vector2(0, -43)
 region_enabled = true
-region_rect = Rect2(0, 0, 75.732574, 129.03705)
+region_rect = Rect2(0, 0, 33, 50)
 
 [node name="InteractionArea" type="Area2D" parent="."]
 

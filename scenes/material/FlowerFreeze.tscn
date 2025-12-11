@@ -3,16 +3,16 @@
 [ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_u1xxc"]
 [ext_resource type="Script" uid="uid://dwwlnwg8m7fix" path="res://scripts/Items/Materials/flower_freeze.gd" id="2_u1xxc"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_u0y1j"]
-[ext_resource type="Texture2D" uid="uid://ccm3mh7jeab3l" path="res://assets/Items/Materials/flower_frost.png" id="4_y7hi6"]
+[ext_resource type="Texture2D" uid="uid://1vxwkhjty152" path="res://assets/InWorldMaterials/freeze_flower.png" id="4_u1xxc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_prqnm"]
-atlas = ExtResource("4_y7hi6")
+atlas = ExtResource("4_u1xxc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evfd0"]
-size = Vector2(14, 15)
+size = Vector2(15, 23.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tw41j"]
-size = Vector2(15, 17)
+size = Vector2(16.5, 17)
 
 [node name="FlowerFreeze" type="Node2D"]
 z_index = 1
@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 75.732574, 129.03705)
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(-2, -1.5)
+position = Vector2(-1.5, -2.25)
 shape = SubResource("RectangleShape2D_evfd0")
 
 [node name="Area2D" type="StaticBody2D" parent="."]
@@ -40,7 +40,7 @@ collision_layer = 43
 collision_mask = 43
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.5, 10.5)
+position = Vector2(-1.75, 10)
 shape = SubResource("RectangleShape2D_tw41j")
 
 [node name="InteractionName" type="Label" parent="."]

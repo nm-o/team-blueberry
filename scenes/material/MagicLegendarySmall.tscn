@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_jxojk"]
 [ext_resource type="Script" uid="uid://b15ccvffay5my" path="res://scripts/Items/Materials/magic_crystal.gd" id="2_jxojk"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_rkoph"]
-[ext_resource type="Texture2D" uid="uid://cmuggbkeyecq" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Rocks.png" id="4_yqe8n"]
+[ext_resource type="Texture2D" uid="uid://chm850x1v6sdf" path="res://assets/InWorldMaterials/magic_crystal_rocks.png" id="4_jxojk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rdi6p"]
 particles_animation = true
@@ -12,8 +12,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cudmk"]
-atlas = ExtResource("4_yqe8n")
-region = Rect2(176, 17, 16, 14)
+atlas = ExtResource("4_jxojk")
+region = Rect2(31, 9, 16, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evfd0"]
 size = Vector2(19, 16)
@@ -28,7 +28,7 @@ emission_sphere_radius = 7.8
 gravity = Vector3(0, -15, 0)
 radial_accel_min = -2.2351742e-06
 radial_accel_max = 11.719997
-color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+color = Color(0.95692223, 0.706658, 0.74651206, 1)
 
 [node name="RockLegendarySmall" type="Node2D"]
 z_index = 1

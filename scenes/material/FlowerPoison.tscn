@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_bea4b"]
 [ext_resource type="Script" uid="uid://cssryafnh506b" path="res://scripts/Items/Materials/flower_poison.gd" id="2_bea4b"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_18m2d"]
-[ext_resource type="Texture2D" uid="uid://c4cie6aduvnnk" path="res://assets/Items/Materials/flower_poison.png" id="4_bea4b"]
+[ext_resource type="Texture2D" uid="uid://c1v06n3qhmsih" path="res://assets/InWorldMaterials/poison_flower.png" id="4_bea4b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_prqnm"]
 atlas = ExtResource("4_bea4b")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evfd0"]
-size = Vector2(14, 15)
+size = Vector2(14, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tw41j"]
 size = Vector2(15, 17)
@@ -32,7 +32,7 @@ region_rect = Rect2(0, 0, 75.732574, 129.03705)
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(-2, -1.5)
+position = Vector2(-2, -2)
 shape = SubResource("RectangleShape2D_evfd0")
 
 [node name="Area2D" type="StaticBody2D" parent="."]
@@ -40,7 +40,7 @@ collision_layer = 43
 collision_mask = 43
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.5, 10.5)
+position = Vector2(-2, 12)
 shape = SubResource("RectangleShape2D_tw41j")
 
 [node name="InteractionName" type="Label" parent="."]

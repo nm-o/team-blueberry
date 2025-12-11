@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://dverh5bt1l20u" path="res://scripts/Items/Materials/ResourceNode.gd" id="1_dkqay"]
 [ext_resource type="Script" uid="uid://wxuareie4px1" path="res://scripts/Items/Materials/iron.gd" id="2_dkqay"]
 [ext_resource type="PackedScene" uid="uid://c35v1or8j2glt" path="res://scenes/item_drop.tscn" id="3_s1vcl"]
-[ext_resource type="Texture2D" uid="uid://cmuggbkeyecq" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Rocks.png" id="4_gjura"]
+[ext_resource type="Texture2D" uid="uid://c2g3ba4n8m7r4" path="res://assets/InWorldMaterials/iron_rocks.png" id="4_dkqay"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cudmk"]
-atlas = ExtResource("4_gjura")
-region = Rect2(131, 19, 26, 27)
+atlas = ExtResource("4_dkqay")
+region = Rect2(1, 1, 26, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evfd0"]
 size = Vector2(25, 33)
