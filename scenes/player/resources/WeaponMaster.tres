@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1")
 role_name = &"WeaponMaster"
-hp = 120
 movement_speed = 500.0
 label_role_text = "Weapon Master"
 starting_items = Array[String](["res://scripts/Items/Weapons/Sword/sword_wood.gd"])
