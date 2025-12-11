@@ -254,6 +254,7 @@ autoplay = "default"
 frame_progress = 0.05440998
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpectatorGhost"]
+light_mask = 3
 position = Vector2(0, 3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_180ig")

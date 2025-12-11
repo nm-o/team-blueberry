@@ -158,10 +158,20 @@ func ghost_enabled(is_enabled: bool):
 	spectator_ghost.set_physics_process(is_enabled)
 	spectator_ghost.set_spawn_position(global_position)
 	if is_enabled:
+		sprite_2d.visible = false
+		player_weapon.visible = false
+		label_name.visible = false
+		label_role.visible = false
+		
 		ghost_collision_shape_2d.disabled = false
 		self.remove_child(personal_camera_2d)
 		spectator_ghost.add_child(personal_camera_2d)
 	else:
+		sprite_2d.visible = true
+		player_weapon.visible = true
+		label_name.visible = true
+		label_role.visible = true
+		
 		ghost_collision_shape_2d.disabled = true
 		spectator_ghost.remove_child(personal_camera_2d)
 		self.add_child(personal_camera_2d)
