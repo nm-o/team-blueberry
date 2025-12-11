@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://iobnvr8f3tkm"]
 
 [ext_resource type="Script" uid="uid://eed5mjiac1bg" path="res://lobby/lobby_player.gd" id="1_1jc8v"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_dxmoh"]
+[ext_resource type="Texture2D" uid="uid://chgmsc1kixswe" path="res://team_blueberry_logo_circle.png" id="2_wfndr"]
 
 [node name="LobbyPlayer" type="HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -25,5 +25,5 @@ text = "Role"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
-texture = ExtResource("1_dxmoh")
+texture = ExtResource("2_wfndr")
 expand_mode = 3

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_1g6tu"]
 [ext_resource type="Script" uid="uid://d1urh7pr0l6lh" path="res://lobby/waiting_screen.gd" id="2_a2sqk"]
 [ext_resource type="PackedScene" uid="uid://iobnvr8f3tkm" path="res://lobby/lobby_player.tscn" id="2_wjc1o"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="3_0nkhr"]
+[ext_resource type="Texture2D" uid="uid://chgmsc1kixswe" path="res://team_blueberry_logo_circle.png" id="4_ssaso"]
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="5_ssaso"]
 
 [node name="WaitingScreen" instance=ExtResource("1_1g6tu")]
@@ -101,7 +101,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_0nkhr")
+texture = ExtResource("4_ssaso")
 expand_mode = 1
 stretch_mode = 5
 
